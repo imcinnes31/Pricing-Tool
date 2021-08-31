@@ -1,0 +1,29 @@
+.profile-pronouns {
+    margin: 6px 0 0;
+    font-size: 15px;
+    clear: both;
+    font-family: "Proxima Nova Regular",Arial,sans-serif;
+    color: #737E90;
+    line-height: 1;
+}
+
+.glossary-button {
+    font-family: "Proxima Nova Regular",Arial,sans-serif;
+    text-align: left;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    /* cursor: pointer; */
+}
+
+.glossary-button:hover {
+    color: var(--primary_main)!important;
+}
+
+.pfp-container {
+    width: 360px;
+    height: 240px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
