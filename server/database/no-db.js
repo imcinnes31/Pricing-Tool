@@ -3,12 +3,12 @@ const { parse } = require("path");
 const path = require("path");
 const { lowercase, compareDate, compareNum, compareStr } = require("../utils/index");
 
-module.exports = (DB) => {
+module.exports = (DB) => { // Syntax to create an object
   // Count how many documents there is in a particular collection
   DB.countDocuments = (collection) => {
     return new Promise((resolve, reject) => {
       // Read the data.json file's content
-      fs.readFile(path.join(__dirname + "/data.json"), (err, data) => {
+      fs.readFile(path.join(__dirname + "/data/data.json"), (err, data) => {
         if (err) reject(err);
         resolve(JSON.parse(data)[collection].length);
       });
@@ -19,9 +19,13 @@ module.exports = (DB) => {
   DB.find = (collection, query, options) => {
     console.log({query})
     return new Promise((resolve, reject) => {
-      fs.readFile(path.join(__dirname + "/data.json"), (err, data) => {
+      fs.readFile(path.join(__dirname + "/data/data.json"), (err, data) => {
         if (err) reject(err);
         // store all records in an array
+
+
+        // The meta-data (total, total_pages, current_page) is calculated and returned from this callback after the data has
+        // been retrieved from the database.
         let parsedData = JSON.parse(data)[collection];
 
         parsedData = filterData(parsedData, query)
@@ -39,6 +43,7 @@ module.exports = (DB) => {
             options.skip + options.limit
           );
         }
+        //////////////////////////////////////////////
 
         resolve({
           total: total,
@@ -114,6 +119,7 @@ function sortData(arr, key, order) {
   }
 }
 
+// 'func' param should return a 1 or -1 depending on if it should come first or last.
 function sortBy(func, arr, key, order) {
   arr.sort((a, b) => {
     if (order === "desc") return func(b[key], a[key]);

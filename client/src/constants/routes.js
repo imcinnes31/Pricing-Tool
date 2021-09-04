@@ -1,5 +1,5 @@
 export const ROUTES = {
-  HOME: "/home",
+  HOME: "/", // This is the landing page.
   MAIN: "/find-a-counselor",
   CONTACT: "/contact",
   ABOUT: "/about",

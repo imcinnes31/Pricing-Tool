@@ -2,7 +2,7 @@ import React from "react";
 
 export default function useHttpRequest(url) {
   const [state, setState] = React.useState({
-    loading: false,
+    loading: true,
     error: false,
     data: null,
   });
@@ -13,7 +13,7 @@ export default function useHttpRequest(url) {
       error: false,
       data: null,
     });
-
+    // console.log({url})
     fetch(url)
       .then((res) => {
         return res.json();
@@ -32,7 +32,8 @@ export default function useHttpRequest(url) {
             data: null,
           })
       });
-  }, [url]);
+  }, [url]
+  );
 
   return state;
 }

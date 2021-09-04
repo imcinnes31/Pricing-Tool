@@ -5,16 +5,15 @@ import { Spinner } from "../components/Spinner";
 import CardList from "../components/Card/CardList";
 import { SKIP } from "../constants/skip";
 
-const ajaxUrl = "http://localhost:5000/api/v1/counselors";
-// const ajaxUrl = "http://10.0.1.25:5000/api/v1/counselors";
+const ajaxUrl = "http://localhost:5000/api/v2/counselors";
 
 export default function Main({ filters }) {
   const [isSelected, setIsSelected] = React.useState([]);
-  const [query, setQuery] = React.useState("");
+  const [query, setQuery] = React.useState(""); // represents everything after the ? in a query. ex: api/counselor? ${query}
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(SKIP);
   const { loading, error, data } = useHttpRequest(
-    `${ajaxUrl}?${query}&page=${page}&per_page=${perPage}`
+    `${ajaxUrl}?${query}&page=${page}&per_page=${perPage}&`
   );
 
   React.useEffect(() => {

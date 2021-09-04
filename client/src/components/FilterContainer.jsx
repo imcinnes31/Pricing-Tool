@@ -7,22 +7,25 @@ export default function FilterContainer({
   filters,
   isSelected,
   setIsSelected,
-  setQuery
+  setQuery,
 }) {
+  const [sliderVal, setSliderVal] = React.useState(0); // this variable holds the price slider value.
+
   return (
     <Fragment>
-      <Slider />
+      <Slider sliderVal={sliderVal} setSliderVal={setSliderVal} />
 
-      <DropdownComponent
+      <DropdownComponent // Filter
         filters={filters}
         selected={isSelected}
         setSelected={setIsSelected}
       />
 
-      <Query
+      <Query // Apply Filters BUTTON
         isSelected={isSelected}
         setIsSelected={setIsSelected}
         setQuery={setQuery}
+        sliderVal={sliderVal}
       />
     </Fragment>
   );

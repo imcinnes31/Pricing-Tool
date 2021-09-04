@@ -9,7 +9,7 @@ import { ROUTES } from "../../constants/routes";
 export default function ProfilePage() {
   const { userid } = useParams();
   const { loading, error, data } = useHttpRequest(
-    `http://localhost:5000/api/v1/counselors/${userid}`
+    `http://localhost:5000/api/v2/counselors/id/${userid}`
   ); // data in this context is a user object.
 
   if (loading) return <Spinner />;

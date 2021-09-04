@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 
 export default function UserCard({ user }) {
@@ -42,10 +42,11 @@ export default function UserCard({ user }) {
               <small className="text-muted">{user.pronouns}</small>
             </div>
             <p className="card-text"> {trimParagraph(user.description)} </p>
+            <p>Cost per session: ${user.price}</p>
             <p className="">
               <Link to={`${ROUTES.PROFILE}/${user.id}`}>
                 <button className="btn secondary-button">VIEW PROFILE</button>
-              </Link>
+              </Link>           
 
               <button className="btn primary-button">
                 BOOK AN APPOINTEMENT
