@@ -192,3 +192,7 @@ button:focus {
 .top-main {
   top: 9rem;
 }
+
+.popover{
+  margin-top: 20px;
+}

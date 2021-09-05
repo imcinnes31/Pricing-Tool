@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
+import {OverlayTrigger, Popover} from 'react-bootstrap';
 
 export default function Header({ company }) {
   return (
@@ -25,10 +26,12 @@ export default function Header({ company }) {
               FIND A COUNSELOR
             </button>
           </NavLink>
-
-          <button type="button" className="btn primary-button">
+          <OverlayTrigger trigger="click" placement="bottom" overlay={popoverForm} container={this}>
+          <button type="button" className="btn primary-button" >
             SIGN IN
           </button>
+          </OverlayTrigger>
+
         </div>
 
         <ul className="navigation">
@@ -48,3 +51,12 @@ export default function Header({ company }) {
     </header>
   );
 }
+const popoverForm = (
+  <Popover id="popover-basic" >
+    <Popover.Header as="h3" >Popover right</Popover.Header>
+    <Popover.Body>
+      And here's some <strong>amazing</strong> content. It's very engaging.
+      right?
+    </Popover.Body>
+  </Popover>
+);
