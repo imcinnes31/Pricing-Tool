@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
-import {OverlayTrigger, Popover} from 'react-bootstrap';
+import {Form, OverlayTrigger, Popover, Button} from 'react-bootstrap';
 
 export default function Header({ company }) {
   return (
@@ -52,11 +52,39 @@ export default function Header({ company }) {
   );
 }
 const popoverForm = (
-  <Popover id="popover-basic" >
-    <Popover.Header as="h3" >Popover right</Popover.Header>
-    <Popover.Body>
-      And here's some <strong>amazing</strong> content. It's very engaging.
-      right?
+  <Popover id="popover-basic" style={{backgroundColor: "var(--offWhite)"}}>
+    <Popover.Body >
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formRegister">
+          <p style={{fontWeight: "bold"}}>New user? &nbsp;
+            {/* Change Link to register page later */}
+            <NavLink to={ROUTES.MAIN}
+              style={{
+                fontWeight: "bold",
+                color: "var(--secondary_3)",
+                textDecoration: "underline"
+              }}>
+              Register here
+            </NavLink>
+          </p>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formSubmit">
+          <button type="submit" className="btn primary-button w-100" style={{marginLeft: "0px"}}>
+            Submit
+          </button>
+        </Form.Group>
+      </Form>
     </Popover.Body>
   </Popover>
 );

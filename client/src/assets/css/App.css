@@ -196,3 +196,7 @@ button:focus {
 .popover{
   margin-top: 20px;
 }
+
+.form-label{
+  font-weight: bold;
+}
