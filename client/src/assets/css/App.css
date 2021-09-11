@@ -137,7 +137,6 @@ button:focus {
 }
 
 /* .primary-button:focus, */
-.primary-button:focus,
 .primary-button:hover {
   /* color: var(--primary_main); */
   background-color: var(--black);
