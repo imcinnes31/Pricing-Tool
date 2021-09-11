@@ -4,6 +4,44 @@ import { ROUTES } from "../../constants/routes";
 import {Form, OverlayTrigger, Popover, Button} from 'react-bootstrap';
 
 export default function Header({ company }) {
+  const popoverForm = (
+    <Popover id="popover-basic" style={{backgroundColor: "var(--offWhite)"}}>
+      <Popover.Body >
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+  
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+  
+          <Form.Group className="mb-3" controlId="formRegister">
+            <p style={{fontWeight: "bold"}}>New user? &nbsp;
+              {/* Change Link to register page later */}
+              <NavLink to={ROUTES.MAIN}
+                style={{
+                  fontWeight: "bold",
+                  color: "var(--secondary_3)",
+                  textDecoration: "underline"
+                }}>
+                Register here
+              </NavLink>
+            </p>
+          </Form.Group>
+  
+          <Form.Group className="mb-3" controlId="formSubmit">
+            <button type="submit" className="btn primary-button w-100" style={{marginLeft: "0px"}}>
+              Submit
+            </button>
+          </Form.Group>
+        </Form>
+      </Popover.Body>
+    </Popover>
+  );
+
   return (
     <header className="header">
       <div className="inner_header">
@@ -12,7 +50,7 @@ export default function Header({ company }) {
           <NavLink to={ROUTES.HOME}>
             <img
               id="img-logo"
-              src={require("../../assets/images/logo.jpg").default}
+              src={require("../../assets/images/logo.png").default}
               // title is for hovering.
               title={company.name}
               alt={company.name}
@@ -26,7 +64,7 @@ export default function Header({ company }) {
               FIND A COUNSELOR
             </button>
           </NavLink>
-          <OverlayTrigger trigger="click" placement="bottom" overlay={popoverForm} container={this}>
+          <OverlayTrigger trigger="click" placement="bottom" overlay={popoverForm} rootClose>
           <button type="button" className="btn primary-button" >
             SIGN IN
           </button>
@@ -51,40 +89,3 @@ export default function Header({ company }) {
     </header>
   );
 }
-const popoverForm = (
-  <Popover id="popover-basic" style={{backgroundColor: "var(--offWhite)"}}>
-    <Popover.Body >
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formRegister">
-          <p style={{fontWeight: "bold"}}>New user? &nbsp;
-            {/* Change Link to register page later */}
-            <NavLink to={ROUTES.MAIN}
-              style={{
-                fontWeight: "bold",
-                color: "var(--secondary_3)",
-                textDecoration: "underline"
-              }}>
-              Register here
-            </NavLink>
-          </p>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formSubmit">
-          <button type="submit" className="btn primary-button w-100" style={{marginLeft: "0px"}}>
-            Submit
-          </button>
-        </Form.Group>
-      </Form>
-    </Popover.Body>
-  </Popover>
-);
