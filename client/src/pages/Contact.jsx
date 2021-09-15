@@ -1,10 +1,10 @@
 import React from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, Container } from "react-bootstrap";
 
 export default function Contact() {
   return (
-    <div className="container">
-        <h1 class="display-1 text-center">Contact Us</h1>
+    <Container style={{ width: "50%" }}>
+      <h1 class="display-1 text-center">Contact Us</h1>
       <Form>
         <Form.Label>Name</Form.Label>
         <Form.Group as={Row} className="mb-3" controlId="formFullName">
@@ -45,8 +45,10 @@ export default function Contact() {
         <Form.Group controlId="formMessage">
           <Form.Control as="textarea" rows={3} required />
         </Form.Group>
+        
+        {/* Hack: margin bottom for text-area */}
+        <Form.Label></Form.Label>
 
-        <Form.Label></Form.Label>{/* Hack: margin bottom for text-area */}
         <Form.Group className="mb-3" controlId="formSubmit">
           <button
             type="submit"
@@ -57,6 +59,6 @@ export default function Contact() {
           </button>
         </Form.Group>
       </Form>
-    </div>
+    </Container>
   );
 }
