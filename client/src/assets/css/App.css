@@ -193,7 +193,7 @@ button:focus {
 }
 
 .popover{
-  margin-top: 20px;
+  z-index: 10000;
 }
 
 .form-label{
