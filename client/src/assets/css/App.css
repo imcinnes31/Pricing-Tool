@@ -199,3 +199,7 @@ button:focus {
 .form-label{
   font-weight: bold;
 }
+
+.row-spacing{
+  margin-top: 1.5rem;
+}
