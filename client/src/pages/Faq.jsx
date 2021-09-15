@@ -12,7 +12,7 @@ export default function Faq() {
 
       <div className="container">
         {FAQ_DATA?.map((entry) => (
-          <div className="mb-5">
+          <div className="">
             <h4>{entry.question}</h4>
             <p>{entry.answer}</p>
           </div>
