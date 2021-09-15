@@ -38,7 +38,7 @@ module.exports = (Mongo) => {
   Mongo.find = (query, options) => {
     return new Promise((resolve, reject) => {
       // Some usefule mongo-db syntax
-      // Counselor.find({ age:{$gt:40}})   <----- returns counselors with age > 40
+      // Counselor.find({ age:{$gt:40}})   // <----- returns counselors with age > 40
 
       Counselor.find(parseQuery(query))
         .sort({ price: 1 }) // <--- TODO: implement logic to dynamically sort, instead of just sorting by price.
@@ -47,7 +47,8 @@ module.exports = (Mongo) => {
         .skip(options.skip)
         .limit(options.limit)
         .then((counselorData) => {
-          // console.log({counselor})
+
+          //console.log({counselor})
           resolve(counselorData);
         })
         .catch((err) => {
@@ -59,11 +60,28 @@ module.exports = (Mongo) => {
 
   function parseQuery(query) {
     let parsedQuery = {};
+
+    var ageQuery = [];
+    var queryMinAge;
+    var queryMaxAge;
+
     for (const [key, value] of Object.entries(query)) {
-      parsedQuery[key] = value.includes(",") ? value.split(",") : value;
-      if (key === "price") parsedQuery[key] = { $lte: parsedQuery[key] };
+      if (key === "price") { 
+        parsedQuery[key] = { $lte: value };
+      } else if (key === 'min_age') {
+        queryMinAge = value;
+        parsedQuery['age'] ? parsedQuery['age']['$gte'] = value : parsedQuery['age'] = { $gte: value };
+      } else if (key === 'max_age') {
+        queryMaxAge = value;
+        parsedQuery['age'] ? parsedQuery['age']['$lte'] = value : parsedQuery['age'] = { $lte: value };
+      } else parsedQuery[key] = value.includes(",") ? { $in: value.split(",") } : value;
     }
-    // console.log({parsedQuery})
+
+    console.log(parsedQuery);
+    // return { $or: [{age: {$lte: 6}}, {age: {$gte: 6, $lte: 10}}] };
     return parsedQuery;
   }
+
+
+
 };
