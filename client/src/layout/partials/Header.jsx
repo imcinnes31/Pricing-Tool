@@ -23,7 +23,7 @@ export default function Header({ company }) {
               New user? &nbsp;
               {/* Change Link to register page later */}
               <NavLink
-                to={ROUTES.MAIN}
+                to={ROUTES.REGISTER}
                 style={{
                   fontWeight: "bold",
                   color: "var(--secondary_3)",

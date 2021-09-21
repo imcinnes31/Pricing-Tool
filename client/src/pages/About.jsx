@@ -1,6 +1,7 @@
 import React from "react";
 import { ABOUT_US_DATA1, ABOUT_US_DATA2 } from "../constants/aboutUsData";
 import { Container, Row, Col } from "react-bootstrap";
+
 export default function About() {
   return (
     <Container>
