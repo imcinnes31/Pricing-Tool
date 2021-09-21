@@ -137,7 +137,6 @@ button:focus {
 }
 
 /* .primary-button:focus, */
-.primary-button:focus,
 .primary-button:hover {
   /* color: var(--primary_main); */
   background-color: var(--black);
@@ -194,9 +193,13 @@ button:focus {
 }
 
 .popover{
-  margin-top: 20px;
+  z-index: 10000;
 }
 
 .form-label{
   font-weight: bold;
+}
+
+.row-spacing{
+  margin-top: 1.5rem;
 }

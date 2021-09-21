@@ -4,7 +4,7 @@ import "./assets/css/App.css";
 import { FILTERS } from "./constants/filters";
 import { ROUTES } from "./constants/routes";
 import DefaultLayout from "./layout/DefaultLayout";
-import { About, Contact, Faq, History, Main, Information, Home } from "./pages";
+import { About, Contact, Faq, History, Main, Information, Home, Register } from "./pages";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 
@@ -61,6 +61,10 @@ export default function App(props) {
             path={`${ROUTES.PROFILE}/:userid`}
             render={() => <ProfilePage />}
           />
+
+          <Route exact path={ROUTES.REGISTER}>
+            <Register/>
+          </Route>
 
           <Route exact path="/*">
             <NotFound />
