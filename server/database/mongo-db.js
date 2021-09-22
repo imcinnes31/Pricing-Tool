@@ -3,7 +3,7 @@ const Counselor = require("./models/counselor"); //  <--- This is the Counselor 
 //        We can use .find() on it to retrieve the dataTable.
 
 mongoose.connect(
-  "mongodb+srv://Musone:mYvErYsEcUrEpAssWoRd132@pricingtool-cluster.yjalx.mongodb.net/PricingTool-Atlas-DB?retryWrites=true&w=majority",
+  "mongodb+srv://new_user_1:6qNfCI7iIKUrBOgJ@cluster0.x5k4p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
   }
