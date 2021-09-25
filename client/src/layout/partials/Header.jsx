@@ -21,16 +21,20 @@ export default function Header({ company }) {
           <Form.Group className="mb-3" controlId="formRegister">
             <p style={{ fontWeight: "bold" }}>
               New user? &nbsp;
-              {/* Change Link to register page later */}
-              <NavLink
-                to={ROUTES.REGISTER}
-                style={{
-                  fontWeight: "bold",
-                  color: "var(--secondary_3)",
-                  textDecoration: "underline",
-                }}
-              >
-                Register here
+              <NavLink to={ROUTES.REGISTER}>
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    color: "var(--secondary_3)",
+                    textDecoration: "underline",
+                  }}
+                  // Hack to close popover form when register is clicked.
+                  onClick={()=>{
+                    document.body.click();
+                  }}
+                >
+                  Register here
+                </span>
               </NavLink>
             </p>
           </Form.Group>
@@ -61,7 +65,7 @@ export default function Header({ company }) {
               // title is for hovering.
               title={company.name}
               alt={company.name}
-              style={{width: "90%"}}
+              style={{ width: "90%" }}
             />
           </NavLink>
         </div>
