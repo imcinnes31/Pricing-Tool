@@ -118,10 +118,6 @@ module.exports = (server) => {
       min_price: count.minPrice
     });
 
-    // tests the new location functions which search for counselor by location
-    let province_selected = "Saskatchewan";
-    console.log(locationFunctions.get_province_list());
-    console.log(locationFunctions.get_city_list(province_selected));
 
   });
 
