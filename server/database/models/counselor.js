@@ -61,6 +61,19 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: true,
   },
+  //new fields
+  city: {
+    type: String,
+    required: true,
+  },
+  in_person: {
+    type: Boolean,
+    required: true,
+  },
+  province: {
+    type: String,
+    required: true,
+  },
 });
 //                                             v schema variable
 module.exports = mongoose.model('counselors', Counselor)

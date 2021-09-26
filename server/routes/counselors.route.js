@@ -4,6 +4,8 @@ const { DB, Mongo } = require("../database");
 const counselor = require("../database/models/counselor");
 // Displaying 0 - 0 of 8988
 
+const locationFunctions = require("../utils/locations");
+
 const DEFAULT_LIMIT = 4;
 const DEFAULT_PAGE = 1;
 const DEFAULT_ORDER = "desc";
@@ -68,6 +70,7 @@ module.exports = (server) => {
       current_page: currentPage,
       data: data,
     });
+
   });
 
   server.get("/api/v2/counselors/id/:id", async (req, res) => {
@@ -87,6 +90,8 @@ module.exports = (server) => {
       .catch((err) => {
         res.status(400).json({ err }); //   TODO: error handling
       });
+
+
   });
 
   server.get("/api/v2/counselors/meta-data", async (req, res) => {
@@ -112,6 +117,8 @@ module.exports = (server) => {
       max_price: count.maxPrice,
       min_price: count.minPrice
     });
+
+
   });
 
 ///////////////////////////////////// OLD /////////////////////////////////////////////////////////////////
