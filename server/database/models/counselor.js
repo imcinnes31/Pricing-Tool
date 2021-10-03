@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Counselor = new mongoose.Schema({
   id: {
     type: String,
-    required: true,
+    required: false,
   },
   name: {
     type: String,
@@ -11,68 +11,92 @@ const Counselor = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: true,
+    required: false,
   },
   title: {
     type: String,
-    required: true,
+    required: false,
   },
   age: {
     type: Number,
-    required: true,
+    required: false,
   },
   ethnicity: [{
     type: String,
-    required: true,
+    required: false,
   }],
   issues: [{
     type: String,
-    required: true,
+    required: false,
   }],
   insurance: [{
     type: String,
-    required: true,
+    required: false,
   }],
   therapy_type: [{
     type: String,
-    required: true,
+    required: false,
   }],
   credentials: [{
     type: String,
-    required: true,
+    required: false,
   }],
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   price: {
     type: Number,
-    required: true,
+    required: false,
   },
   pfp: {
     type: String,
-    required: true,
+    required: false,
   },
   pronouns: {
     type: String,
-    required: true,
+    required: false,
   },
   date: {
     type: String,
-    required: true,
+    required: false,
   },
   //new fields
   city: {
     type: String,
-    required: true,
+    required: false,
   },
   in_person: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   province: {
     type: String,
-    required: true,
+    required: false,
+  },
+  in_person_price: {
+    type: Number,
+    required: false,
+  },
+  virtual_price: {
+    type: Number,
+    required: false,
+  },
+  EMDR_price: {
+    type: Number,
+    required: false,
+  },
+  package_number: {
+    type: Number,
+    required: false,
+  },
+  package_total: {
+    type: Number,
+    required: false,
+  },
+  capacity: {
+    type: Number,
+    required: false,
   },
 });
 //                                             v schema variable
