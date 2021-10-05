@@ -100,6 +100,9 @@ export default function Header({ company }) {
           <li>
             <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
           </li>
+          <li>
+            <NavLink to={ROUTES.REGISTER}>ADMIN</NavLink>
+          </li>
         </ul>
       </div>
     </header>
