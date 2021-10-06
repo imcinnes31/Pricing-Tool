@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Form, Row, Col, Container, Button } from "react-bootstrap";
 
 import { FILTERS } from "../constants/filters";
+import MultiSelector from "../components/MultiSelector";
 
 const { useState } = React;
 
@@ -12,30 +13,9 @@ export default function Register() {
     pfp: "https://picsum.photos/360/240?random=0",
     date: "2021-05-31T12:04:39.572Z",
   });
-  const [ethnicity, setEthnicity] = useState([]);
 
-
-  const counselor_data = {
-    id: "3cfacbf3-5ba4-4827-8577-235aa3fa1aa8",
-    name: "",
-    gender: "",
-    title: "",
-    age: 0,
-    ethnicity: ethnicity,
-    issues: ["adoption"],
-    insurance: ["ceridian"],
-    therapy_type: ["cognitive_behavioural"],
-    credentials: ["a"],
-    description:
-      "ut libero sit aut totam inventore sunt\nporro sint qui sunt molestiae\nconsequatur cupiditate qui iste ducimus adipisci\ndolor enim assumenda soluta laboriosam amet iste delectus hic",
-    price: 219,
-    pfp: "https://picsum.photos/360/240?random=0",
-    pronouns: "She/Her/her's",
-    date: "2021-05-31T12:04:39.572Z",
-  };
-  const postTest = () => {};
   const submitTest = (e) => {
-    alert(JSON.stringify(form));
+    // alert(JSON.stringify(form));
     Axios.post("/api/insertCounselor", form);
     e.preventDefault();
   };
@@ -47,11 +27,10 @@ export default function Register() {
     });
   };
 
-  const handleChangeArray = (e) => {
-
+  const handleChangeArray = (selected) => {
     setForm({
       ...form,
-      [e.target.id]: [e.target.value],
+      [selected.id]: selected.optionsSelected,
     });
   };
   return (
@@ -72,11 +51,18 @@ export default function Register() {
           <Col>
             <Form.Label>gender</Form.Label>
             <Form.Control
-              type="text"
+              as="select"
               id="gender"
               onChange={handleChange}
               required
-            ></Form.Control>
+            >
+              <option disabled selected value="">
+                Gender
+              </option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </Form.Control>
           </Col>
         </Row>
         <Row>
@@ -103,39 +89,40 @@ export default function Register() {
         <Row>
           <Col>
             <Form.Label>ethnicity</Form.Label>
-
-            <Form.Control
-              type="text"
+            <MultiSelector
+              filters={FILTERS[5]}
               id="ethnicity"
               onChange={handleChangeArray}
-              required
-            ></Form.Control>
+            />
           </Col>
           <Col>
             <Form.Label>issues</Form.Label>
-            <Form.Control
-              type="text"
+            <MultiSelector
+              filters={FILTERS[0]}
               id="issues"
-              onChange={handleChange}
-              required
-            ></Form.Control>
+              onChange={handleChangeArray}
+            />
           </Col>
         </Row>
         <Form.Label>insurance</Form.Label>
-        <Form.Control
-          type="text"
+        <MultiSelector
+          filters={FILTERS[1]}
           id="insurance"
-          onChange={handleChange}
-          required
-        ></Form.Control>
+          onChange={handleChangeArray}
+        />
         <Form.Label>therapy_type</Form.Label>
-        <Form.Control
-          type="text"
+        <MultiSelector
+          filters={FILTERS[3]}
           id="therapy_type"
-          onChange={handleChange}
-          required
-        ></Form.Control>
+          onChange={handleChangeArray}
+        />
         <Form.Label>credentials</Form.Label>
+        {/* NEED INFO ON CREDENTIAL CATEGORIES */}
+        {/* <MultiSelector
+          filters={FILTERS[]}
+          id="credentials"
+          onChange={handleChangeArray}
+        /> */}
         <Form.Control
           type="text"
           id="credentials"
