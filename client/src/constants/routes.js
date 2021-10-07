@@ -8,4 +8,5 @@ export const ROUTES = {
   HISTORY: '/history',
   PROFILE: '/profile',
   REGISTER: '/register',
+  REGISTERUSER: '/registeruser'
 };

@@ -21,7 +21,7 @@ export default function Header({ company }) {
           <Form.Group className="mb-3" controlId="formRegister">
             <p style={{ fontWeight: "bold" }}>
               New user? &nbsp;
-              <NavLink to={ROUTES.REGISTER}>
+              <NavLink to={ROUTES.REGISTERUSER}>
                 <span
                   style={{
                     fontWeight: "bold",
