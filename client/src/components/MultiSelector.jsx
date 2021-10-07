@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Select from 'react-select'
 
 
-// Component for the Register page multi selectors.
+// Component for the Admin page multi selectors.
 export default function MultiSelector({filters, id, onChange }) {
   //options here is one list from filters.
 

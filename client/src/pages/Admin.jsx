@@ -7,7 +7,7 @@ import MultiSelector from "../components/MultiSelector";
 
 const { useState } = React;
 
-export default function Register() {
+export default function Admin() {
   const [form, setForm] = useState({
     id: "3cfacbf3-5ba4-4827-8577-235aa3fa1aa8",
     pfp: "https://picsum.photos/360/240?random=0",
