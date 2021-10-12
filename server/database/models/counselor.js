@@ -98,6 +98,31 @@ const Counselor = new mongoose.Schema({
     type: Number,
     required: false,
   },
+  //more new fields
+  fut_credential: {
+    type: String,
+    required: false,
+  },
+  roles: [{
+    type: String,
+    required: false,
+  }],
+  min_supervision_rate: {
+    type: Number,
+    required: false,
+  },
+  max_supervision_rate: {
+    type: Number,
+    required: false,
+  },
+  date_of_agreement: {
+    type: Date,
+    required: false,
+  },
+  test_data: {
+    type: Boolean,
+    required: false,
+  }
 });
 //                                             v schema variable
 module.exports = mongoose.model('counselors', Counselor)
