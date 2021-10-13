@@ -4,7 +4,11 @@ export default function UserSummary({ user }) {
   return (
     <Fragment>
       <h1>{user.name}</h1>
-      <h4 className="glossary-button">{user.credentials}</h4>
+      {user.credentials.map((c, i) => (
+        <span className="glossary-button" key={c}>
+          {i < user.credentials.length - 1 ? `${c}, ` : `${c}`}
+        </span>
+      ))}
       <h6 className="profile-pronouns">{user.pronouns}</h6>
 
       <hr className="mt-4" />
@@ -24,7 +28,6 @@ export default function UserSummary({ user }) {
           <h4 className="py-3">Therapy Approach</h4>
           <p>{user.approachDesc}</p>
         </div>
-
       </div>
     </Fragment>
   );
