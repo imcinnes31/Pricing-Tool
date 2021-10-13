@@ -17,18 +17,14 @@ export default function UserSummary({ user }) {
 
         <div className="py-3">
           <h4 className="py-3">Treatment Areas</h4>
-          <p>{user.description}</p>
+          <p>{user.specializationDesc}</p>
         </div>
 
         <div className="py-3">
           <h4 className="py-3">Therapy Approach</h4>
-          <p>{user.description}</p>
+          <p>{user.approachDesc}</p>
         </div>
 
-        <div className="py-3">
-          <h4 className="py-3">Education</h4>
-          <p>{user.description}</p>
-        </div>
       </div>
     </Fragment>
   );
