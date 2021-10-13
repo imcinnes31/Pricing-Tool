@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import Select from 'react-select'
 
+const styles = {
+  menu: base => ({
+    ...base,
+    marginTop: 0
+  })
+}
 
 // Component for the Admin page multi selectors.
 export default function MultiSelector({filters, id, onChange }) {
@@ -27,6 +33,8 @@ export default function MultiSelector({filters, id, onChange }) {
       onChange={handleChangeInner}
       value={optionSelected}
       id={id}
+      styles={styles}
+      placeholder=""
       required
       isMulti
     />
