@@ -13,10 +13,6 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: true,
   },
-  title: {
-    type: String,
-    required: true,
-  },
   age: {
     type: Number,
     required: true,
