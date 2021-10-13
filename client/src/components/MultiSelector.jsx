@@ -9,7 +9,7 @@ const styles = {
 }
 
 // Component for the Admin page multi selectors.
-export default function MultiSelector({filters, id, onChange }) {
+export default function MultiSelector({filters, id, onChange, isQuery }) {
   //options here is one list from filters.
 
   //convert options in format of Select component
@@ -18,8 +18,8 @@ export default function MultiSelector({filters, id, onChange }) {
   const [optionSelected, setSelectedOptions] = useState([]);
 
   const handleChangeInner = (selected) => {
-    // console.log(selected)
-    const optionsSelected = selected.map((item) => item.label);
+    //if this is a query option in the pricing tool it has to be in lowercase
+    const optionsSelected = selected.map((item) => isQuery ? item.label.replace(/ /g, "_").toLowerCase():item.label);
     onChange({ id, optionsSelected});
     
     setSelectedOptions(selected);
