@@ -23,20 +23,24 @@ const Counselor = new mongoose.Schema({
   },
   ethnicity: [{
     type: String,
-    required: true,
+    required: false,
   }],
-  issues: [{
+  specializations: [{
     type: String,
     required: true,
   }],
-  insurance: [{
+  specializationDesc:{
+    type: String,
+    required: true
+  },
+  approach: [{
     type: String,
     required: true,
   }],
-  therapy_type: [{
+  approachDesc:{
     type: String,
     required: true,
-  }],
+  },
   credentials: [{
     type: String,
     required: true,
