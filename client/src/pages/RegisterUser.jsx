@@ -16,7 +16,7 @@ export default function RegisterUser() {
 
   const submitTest = (e) => {
     // alert(JSON.stringify(form));
-    Axios.post("/api/insertCounselor", form);
+    Axios.post("/api/usercreate", form);
     e.preventDefault();
   };
 
