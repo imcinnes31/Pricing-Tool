@@ -7,5 +7,6 @@ export const ROUTES = {
   INFO: '/info',
   HISTORY: '/history',
   PROFILE: '/profile',
-  REGISTER: '/register',
+  ADMIN: '/admin',
+  REGISTERUSER: '/registeruser'
 };

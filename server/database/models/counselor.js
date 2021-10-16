@@ -13,10 +13,6 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: false,
   },
-  title: {
-    type: String,
-    required: false,
-  },
   age: {
     type: Number,
     required: false,
@@ -25,18 +21,22 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: false,
   }],
-  issues: [{
+  specializations: [{
     type: String,
     required: false,
   }],
-  insurance: [{
+  specializationDesc:{
+    type: String,
+    required: true
+  },
+  approach: [{
     type: String,
     required: false,
   }],
-  therapy_type: [{
+  approachDesc:{
     type: String,
-    required: false,
-  }],
+    required: true,
+  },
   credentials: [{
     type: String,
     required: false,
