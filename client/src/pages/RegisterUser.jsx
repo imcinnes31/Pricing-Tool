@@ -16,7 +16,8 @@ export default function RegisterUser() {
 
   const submitTest = (e) => {
     // alert(JSON.stringify(form));
-    Axios.post("/api/usercreate", form);
+    console.log(form);
+    Axios.post("/api/users/usercreate", form);
     e.preventDefault();
   };
 
@@ -43,7 +44,7 @@ export default function RegisterUser() {
             <Form.Label>First Name</Form.Label>
             <Form.Control
               type="text"
-              id="name"
+              id="firstName"
               onChange={handleChange}
               required
               ></Form.Control>
@@ -52,7 +53,7 @@ export default function RegisterUser() {
             <Form.Label>Last Name</Form.Label>
             <Form.Control
               type="text"
-              id="name"
+              id="lastName"
               onChange={handleChange}
               required
               ></Form.Control>
@@ -92,7 +93,7 @@ export default function RegisterUser() {
             <Form.Label>Re-enter Password</Form.Label>
             <Form.Control
               type="password"
-              id="password"
+              id="repeatPassword"
               onChange={handleChange}
               required
               ></Form.Control>
