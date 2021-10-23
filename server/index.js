@@ -20,6 +20,10 @@ require('./routes/counselors.route.js')(server);
 server.post("/api/insertCounselor", async (req, res) =>{
   const counselor_data = req.body;
   counselor_data.id = uuid.v4();
+  counselor_data.roles = [];
+  counselor_data.capacity = 0;
+  counselor_data.in_person = null;
+  counselor_data.test_data = null;
   try {
     await new CounselorModel(counselor_data).save();
   } catch (error) {

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Counselor = new mongoose.Schema({
   id: {
     type: String,
-    required: false,
+    required: true,
   },
   name: {
     type: String,
@@ -11,27 +11,27 @@ const Counselor = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: false,
+    required: true,
   },
   age: {
     type: Number,
-    required: false,
+    required: true,
   },
   ethnicity: [{
     type: String,
-    required: false,
+    required: true,
   }],
   specializations: [{
     type: String,
-    required: false,
+    required: true,
   }],
   specializationDesc:{
     type: String,
     required: true
   },
-  approach: [{
+  therapy_type: [{
     type: String,
-    required: false,
+    required: true,
   }],
   approachDesc:{
     type: String,
@@ -39,31 +39,36 @@ const Counselor = new mongoose.Schema({
   },
   credentials: [{
     type: String,
-    required: false,
+    required: true,
   }],
   description: {
     type: String,
-    required: false,
+    required: true,
   },
   price: {
     type: Number,
-    required: false,
+    required: true,
   },
   pfp: {
     type: String,
-    required: false,
+    required: true,
   },
   pronouns: {
     type: String,
-    required: false,
+    required: true,
   },
   date: {
     type: String,
-    required: false,
+    required: true,
   },
+
   //new fields
-  city: {
+  roles: [{
     type: String,
+    required: false,
+  }],
+  capacity: {
+    type: Number,
     required: false,
   },
   in_person: {
@@ -71,6 +76,10 @@ const Counselor = new mongoose.Schema({
     required: false,
   },
   province: {
+    type: String,
+    required: false,
+  },
+  city: {
     type: String,
     required: false,
   },
@@ -86,37 +95,16 @@ const Counselor = new mongoose.Schema({
     type: Number,
     required: false,
   },
-  package_number: {
-    type: Number,
-    required: false,
-  },
-  package_total: {
-    type: Number,
-    required: false,
-  },
-  capacity: {
-    type: Number,
-    required: false,
-  },
-  //more new fields
-  fut_credential: {
+  package_info: {
     type: String,
     required: false,
   },
-  roles: [{
-    type: String,
-    required: false,
-  }],
   min_supervision_rate: {
     type: Number,
     required: false,
   },
   max_supervision_rate: {
     type: Number,
-    required: false,
-  },
-  date_of_agreement: {
-    type: Date,
     required: false,
   },
   test_data: {
