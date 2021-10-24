@@ -14,7 +14,7 @@ export default function Slider({ sliderVal, setSliderVal }) {
    *     that no matter what a counselors price may be, they will still be accessible via the price slider.
    */
 
-  // console.log({ loading, error, data });
+  console.log({ loading, error, data });
 
   React.useEffect(() => {
     if (!loading) {
@@ -54,8 +54,8 @@ export default function Slider({ sliderVal, setSliderVal }) {
           type="range"
           className="form-range"
           id="customRange1"
-          min={data['min_price']}
-          max={data['max_price']}
+          min={data==null ? 0 : data['min_price']}
+          max={data==null ? 0 : data['max_price']}
           onChange={() => setSliderVal(document.getElementById("customRange1").value)}
         />
       )}
