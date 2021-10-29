@@ -7,11 +7,81 @@ import MultiSelector from "../components/MultiSelector";
 
 const { useState } = React;
 export default function UserList() {
+  const [users, setUsers] = useState([]);
 
-  const auth = useContext(AuthContext);
+  const fetchUsers = async () => {
+    const { data } = await Axios.get("/api/users/");
+    const userLists = data;
+    setUsers(userLists.users);
+    console.log(userLists);
+    console.log(userLists.users);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   return (
     <div>
-
+      {/* <tbody>
+        {users.map((user, index) => (
+          <tr key={index}>
+            <td>{user.email}</td>
+            <td>{user.phone}</td>
+            <td>{user.role}</td>
+          </tr>
+        ))}
+      </tbody> */}
+      {users.map((user, index) => (
+        <div className="card mb-3 offWhite">
+          {/* <Row> */}
+          <div className="card-body">
+            <Row>
+              <Col>
+                <h5 className="card-title" style={{ fontWeight: 700 }}>
+                  {user.email}
+                </h5>
+                <p className="card-text">
+                  {user.firstName} {user.lastName}
+                </p>
+              </Col>
+              <Col>
+                {/* <h5
+                  className="card-title"
+                  style={{ fontWeight: 700, textAlign: "center" }}
+                >
+                  {user.role}
+                </h5> */}
+                <input
+                  type="radio"
+                  value="Client"
+                  name="userRole"
+                  defaultChecked={"Client"}
+                />
+                Client &nbsp;
+                <input
+                  type="radio"
+                  value="Counselor"
+                  name="userRole"
+                  defaultChecked={"Counselor"}
+                />
+                Counselor &nbsp;
+                <input
+                  type="radio"
+                  value="Admin"
+                  name="userRole"
+                  defaultChecked={"Admin"}
+                />
+                Admin
+              </Col>
+              <Col>
+                <button type="button">SAVE</button>
+              </Col>
+            </Row>
+          </div>
+          {/* </Row> */}
+        </div>
+      ))}
     </div>
   );
 }
