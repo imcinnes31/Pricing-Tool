@@ -8,5 +8,7 @@ export const ROUTES = {
   HISTORY: '/history',
   PROFILE: '/profile',
   ADMIN: '/admin',
-  REGISTERUSER: '/registeruser'
+  REGISTERUSER: '/registeruser',
+  LOGIN: '/login',
+  USERLIST: '/userlist'
 };

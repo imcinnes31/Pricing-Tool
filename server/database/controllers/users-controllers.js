@@ -26,7 +26,7 @@ const userRegister = async (req, res, next) => {
       new HttpError("Invalid inputs passed, please check your data", 422)
     );
   }
-  const { firstName, lastName, email, phone, password} = req.body;
+  const { firstName, lastName, email, phone, password } = req.body;
 
   let existingUser;
   try {
@@ -65,6 +65,7 @@ const userRegister = async (req, res, next) => {
     email,
     phone,
     password: hashedPassword,
+    role: "Client", //"Client, Counselor, Admin"
   });
 
   try {
@@ -86,9 +87,12 @@ const userRegister = async (req, res, next) => {
     return next(error);
   }
 
-  res
-    .status(201)
-    .json({ userId: createdUser.id, email: createdUser.email, token: token });
+  res.status(201).json({
+    userId: createdUser.id,
+    email: createdUser.email,
+    token: token,
+    role: createdUser.role,
+  });
 };
 
 const userLogin = async (req, res, next) => {
@@ -145,11 +149,12 @@ const userLogin = async (req, res, next) => {
     return next(error);
   }
 
-  res.json({ 
-      userId: existingUser.id,
-      email: existingUser.email,
-      token: token
-   });
+  res.json({
+    userId: existingUser.id,
+    email: existingUser.email,
+    token: token,
+    role: existingUser.role,
+  });
 };
 
 exports.getUsers = getUsers;

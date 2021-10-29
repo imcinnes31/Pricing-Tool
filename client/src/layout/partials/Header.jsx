@@ -1,57 +1,81 @@
-import React from "react";
+import React, { useContext } from "react";
+import Axios from "axios";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
-import { Form, OverlayTrigger, Popover } from "react-bootstrap";
+import { Form, OverlayTrigger, Popover, Button } from "react-bootstrap";
+import { AuthContext } from "../../context/auth-context";
+const { useState } = React;
 
 export default function Header({ company }) {
-  const popoverForm = (
-    <Popover id="popover-basic" style={{ backgroundColor: "var(--offWhite)" }}>
-      <Popover.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
+  const [form, setForm] = useState({
+    id: "3cfacbf3-5ba4-4827-8577-235aa3fa1aa8",
+    pfp: "https://picsum.photos/360/240?random=0",
+    date: "2021-05-31T12:04:39.572Z",
+  });
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
+  const submitTest = (e) => {
+    // alert(JSON.stringify(form));
+    console.log(form);
+    Axios.post("/api/users/usercreate", form);
+    e.preventDefault();
+  };
 
-          <Form.Group className="mb-3" controlId="formRegister">
-            <p style={{ fontWeight: "bold" }}>
-              New user? &nbsp;
-              <NavLink to={ROUTES.REGISTERUSER}>
-                <span
-                  style={{
-                    fontWeight: "bold",
-                    color: "var(--secondary_3)",
-                    textDecoration: "underline",
-                  }}
-                  // Hack to close popover form when register is clicked.
-                  onClick={()=>{
-                    document.body.click();
-                  }}
-                >
-                  Register here
-                </span>
-              </NavLink>
-            </p>
-          </Form.Group>
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.id]: e.target.value,
+    });
+  };
 
-          <Form.Group className="mb-3" controlId="formSubmit">
-            <button
-              type="submit"
-              className="btn primary-button w-100"
-              style={{ marginLeft: "0px" }}
-            >
-              Submit
-            </button>
-          </Form.Group>
-        </Form>
-      </Popover.Body>
-    </Popover>
-  );
+  const auth = useContext(AuthContext);
+  // const popoverForm = (
+  //   <Popover id="popover-basic" style={{ backgroundColor: "var(--offWhite)" }}>
+  //     <Popover.Body>
+  //       <Form onSubmit={submitTest}>
+  //         <Form.Group className="mb-3" controlId="formBasicEmail">
+  //           <Form.Label>Email</Form.Label>
+  //           <Form.Control type="email" placeholder="Enter email" />
+  //         </Form.Group>
+
+  //         <Form.Group className="mb-3" controlId="formBasicPassword">
+  //           <Form.Label>Password</Form.Label>
+  //           <Form.Control type="password" placeholder="Password" />
+  //         </Form.Group>
+
+  //         <Form.Group className="mb-3" controlId="formRegister">
+  //           <p style={{ fontWeight: "bold" }}>
+  //             New user? &nbsp;
+  //             <NavLink to={ROUTES.REGISTERUSER}>
+  //               <span
+  //                 style={{
+  //                   fontWeight: "bold",
+  //                   color: "var(--secondary_3)",
+  //                   textDecoration: "underline",
+  //                 }}
+  //                 // Hack to close popover form when register is clicked.
+  //                 onClick={() => {
+  //                   document.body.click();
+  //                 }}
+  //               >
+  //                 Register here
+  //               </span>
+  //             </NavLink>
+  //           </p>
+  //         </Form.Group>
+
+  //         <Form.Group className="mb-3" controlId="formSubmit">
+  //           <Button
+  //             type="submit"
+  //             className="btn primary-button w-100"
+  //             style={{ marginLeft: "0px" }}
+  //           >
+  //             Submit
+  //           </Button>
+  //         </Form.Group>
+  //       </Form>
+  //     </Popover.Body>
+  //   </Popover>
+  // );
 
   return (
     <header className="header">
@@ -76,7 +100,7 @@ export default function Header({ company }) {
               FIND A COUNSELOR
             </button>
           </NavLink>
-          <OverlayTrigger
+          {/* <OverlayTrigger
             trigger="click"
             placement="bottom"
             overlay={popoverForm}
@@ -85,7 +109,23 @@ export default function Header({ company }) {
             <button type="button" className="btn primary-button">
               SIGN IN
             </button>
-          </OverlayTrigger>
+          </OverlayTrigger> */}
+          {!auth.isLoggedIn && (
+            <NavLink to={ROUTES.LOGIN}>
+              <button type="button" className="btn primary-button">
+                SIGN IN
+              </button>
+            </NavLink>
+          )}
+          {auth.isLoggedIn && (
+            <button
+              onClick={auth.logout}
+              type="button"
+              className="btn primary-button"
+            >
+              LOGOUT
+            </button>
+          )}
         </div>
 
         <ul className="navigation">
@@ -100,9 +140,16 @@ export default function Header({ company }) {
           <li>
             <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
           </li>
-          <li>
-            <NavLink to={ROUTES.ADMIN}>ADMIN</NavLink>
-          </li>
+          {auth.isLoggedIn && (
+            <li>
+              <NavLink to={ROUTES.ADMIN}>ADMIN</NavLink>
+            </li>
+          )}
+          {auth.isLoggedIn && (
+            <li>
+              <NavLink to={ROUTES.USERLIST}>USERS</NavLink>
+            </li>
+          )}
         </ul>
       </div>
     </header>

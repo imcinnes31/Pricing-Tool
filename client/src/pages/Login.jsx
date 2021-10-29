@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import Axios from "axios";
 import { Form, Row, Col, Container, Button } from "react-bootstrap";
-import { AuthContext } from "../context/auth-context";
+import { NavLink } from "react-router-dom";
+import { ROUTES } from "../constants/routes";
 import { FILTERS } from "../constants/filters";
 import MultiSelector from "../components/MultiSelector";
+import { AuthContext } from "../context/auth-context";
 
 const { useState } = React;
 
-export default function RegisterUser() {
+export default function Login() {
   const [form, setForm] = useState({
     id: "3cfacbf3-5ba4-4827-8577-235aa3fa1aa8",
     pfp: "https://picsum.photos/360/240?random=0",
@@ -17,17 +19,17 @@ export default function RegisterUser() {
   const submitTest = async (e) => {
     // alert(JSON.stringify(form));
     e.preventDefault();
-
     console.log(form);
 
     try {
-      const responseData = await Axios.post("/api/users/usercreate", form);
+      const responseData = await Axios.post("/api/users/userlogin", form);
       auth.login(responseData.data.userId, responseData.data.token);
       console.log(responseData.data.userId);
       console.log(responseData.data.token);
       console.log(responseData.data.email);
-    } catch (err) {
-      alert("Registration Error");
+      console.log(responseData.data.role);
+    } catch (err){
+      alert("Login Error");
       // throw new Error("Login Error");
     }
   };
@@ -47,46 +49,17 @@ export default function RegisterUser() {
   };
 
   const auth = useContext(AuthContext);
+
   return (
-    <div>
-      <h1>Registration</h1>
-      {/* Change Form.Control id to control id in the form group  */}
+    <Container style={{ width: "50%" }}>
+      <h1 class="display-1 text-center">Login</h1>
       <Form onSubmit={submitTest}>
-        <Row>
-          <Col>
-            <Form.Label>First Name</Form.Label>
-            <Form.Control
-              type="text"
-              id="firstName"
-              onChange={handleChange}
-              required
-            ></Form.Control>
-          </Col>
-          <Col>
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
-              type="text"
-              id="lastName"
-              onChange={handleChange}
-              required
-            ></Form.Control>
-          </Col>
-        </Row>
         <Row>
           <Col>
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="text"
               id="email"
-              onChange={handleChange}
-              required
-            ></Form.Control>
-          </Col>
-          <Col>
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              type="text"
-              id="phone"
               onChange={handleChange}
               required
             ></Form.Control>
@@ -102,23 +75,34 @@ export default function RegisterUser() {
               required
             ></Form.Control>
           </Col>
+        </Row>
+        <Row>
           <Col>
-            <Form.Label>Re-enter Password</Form.Label>
-            <Form.Control
-              type="password"
-              id="repeatPassword"
-              onChange={handleChange}
-              required
-            ></Form.Control>
+            <Button
+              type="submit"
+              style={{ marginTop: "20px", marginBottom: "202px" }}
+            >
+              Login
+            </Button>
+          </Col>
+          <Col>
+            <p style={{ fontWeight: "bold" }}>
+              New user? &nbsp;
+              <NavLink to={ROUTES.REGISTERUSER}>
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    color: "var(--secondary_3)",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Register here
+                </span>
+              </NavLink>
+            </p>
           </Col>
         </Row>
-        <Button
-          type="submit"
-          style={{ marginTop: "20px", marginBottom: "202px" }}
-        >
-          ADD
-        </Button>
       </Form>
-    </div>
+    </Container>
   );
 }
