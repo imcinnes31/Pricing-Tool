@@ -25,6 +25,7 @@ import {
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import { AuthContext } from "./context/auth-context";
+import { Container } from "react-bootstrap";
 
 const company = {
   name: "Phare",
@@ -35,16 +36,19 @@ export default function App(props) {
   const [filters, setFilters] = React.useState(FILTERS);
 
   const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false);
+  const [userId, setUserId] = useState(false); //delete false here?
+  const [role, setRole] = useState();
 
-  const login = useCallback((uid, token) => {
+  const login = useCallback((uid, token, role) => {
     setToken(true);
     setUserId(uid);
+    setRole(role);
   }, []);
 
   const logout = useCallback(() => {
     setToken(false);
     setUserId(null);
+    setRole(null);
   }, []);
 
   let routes;
@@ -85,12 +89,20 @@ export default function App(props) {
           path={`${ROUTES.PROFILE}/:userid`}
           render={() => <ProfilePage />}
         />
-        <Route exact path={ROUTES.ADMIN}>
-          <Admin />
-        </Route>
-        <Route exact path={ROUTES.USERLIST}>
-          <UserList />
-        </Route>
+        {role === "Admin" || role === "Counselor" ? (
+          <Route exact path={ROUTES.ADMIN}>
+            <Admin />
+          </Route>
+        ) : (
+          ""
+        )}
+        {role === "Admin" ? (
+          <Route exact path={ROUTES.USERLIST}>
+            <UserList />
+          </Route>
+        ) : (
+          ""
+        )}
         {/* <Route exact path="/*">
           <NotFound />
         </Route> */}
@@ -153,6 +165,7 @@ export default function App(props) {
         isLoggedIn: !!token,
         token: token,
         userId: userId,
+        role: role,
         login: login,
         logout: logout,
       }}

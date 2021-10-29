@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const uniqueValidator = require("mongoose-unique-validator");
+// const uniqueValidator = require("mongoose-unique-validator");
 
 const UserSchema = new Schema({
   firstName: {
@@ -31,7 +31,7 @@ const UserSchema = new Schema({
   },
 });
 
-UserSchema.plugin(uniqueValidator);
+// UserSchema.plugin(uniqueValidator);
 
 const User = mongoose.model("UserData", UserSchema);
 

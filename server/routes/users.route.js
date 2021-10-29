@@ -18,5 +18,6 @@ router.post("/usercreate", [
 ],
 userControllers.userRegister);
 router.post("/userlogin", userControllers.userLogin);
+router.post("/userRoleChange/:emailKey/:role", userControllers.userRoleChange);
 
 module.exports = router;

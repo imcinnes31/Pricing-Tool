@@ -157,6 +157,52 @@ const userLogin = async (req, res, next) => {
   });
 };
 
+const userRoleChange = async (req, res, next) => {
+  const role = req.params.role;
+  const email = req.params.emailKey;
+  let existingUser;
+
+  try {
+    existingUser = await UserModel.findOne({ email: email });
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, lease try again later.",
+      500
+    );
+    return next(error);
+  }
+  console.log(existingUser);
+    existingUser.role = role;
+    console.log(existingUser);
+  try {
+    // existingUser.role = role;
+    await existingUser.save();
+  } catch (err) {
+    // const error = new HttpError("Update failed, please try again.", 500);
+    return next(err);
+  }
+
+  console.log(existingUser);
+
+  // let isValidPassword = false;
+  // try {
+  //   isValidPassword = await bcrypt.compare(password, existingUser.password);
+  // } catch (err) {
+  //   const error = new HttpError(
+  //     "Invalid username or password entered, please try again",
+  //     500
+  //   );
+  //   return next(error);
+  // }
+
+  res.json({
+    userId: existingUser.id,
+    email: existingUser.email,
+    role: existingUser.role,
+  });
+};
+
 exports.getUsers = getUsers;
 exports.userRegister = userRegister;
 exports.userLogin = userLogin;
+exports.userRoleChange = userRoleChange;

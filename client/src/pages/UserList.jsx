@@ -17,6 +17,14 @@ export default function UserList() {
     console.log(userLists.users);
   };
 
+  const handleChange = (emailKey) => async (e) => {
+
+    const responseData = await Axios.post(
+      `/api/users/userRoleChange/${emailKey}/${e.target.value}`
+    );
+    console.log(e.target.value + emailKey);
+  };
+
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -52,30 +60,32 @@ export default function UserList() {
                 >
                   {user.role}
                 </h5> */}
-                <input
-                  type="radio"
-                  value="Client"
-                  name="userRole"
-                  defaultChecked={"Client"}
-                />
-                Client &nbsp;
-                <input
-                  type="radio"
-                  value="Counselor"
-                  name="userRole"
-                  defaultChecked={"Counselor"}
-                />
-                Counselor &nbsp;
-                <input
-                  type="radio"
-                  value="Admin"
-                  name="userRole"
-                  defaultChecked={"Admin"}
-                />
-                Admin
-              </Col>
-              <Col>
-                <button type="button">SAVE</button>
+                <div>
+                  <input
+                    type="radio"
+                    value="Client"
+                    name={user.email}
+                    defaultChecked={user.role === "Client" ? true : false}
+                    onChange={handleChange(user.email)}
+                  />
+                  Client &nbsp;
+                  <input
+                    type="radio"
+                    value="Counselor"
+                    name={user.email}
+                    defaultChecked={user.role === "Counselor" ? true : false}
+                    onChange={handleChange(user.email)}
+                  />
+                  Counselor &nbsp;
+                  <input
+                    type="radio"
+                    value="Admin"
+                    name={user.email}
+                    defaultChecked={user.role === "Admin" ? true : false}
+                    onChange={handleChange(user.email)}
+                  />
+                  Admin
+                </div>
               </Col>
             </Row>
           </div>

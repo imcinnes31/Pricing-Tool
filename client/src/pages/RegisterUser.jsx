@@ -22,7 +22,7 @@ export default function RegisterUser() {
 
     try {
       const responseData = await Axios.post("/api/users/usercreate", form);
-      auth.login(responseData.data.userId, responseData.data.token);
+      auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
       console.log(responseData.data.userId);
       console.log(responseData.data.token);
       console.log(responseData.data.email);

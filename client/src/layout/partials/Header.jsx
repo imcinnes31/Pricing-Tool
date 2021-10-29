@@ -140,12 +140,12 @@ export default function Header({ company }) {
           <li>
             <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
           </li>
-          {auth.isLoggedIn && (
+          {(auth.role === "Admin" || auth.role === "Counselor") && (
             <li>
               <NavLink to={ROUTES.ADMIN}>ADMIN</NavLink>
             </li>
           )}
-          {auth.isLoggedIn && (
+          {auth.role === "Admin" && (
             <li>
               <NavLink to={ROUTES.USERLIST}>USERS</NavLink>
             </li>
