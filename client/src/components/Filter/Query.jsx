@@ -35,36 +35,17 @@ export default function Query({ isSelected, setQuery, sliderVal }) {
           maxAge = ageQuerySplit.split("_")[2];
         }
       }
-      
-      //This creates a query, but only allows one age category
-      /*
-      if (key === "age") {
-        //
-        if (category["age"]) {
-          category["age"].concat("&min_age=" + minAge + "&max_age=" + maxAge);
-        } else {
-          category["age"] = "min_age=" + minAge + "&max_age=" + maxAge;
-        }
-        //
-      } else {
-        console.log("checkbox");
+
+      //if age buttons are selected, create the age query as a number array
+      if (key === 'age') {
         if (category[key]) {
           const temp = category[key];
-          category[key] = temp.concat("," + val);
+          category[key] = temp.concat("," + minAge + "," + maxAge);
         } else {
-          const temp = key.concat("=", val);
+          const temp = key.concat("=", minAge + "," + maxAge);
           category[key] = temp;
         }
-      }
-      */
-      if (key === 'age') {
-        //if (!category['age']) {
-          category['age'] = 'min_age=' + minAge + "&max_age=" + maxAge;
-        //}
-        //else {
-        //  category['age'] += '&min_age=' + minAge + "&max_age=" + maxAge;
-        //}
-      }
+         }
       else {
         if (category[key]) {
           const temp = category[key];
@@ -74,7 +55,6 @@ export default function Query({ isSelected, setQuery, sliderVal }) {
           category[key] = temp;
         }
       }
-      //IAN'S AGE FILTER CODE ENDS
 
     });
 

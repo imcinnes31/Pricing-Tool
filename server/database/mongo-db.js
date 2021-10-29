@@ -60,25 +60,28 @@ module.exports = (Mongo) => {
 
   function parseQuery(query) {
     let parsedQuery = {};
-
-    var ageQuery = [];
-    var queryMinAge;
-    var queryMaxAge;
+    var ageQueryArray = [];
 
     for (const [key, value] of Object.entries(query)) {
       if (key === "price") { 
         parsedQuery[key] = { $lte: value };
-      } else if (key === 'min_age') {
-        queryMinAge = value;
-        parsedQuery['age'] ? parsedQuery['age']['$gte'] = value : parsedQuery['age'] = { $gte: value };
-      } else if (key === 'max_age') {
-        queryMaxAge = value;
-        parsedQuery['age'] ? parsedQuery['age']['$lte'] = value : parsedQuery['age'] = { $lte: value };
+      } else if (key === "age") {
+        //creates an "or" query to select age ranges given by the user's preference
+        var ageArray = query["age"].split(",");
+        for (let i = 0; i < ageArray.length; i += 2) {
+          let newAgeQuery = {};
+          let biggerAgeQuery = {};
+          newAgeQuery["$gte"] = ageArray[i];
+          newAgeQuery["$lte"] = ageArray[i + 1];
+          biggerAgeQuery["age"] = newAgeQuery;
+          ageQueryArray.push(biggerAgeQuery);
+        }
+        parsedQuery["$or"] = ageQueryArray;
+
       } else parsedQuery[key] = value.includes(",") ? { $in: value.split(",") } : value;
     }
 
-    console.log(parsedQuery);
-    // return { $or: [{age: {$lte: 6}}, {age: {$gte: 6, $lte: 10}}] };
+    //console.log(parsedQuery);
     return parsedQuery;
   }
 
