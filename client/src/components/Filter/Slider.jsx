@@ -7,7 +7,7 @@ const MIN_PRICE = 50;
 
 export default function Slider({ sliderVal, setSliderVal }) {
   const { loading, error, data } = useHttpRequest(
-    "http://localhost:5000/api/v2/counselors/meta-data"
+    `${process.env.REACT_APP_BACKEND_URL}/v2/counselors/meta-data`
   );
   /**
    *   ^ use this api call to dynamically choose the max and minimum for the price slider bar. This makes sure

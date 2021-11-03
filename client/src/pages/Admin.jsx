@@ -16,7 +16,7 @@ export default function Admin() {
 
   const submitTest = (e) => {
     // alert(JSON.stringify(form));
-    Axios.post("/api/insertCounselor", form);
+    Axios.post(process.env.REACT_APP_BACKEND_URL + "/insertCounselor", form);
     e.preventDefault();
   };
 

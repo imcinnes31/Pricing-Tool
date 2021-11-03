@@ -20,7 +20,7 @@ export default function UserList() {
   const handleChange = (emailKey) => async (e) => {
 
     const responseData = await Axios.post(
-      `/api/users/userRoleChange/${emailKey}/${e.target.value}`
+      `${process.env.REACT_APP_BACKEND_URL}/users/userRoleChange/${emailKey}/${e.target.value}`
     );
     console.log(e.target.value + emailKey);
   };

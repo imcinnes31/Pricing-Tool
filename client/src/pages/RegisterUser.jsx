@@ -21,7 +21,7 @@ export default function RegisterUser() {
     console.log(form);
 
     try {
-      const responseData = await Axios.post("/api/users/usercreate", form);
+      const responseData = await Axios.post(process.env.REACT_APP_BACKEND_URL + "/users/usercreate", form);
       auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
       console.log(responseData.data.userId);
       console.log(responseData.data.token);
