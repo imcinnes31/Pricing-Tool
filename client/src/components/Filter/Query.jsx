@@ -69,7 +69,7 @@ export default function Query({ isSelected, setQuery, sliderVal }) {
       ? (query = query.concat("price=", sliderVal)) //    price=1    &heigh=10&colors=blue,red
       : (query = query.concat("&price=", sliderVal));
 
-    console.log({query})
+    //console.log({query})
     setQuery(query);
   }
 

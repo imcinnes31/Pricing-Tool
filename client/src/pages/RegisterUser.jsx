@@ -18,14 +18,14 @@ export default function RegisterUser() {
     // alert(JSON.stringify(form));
     e.preventDefault();
 
-    console.log(form);
+    //console.log(form);
 
     try {
       const responseData = await Axios.post(process.env.REACT_APP_BACKEND_URL + "/users/usercreate", form);
       auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
-      console.log(responseData.data.userId);
-      console.log(responseData.data.token);
-      console.log(responseData.data.email);
+      //console.log(responseData.data.userId);
+      //console.log(responseData.data.token);
+      //console.log(responseData.data.email);
     } catch (err) {
       alert("Registration Error");
       // throw new Error("Login Error");

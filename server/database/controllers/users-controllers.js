@@ -173,7 +173,7 @@ const userRoleChange = async (req, res, next) => {
   }
   console.log(existingUser);
     existingUser.role = role;
-    console.log(existingUser);
+    //console.log(existingUser);
   try {
     // existingUser.role = role;
     await existingUser.save();
@@ -182,7 +182,7 @@ const userRoleChange = async (req, res, next) => {
     return next(err);
   }
 
-  console.log(existingUser);
+  //console.log(existingUser);
 
   // let isValidPassword = false;
   // try {

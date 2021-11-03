@@ -17,7 +17,7 @@ module.exports = (DB) => { // Syntax to create an object
 
   // Find the documents we need
   DB.find = (collection, query, options) => {
-    console.log({query})
+    //console.log({query})
     return new Promise((resolve, reject) => {
       fs.readFile(path.join(__dirname + "/data/data.json"), (err, data) => {
         if (err) reject(err);

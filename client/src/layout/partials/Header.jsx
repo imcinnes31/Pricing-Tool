@@ -15,7 +15,7 @@ export default function Header({ company }) {
 
   const submitTest = (e) => {
     // alert(JSON.stringify(form));
-    console.log(form);
+    //console.log(form);
     Axios.post(process.env.REACT_APP_BACKEND_URL + "/users/usercreate", form);
     e.preventDefault();
   };

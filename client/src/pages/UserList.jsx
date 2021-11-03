@@ -10,11 +10,11 @@ export default function UserList() {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
-    const { data } = await Axios.get("/api/users/");
+    const { data } = await Axios.get(process.env.REACT_APP_BACKEND_URL + "/users/");
     const userLists = data;
     setUsers(userLists.users);
-    console.log(userLists);
-    console.log(userLists.users);
+    //console.log(userLists);
+    //console.log(userLists.users);
   };
 
   const handleChange = (emailKey) => async (e) => {
@@ -22,7 +22,7 @@ export default function UserList() {
     const responseData = await Axios.post(
       `${process.env.REACT_APP_BACKEND_URL}/users/userRoleChange/${emailKey}/${e.target.value}`
     );
-    console.log(e.target.value + emailKey);
+    //console.log(e.target.value + emailKey);
   };
 
   useEffect(() => {
