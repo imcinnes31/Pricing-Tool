@@ -18,6 +18,7 @@ server.use('/api/users', userRoutes);
 require('./routes/counselors.route.js')(server);
 
 server.post("/api/insertCounselor", async (req, res) =>{
+  console.log('actually hit the route');
   const counselor_data = req.body;
   counselor_data.id = uuid.v4();
   counselor_data.roles = [];
