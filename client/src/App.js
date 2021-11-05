@@ -27,6 +27,7 @@ import {
   RegisterUser,
   Login,
   UserList,
+  UserProfile,
 } from "./pages";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
@@ -157,6 +158,9 @@ export default function App(props) {
         {/* <Route exact path="/*">
           <NotFound />
         </Route> */}
+        <Route exact path={`${ROUTES.USERPROFILE}/:userId`}>
+          <UserProfile />
+        </Route>
         <Redirect to="/" />
       </Switch>
     );

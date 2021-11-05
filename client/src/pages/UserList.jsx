@@ -8,29 +8,76 @@ import MultiSelector from "../components/MultiSelector";
 const { useState } = React;
 export default function UserList() {
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState(false);
+  const [searchData, setSearchData] = useState([]);
 
   const fetchUsers = async () => {
     const { data } = await Axios.get("/api/users/");
     const userLists = data;
     setUsers(userLists.users);
-    console.log(userLists);
-    console.log(userLists.users);
   };
+
+  let radioClient = false;
+  let radioCounselor = false;
+  let radioAdmin = false;
 
   const handleChange = (emailKey) => async (e) => {
     const responseData = await Axios.post(
       `/api/users/userRoleChange/${emailKey}/${e.target.value}`
     );
-    console.log(e.target.value + emailKey);
   };
 
   const handleDelete = async (emailKey) => {
     await Axios.delete(`/api/users/userDelete/${emailKey}`);
   };
 
+  const handleSearch = async () => {
+    const emailkey = document.getElementById("header-search").value;
+    console.log(emailkey);
+    let searchResult;
+    try {
+      searchResult = await Axios.get(`/api/users/search-user/${emailkey}`);
+      console.log(searchResult);
+    } catch (err) {
+    } finally {
+    }
+    setSearch(true);
+    setSearchData(searchResult.data.existingUser);
+    // console.log(searchResult.data.existingUser);
+    // // console.log(users);
+    // setUsers([searchResult.data.existingUser]);
+    // console.log(searchData);
+  };
+
+  const changeRadio = (role) => {
+    if (role === "Client") {
+      radioClient = true;
+      radioCounselor = false;
+      radioAdmin = false;
+    } else if (role === "Counselor") {
+      radioClient = false;
+      radioCounselor = true;
+      radioAdmin = false;
+    } else if (role === "Admin") {
+      radioClient = false;
+      radioCounselor = false;
+      radioAdmin = true;
+    }
+  };
+
+  const resetRadio = () => {
+    radioClient = false;
+    radioCounselor = false;
+    radioAdmin = false;
+  };
+
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  // useEffect(() => {
+  //   // console.log(users);
+  // }, [searchData]);
 
   return (
     <div>
@@ -43,10 +90,22 @@ export default function UserList() {
           </tr>
         ))}
       </tbody> */}
+
+      <input
+        type="text"
+        id="header-search"
+        placeholder="Search by Email"
+        name="s"
+      />
+      <button type="submit" onClick={handleSearch}>
+        Search
+      </button>
+
       {users.map((user, index) => (
         <div className="card mb-3 offWhite">
           {/* <Row> */}
           <div className="card-body">
+            {changeRadio(user.role)}
             <Row>
               <Col>
                 <h5 className="card-title" style={{ fontWeight: 700 }}>
@@ -63,32 +122,63 @@ export default function UserList() {
                 >
                   {user.role}
                 </h5> */}
-                <div>
-                  <input
-                    type="radio"
-                    value="Client"
-                    name={user.email}
-                    defaultChecked={user.role === "Client" ? true : false}
-                    onChange={handleChange(user.email)}
-                  />
-                  Client &nbsp;
-                  <input
-                    type="radio"
-                    value="Counselor"
-                    name={user.email}
-                    defaultChecked={user.role === "Counselor" ? true : false}
-                    onChange={handleChange(user.email)}
-                  />
-                  Counselor &nbsp;
-                  <input
-                    type="radio"
-                    value="Admin"
-                    name={user.email}
-                    defaultChecked={user.role === "Admin" ? true : false}
-                    onChange={handleChange(user.email)}
-                  />
-                  Admin
-                </div>
+                {search ? (
+                  <div>
+                    <input
+                      type="radio"
+                      value="Client"
+                      name={user.email}
+                      defaultChecked={searchData[0].role === "Client" ? true : false}
+                      onChange={handleChange(user.email)}
+                    />
+                    Client &nbsp;
+                    <input
+                      type="radio"
+                      value="Counselor"
+                      name={user.email}
+                      defaultChecked={
+                        searchData[0].role === "Counselor" ? true : false
+                      }
+                      onChange={handleChange(user.email)}
+                    />
+                    Counselor &nbsp;
+                    <input
+                      type="radio"
+                      value="Admin"
+                      name={user.email}
+                      defaultChecked={searchData[0].role === "Admin" ? true : false}
+                      onChange={handleChange(user.email)}
+                    />
+                    Admin
+                  </div>
+                ) : (
+                  <div>
+                    <input
+                      type="radio"
+                      value="Client"
+                      name={user.email}
+                      defaultChecked={radioClient}
+                      onChange={handleChange(user.email)}
+                    />
+                    Client &nbsp;
+                    <input
+                      type="radio"
+                      value="Counselor"
+                      name={user.email}
+                      defaultChecked={radioCounselor}
+                      onChange={handleChange(user.email)}
+                    />
+                    Counselor &nbsp;
+                    <input
+                      type="radio"
+                      value="Admin"
+                      name={user.email}
+                      defaultChecked={radioAdmin}
+                      onChange={handleChange(user.email)}
+                    />
+                    Admin
+                  </div>
+                )}
               </Col>
               <Col>
                 <Button
@@ -100,7 +190,7 @@ export default function UserList() {
                       )
                     )
                       handleDelete(user.email);
-                      window.location.reload(false);
+                    window.location.reload(false);
                   }}
                 >
                   Delete
