@@ -172,8 +172,8 @@ const userRoleChange = async (req, res, next) => {
     return next(error);
   }
   console.log(existingUser);
-    existingUser.role = role;
-    console.log(existingUser);
+  existingUser.role = role;
+  console.log(existingUser);
   try {
     // existingUser.role = role;
     await existingUser.save();
@@ -202,7 +202,23 @@ const userRoleChange = async (req, res, next) => {
   });
 };
 
+const userDeleteByEmail = async (req, res, next) => {
+  const email = req.params.emailKey;
+  let existingUser;
+
+  try {
+    existingUser = await UserModel.deleteOne({ email: email });
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, lease try again later.",
+      500
+    );
+    return next(error);
+  }
+};
+
 exports.getUsers = getUsers;
 exports.userRegister = userRegister;
 exports.userLogin = userLogin;
 exports.userRoleChange = userRoleChange;
+exports.userDeleteByEmail = userDeleteByEmail;
