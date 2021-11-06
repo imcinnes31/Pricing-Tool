@@ -49,7 +49,7 @@ export default function UserCard({ user }) {
               </Link>           
 
               <button className="btn primary-button">
-                BOOK AN APPOINTEMENT
+                BOOK AN APPOINTMENT
               </button>
             </p>
           </div>

@@ -6,7 +6,9 @@ export default function ProfilePanel({ user, loading }) {
   return (
     <Fragment>
       <div className='pfp-container' style={{ borderColor:'red' }}>
-	  {loading ? <Spinner /> : <img className="py-3" src={`${user.pfp}`} />}
+        {/* use this when the pfp container is fixed */}
+      {/* {loading ? <Spinner /> : <img className="py-3" src={`../${user.pfp}`} />}     */}
+	    {loading ? <Spinner /> : <img className="py-3" src={`${user.pfp}`} />}
       </div>
       <div className="row">
         <hr className="mt-4" style={{ width: "87%" }} />
