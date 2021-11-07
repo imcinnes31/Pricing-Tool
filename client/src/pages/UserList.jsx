@@ -25,7 +25,7 @@ export default function UserList() {
   };
 
   const handleDelete = async (emailKey) => {
-    await Axios.delete(`/api/users/userDelete/${emailKey}`);
+    await Axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/userDelete/${emailKey}`);
   };
 
   useEffect(() => {
