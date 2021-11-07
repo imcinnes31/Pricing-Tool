@@ -18,11 +18,14 @@ export default function UserList() {
   };
 
   const handleChange = (emailKey) => async (e) => {
-
     const responseData = await Axios.post(
       `${process.env.REACT_APP_BACKEND_URL}/users/userRoleChange/${emailKey}/${e.target.value}`
     );
     //console.log(e.target.value + emailKey);
+  };
+
+  const handleDelete = async (emailKey) => {
+    await Axios.delete(`/api/users/userDelete/${emailKey}`);
   };
 
   useEffect(() => {
@@ -86,6 +89,22 @@ export default function UserList() {
                   />
                   Admin
                 </div>
+              </Col>
+              <Col>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        "Are you sure you wish to delete this item?"
+                      )
+                    )
+                      handleDelete(user.email);
+                      window.location.reload(false);
+                  }}
+                >
+                  Delete
+                </Button>
               </Col>
             </Row>
           </div>
