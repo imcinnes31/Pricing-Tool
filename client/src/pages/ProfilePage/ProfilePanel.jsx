@@ -5,10 +5,10 @@ import { Spinner } from "../../components/Spinner";
 export default function ProfilePanel({ user, loading }) {
   return (
     <Fragment>
-      <div className='pfp-container' style={{ borderColor:'red' }}>
+      <div className='pfp-container' style={{ borderColor:'red' , height: '300px'}}>
         {/* use this when the pfp container is fixed */}
-      {/* {loading ? <Spinner /> : <img className="py-3" src={`../${user.pfp}`} />}     */}
-	    {loading ? <Spinner /> : <img className="py-3" src={`${user.pfp}`} />}
+        {loading ? <Spinner/> : <img className="mx-auto d-block" src={`../${user.pfp}` } style={{height:'100%', maxWidth:'350px'}} />}
+	    {/* loading ? <Spinner /> : <img className="py-3" src={`${user.pfp}`} /> */}
       </div>
       <div className="row">
         <hr className="mt-4" style={{ width: "87%" }} />

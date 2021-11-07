@@ -18,9 +18,9 @@ export default function UserCard({ user }) {
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
             src={`${user.pfp}`}
-            className="img-fluid rounded-start"
+            className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
-            style={{ height: "100%", maxHeight: "350px" }}
+            style={{ height: "100%", maxHeight: "325px"}}
           />
         </div>
         <div className="col-md-8">
