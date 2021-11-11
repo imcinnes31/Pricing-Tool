@@ -1,10 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
-import { Form, OverlayTrigger, Popover, Button } from "react-bootstrap";
+import {
+  Form,
+  OverlayTrigger,
+  Popover,
+  Button,
+  Row,
+  Col,
+  Container,
+} from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
-const { useState } = React;
+
+// const { useState } = React;
 
 export default function Header({ company }) {
   const [form, setForm] = useState({
@@ -13,11 +22,26 @@ export default function Header({ company }) {
     date: "2021-05-31T12:04:39.572Z",
   });
 
-  const submitTest = (e) => {
-    // alert(JSON.stringify(form));
-    console.log(form);
-    Axios.post("/api/users/usercreate", form);
+  const [user, setUser] = useState();
+  const [email, setEmail] = useState();
+
+  const submitTest = async (e) => {
     e.preventDefault();
+    console.log(form);
+    let responseData;
+    try {
+      responseData = await Axios.post("/api/users/userlogin", form);
+      auth.login(
+        responseData.data.userId,
+        responseData.data.token,
+        responseData.data.role
+      );
+    } catch (err) {
+      alert("Login Error");
+      // throw new Error("Login Error");
+    }
+    setUser(responseData.data);
+    setEmail(responseData.data.email);
   };
 
   const handleChange = (e) => {
@@ -27,55 +51,93 @@ export default function Header({ company }) {
     });
   };
 
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
+
   const auth = useContext(AuthContext);
-  // const popoverForm = (
-  //   <Popover id="popover-basic" style={{ backgroundColor: "var(--offWhite)" }}>
-  //     <Popover.Body>
-  //       <Form onSubmit={submitTest}>
-  //         <Form.Group className="mb-3" controlId="formBasicEmail">
-  //           <Form.Label>Email</Form.Label>
-  //           <Form.Control type="email" placeholder="Enter email" />
-  //         </Form.Group>
+  const popoverForm = (
+    <Popover id="popover-basic" style={{ backgroundColor: "var(--offWhite)" }}>
+      <Popover.Body>
+        <Form onSubmit={submitTest}>
+          {!auth.isLoggedIn && (
+            <Container>
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="email"
+                  onChange={handleChange}
+                  required
+                ></Form.Control>
+              </Form.Group>
 
-  //         <Form.Group className="mb-3" controlId="formBasicPassword">
-  //           <Form.Label>Password</Form.Label>
-  //           <Form.Control type="password" placeholder="Password" />
-  //         </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  id="password"
+                  onChange={handleChange}
+                  required
+                ></Form.Control>
+              </Form.Group>
 
-  //         <Form.Group className="mb-3" controlId="formRegister">
-  //           <p style={{ fontWeight: "bold" }}>
-  //             New user? &nbsp;
-  //             <NavLink to={ROUTES.REGISTERUSER}>
-  //               <span
-  //                 style={{
-  //                   fontWeight: "bold",
-  //                   color: "var(--secondary_3)",
-  //                   textDecoration: "underline",
-  //                 }}
-  //                 // Hack to close popover form when register is clicked.
-  //                 onClick={() => {
-  //                   document.body.click();
-  //                 }}
-  //               >
-  //                 Register here
-  //               </span>
-  //             </NavLink>
-  //           </p>
-  //         </Form.Group>
+              <Form.Group className="mb-3" controlId="formRegister">
+                <p style={{ fontWeight: "bold" }}>
+                  New user? &nbsp;
+                  <NavLink to={ROUTES.REGISTERUSER}>
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        color: "var(--secondary_3)",
+                        textDecoration: "underline",
+                      }}
+                      // Hack to close popover form when register is clicked.
+                      onClick={() => {
+                        document.body.click();
+                      }}
+                    >
+                      Register here
+                    </span>
+                  </NavLink>
+                </p>
+              </Form.Group>
 
-  //         <Form.Group className="mb-3" controlId="formSubmit">
-  //           <Button
-  //             type="submit"
-  //             className="btn primary-button w-100"
-  //             style={{ marginLeft: "0px" }}
-  //           >
-  //             Submit
-  //           </Button>
-  //         </Form.Group>
-  //       </Form>
-  //     </Popover.Body>
-  //   </Popover>
-  // );
+              <Form.Group className="mb-3" controlId="formSubmit">
+                <Button
+                  type="submit"
+                  className="btn primary-button w-100"
+                  style={{ marginLeft: "0px" }}
+                >
+                  Submit
+                </Button>
+              </Form.Group>
+            </Container>
+          )}
+          {auth.isLoggedIn && (
+            <Container>
+              <Form.Group className="mb-3">
+                <NavLink to={ROUTES.HOME}>
+                  <p>{email}</p>
+                  {/* user == undefined ? "" : user.email */}
+                </NavLink>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Button
+                  onClick={auth.logout}
+                  type="button"
+                  className="btn primary-button w-100"
+                  style={{ marginLeft: "0px" }}
+                >
+                  LOGOUT
+                </Button>
+              </Form.Group>
+            </Container>
+          )}
+        </Form>
+      </Popover.Body>
+    </Popover>
+  );
 
   return (
     <header className="header">
@@ -100,7 +162,7 @@ export default function Header({ company }) {
               FIND A COUNSELOR
             </button>
           </NavLink>
-          {/* <OverlayTrigger
+          <OverlayTrigger
             trigger="click"
             placement="bottom"
             overlay={popoverForm}
@@ -109,8 +171,8 @@ export default function Header({ company }) {
             <button type="button" className="btn primary-button">
               SIGN IN
             </button>
-          </OverlayTrigger> */}
-          {!auth.isLoggedIn && (
+          </OverlayTrigger>
+          {/* {!auth.isLoggedIn && (
             <NavLink to={ROUTES.LOGIN}>
               <button type="button" className="btn primary-button">
                 SIGN IN
@@ -125,7 +187,7 @@ export default function Header({ company }) {
             >
               LOGOUT
             </button>
-          )}
+          )} */}
         </div>
 
         <ul className="navigation">

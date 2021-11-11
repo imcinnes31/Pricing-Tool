@@ -217,8 +217,23 @@ const userDeleteByEmail = async (req, res, next) => {
   }
 };
 
+const searchByEmail = async (req, res, next) => {
+  const email = req.params.emailKey;
+  let existingUser;
+
+  try {
+    existingUser = await UserModel.findOne({ email: email });
+  } catch (err) {
+  }
+  // console.log(existingUser);
+  res.json({
+    existingUser
+  });
+};
+
 exports.getUsers = getUsers;
 exports.userRegister = userRegister;
 exports.userLogin = userLogin;
 exports.userRoleChange = userRoleChange;
 exports.userDeleteByEmail = userDeleteByEmail;
+exports.searchByEmail = searchByEmail;
