@@ -207,7 +207,7 @@ export default function Header({ company }) {
             <Dropdown as="li">
               <Dropdown.Toggle as="a">ADMIN</Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item><NavLink to={ROUTES.ADMIN}>Add Counselor</NavLink></Dropdown.Item>
+                <Dropdown.Item><NavLink to={ROUTES.ADDCOUNSELOR}>Add Counselor</NavLink></Dropdown.Item>
                 <Dropdown.Item><NavLink to={ROUTES.USERLIST}>User List</NavLink></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

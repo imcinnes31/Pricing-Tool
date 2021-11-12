@@ -23,7 +23,7 @@ import {
   Main,
   Information,
   Home,
-  Admin,
+  AddCounselor,
   RegisterUser,
   Login,
   UserList,
@@ -142,8 +142,8 @@ export default function App(props) {
           render={() => <ProfilePage />}
         />
         {role === "Admin" || role === "Counselor" ? (
-          <Route exact path={ROUTES.ADMIN}>
-            <Admin />
+          <Route exact path={ROUTES.ADDCOUNSELOR}>
+            <AddCounselor />
           </Route>
         ) : (
           ""
