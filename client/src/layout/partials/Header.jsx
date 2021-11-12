@@ -11,6 +11,7 @@ import {
   Row,
   Col,
   Container,
+  Dropdown,
 } from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
 
@@ -204,14 +205,13 @@ export default function Header({ company }) {
             <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
           </li>
           {(auth.role === "Admin" || auth.role === "Counselor") && (
-            <li>
-              <NavLink to={ROUTES.ADMIN}>ADMIN</NavLink>
-            </li>
-          )}
-          {auth.role === "Admin" && (
-            <li>
-              <NavLink to={ROUTES.USERLIST}>USERS</NavLink>
-            </li>
+            <Dropdown as="li">
+              <Dropdown.Toggle as="a">ADMIN</Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item><NavLink to={ROUTES.ADMIN}>Add Counselor</NavLink></Dropdown.Item>
+                <Dropdown.Item><NavLink to={ROUTES.USERLIST}>User List</NavLink></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           )}
         </ul>
       </div>
