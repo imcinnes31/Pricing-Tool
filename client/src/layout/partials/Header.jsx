@@ -171,7 +171,12 @@ export default function Header({ company }) {
             rootClose
           >
             <button type="button" className="btn primary-button">
-              <AiOutlineUser />
+              {auth.isLoggedIn && (
+                <AiOutlineUser />
+              )}
+              {!auth.isLoggedIn && (
+                "Login"
+              )}
             </button>
           </OverlayTrigger>
           {/* {!auth.isLoggedIn && (
