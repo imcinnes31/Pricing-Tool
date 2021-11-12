@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
+import { AiOutlineUser } from "react-icons/ai";
 import {
   Form,
   OverlayTrigger,
@@ -170,7 +171,7 @@ export default function Header({ company }) {
             rootClose
           >
             <button type="button" className="btn primary-button">
-              SIGN IN
+              <AiOutlineUser />
             </button>
           </OverlayTrigger>
           {/* {!auth.isLoggedIn && (
