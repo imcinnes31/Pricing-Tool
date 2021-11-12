@@ -119,7 +119,7 @@ export default function Header({ company }) {
           {auth.isLoggedIn && (
             <Container>
               <Form.Group className="mb-3">
-                <NavLink to={ROUTES.USERPROFILE}>
+                <NavLink to={`${ROUTES.USERPROFILE}/${email}`}>
                   <p>{email}</p>
                   {/* user == undefined ? "" : user.email */}
                 </NavLink>

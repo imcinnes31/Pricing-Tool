@@ -223,13 +223,104 @@ const searchByEmail = async (req, res, next) => {
 
   try {
     existingUser = await UserModel.findOne({ email: email });
-  } catch (err) {
-  }
+  } catch (err) {}
   // console.log(existingUser);
-  res.json({
-    existingUser
+  res.status(200).json({
+    existingUser,
   });
 };
+
+// const updateUserByEmail = async (req, res, next) => {
+//   const errors = validationResult(req);
+//   if (!errors.isEmpty()) {
+//     return next(
+//       new HttpError("Invalid inputs passed, please check your data", 422)
+//     );
+//   }
+
+//   const email = req.params.emailKey;
+
+//   const { firstName, lastName, email, phone, password } = req.body;
+
+//   let existingUser;
+
+//   try {
+//     existingUser = await UserModel.updateOne(
+//       { email: email },
+//       {
+//         $set: {
+//           phone: "123",
+//         },
+//       }
+//     );
+//   } catch (err) {}
+
+
+//   try {
+//     existingUser = await UserModel.findOne({ email: email });
+//   } catch (err) {
+//     const error = new HttpError(
+//       "Signing up failed, please try again later.",
+//       500
+//     );
+//     return next(error);
+//   }
+
+//   if (existingUser) {
+//     const error = new HttpError(
+//       "User exists already, please login instead.",
+//       422
+//     );
+//     return next(error);
+//   }
+
+//   let hashedPassword;
+//   try {
+//     hashedPassword = await bcrypt.hash(password, 12);
+//   } catch (err) {
+//     const error = new HttpError(
+//       "Could not create user, please try again.",
+//       500
+//     );
+//     return next(error);
+//   }
+
+//   const createdUser = new UserModel({
+//     userId: uuidv4(),
+//     firstName,
+//     lastName,
+//     email,
+//     phone,
+//     password: hashedPassword,
+//     role: "Client", //"Client, Counselor, Admin"
+//   });
+
+//   try {
+//     await createdUser.save();
+//   } catch (err) {
+//     const error = new HttpError("Signing up failed, please try again.", 500);
+//     return next(error);
+//   }
+
+//   let token;
+//   try {
+//     token = jwt.sign(
+//       { userId: createdUser.id, email: createdUser.email },
+//       "supersecret_dont_share",
+//       { expiresIn: "1h" } //login expires in 1hour
+//     );
+//   } catch (err) {
+//     const error = new HttpError("Signing up failed, please try again.", 500);
+//     return next(error);
+//   }
+
+//   res.status(201).json({
+//     userId: createdUser.id,
+//     email: createdUser.email,
+//     token: token,
+//     role: createdUser.role,
+//   });
+// };
 
 exports.getUsers = getUsers;
 exports.userRegister = userRegister;
@@ -237,3 +328,4 @@ exports.userLogin = userLogin;
 exports.userRoleChange = userRoleChange;
 exports.userDeleteByEmail = userDeleteByEmail;
 exports.searchByEmail = searchByEmail;
+// exports.updateUserByEmail = updateUserByEmail;

@@ -158,7 +158,7 @@ export default function App(props) {
         {/* <Route exact path="/*">
           <NotFound />
         </Route> */}
-        <Route exact path={ROUTES.USERPROFILE}>
+        <Route exact path={`${ROUTES.USERPROFILE}/:userKey`}>
           <UserProfile />
         </Route>
         <Redirect to="/" />
