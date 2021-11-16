@@ -45,7 +45,7 @@ export default function UserList() {
     console.log(emailkey);
     let searchResult;
     try {
-      searchResult = await Axios.get(`/api/users/search-user/${emailkey}`);
+      searchResult = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/search-user/${emailkey}`);
       console.log(searchResult);
       setSearch(true);
       setSearchData(searchResult.data.existingUser);

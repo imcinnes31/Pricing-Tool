@@ -14,7 +14,7 @@ export default function UserProfile() {
   const { userKey } = useParams();
 
   const { loading, error, data } = useHttpRequest(
-    `http://localhost:5000/api/users/search-user/${userKey}`
+    `${process.env.REACT_APP_BACKEND_URL}/users/search-user/${userKey}`
   ); // data in this context is a user object.
 
   // const [userInfo, setUserInfo] = useState();
