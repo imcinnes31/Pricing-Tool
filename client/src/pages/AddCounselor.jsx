@@ -5,7 +5,7 @@ import { Form, Row, Col, Container, Button } from "react-bootstrap";
 import { OPTIONS } from "../constants/addCounselorOptions";
 import MultiSelector from "../components/MultiSelector";
 import SingleSelector from "../components/SingleSelector";
-
+import ImageUpload from "../components/ImageUpload";
 const { useState } = React;
 
 export default function AddCounselor() {
@@ -16,7 +16,8 @@ export default function AddCounselor() {
 
   const submitTest = (e) => {
     // alert(JSON.stringify(form));
-    Axios.post("/api/insertCounselor", form);
+    console.log(form);
+    // Axios.post("/api/insertCounselor", form);
     e.preventDefault();
   };
 
@@ -33,11 +34,26 @@ export default function AddCounselor() {
       [selected.id]: selected.optionsSelected,
     });
   };
+
+  const handleCheck = (e) => {
+    setForm({
+      ...form,
+      [e.target.id]: e.target.checked,
+    });
+  };
+
+  const handleImg = (id, file, isValid) => {
+    setForm({
+      ...form,
+      [id]: file,
+    });
+  };
   return (
     <div>
       <h1>Add Counselor</h1>
       {/* Change Form.Control id to control id in the form group  */}
       <Form onSubmit={submitTest}>
+          <ImageUpload id={"pfp"} center onInput={handleImg} />
         <Row>
           <Col>
             <Form.Label>Full name</Form.Label>
@@ -84,7 +100,7 @@ export default function AddCounselor() {
               id="credentials"
               onChange={handleSelect}
               isQuery={false}
-            /> 
+            />
           </Col>
         </Row>
         <Form.Label>Introduction</Form.Label>
@@ -136,7 +152,6 @@ export default function AddCounselor() {
           required
         ></Form.Control>
 
-
         <Form.Label>Price</Form.Label>
         <Form.Control
           type="number"
@@ -145,7 +160,17 @@ export default function AddCounselor() {
           required
         ></Form.Control>
 
-        <Button type="submit" style={{ marginTop: "20px" ,marginBottom: "202px" }}>
+        <Form.Label>In Person</Form.Label>
+        <Form.Check
+              name="terms"
+              onChange={handleCheck}
+              id="in_person"
+            />
+
+        <Button
+          type="submit"
+          style={{ marginTop: "20px", marginBottom: "202px" }}
+        >
           ADD
         </Button>
       </Form>
