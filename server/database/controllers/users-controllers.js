@@ -223,7 +223,16 @@ const searchByEmail = async (req, res, next) => {
 
   try {
     existingUser = await UserModel.findOne({ email: email });
-  } catch (err) {}
+    if (existingUser == null) {
+      throw "";
+    }
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, lease try again later.",
+      500
+    );
+    return next(error);
+  }
   // console.log(existingUser);
   res.status(200).json({
     existingUser,
@@ -254,7 +263,6 @@ const searchByEmail = async (req, res, next) => {
 //       }
 //     );
 //   } catch (err) {}
-
 
 //   try {
 //     existingUser = await UserModel.findOne({ email: email });
