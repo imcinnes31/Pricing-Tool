@@ -179,6 +179,8 @@ Counselor.aggregate([
           ageQueryArray.push(biggerAgeQuery);
         }
         parsedQuery["$or"] = ageQueryArray;
+      } else if (key === "issues") {
+        parsedQuery[key] = value.includes(",") ? { $in: value.replace(/_/g, ' ').split(",") } : value.replace(/_/g, ' ');
       } else parsedQuery[key] = value.includes(",") ? { $in: value.split(",") } : value;
     }
 

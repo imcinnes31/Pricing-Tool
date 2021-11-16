@@ -8,7 +8,7 @@ import SingleSelector from "../components/SingleSelector";
 
 const { useState } = React;
 
-export default function Admin() {
+export default function AddCounselor() {
   const [form, setForm] = useState({
     pfp: "https://picsum.photos/360/240?random=0",
     date: "2021-05-31T12:04:39.572Z",

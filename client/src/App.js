@@ -23,10 +23,11 @@ import {
   Main,
   Information,
   Home,
-  Admin,
+  AddCounselor,
   RegisterUser,
   Login,
   UserList,
+  UserProfile,
 } from "./pages";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
@@ -141,8 +142,8 @@ export default function App(props) {
           render={() => <ProfilePage />}
         />
         {role === "Admin" || role === "Counselor" ? (
-          <Route exact path={ROUTES.ADMIN}>
-            <Admin />
+          <Route exact path={ROUTES.ADDCOUNSELOR}>
+            <AddCounselor />
           </Route>
         ) : (
           ""
@@ -157,6 +158,9 @@ export default function App(props) {
         {/* <Route exact path="/*">
           <NotFound />
         </Route> */}
+        <Route exact path={`${ROUTES.USERPROFILE}/:userKey`}>
+          <UserProfile />
+        </Route>
         <Redirect to="/" />
       </Switch>
     );

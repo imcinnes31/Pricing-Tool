@@ -32,7 +32,7 @@ server.post("/api/insertCounselor", async (req, res) =>{
 });
 
 server.use((req, res, next)=>{
-  const error = new HttpError('Cloud not find this route.', 404);
+  const error = new HttpError('Clould not find this route.', 404);
   throw error;
 })
 
