@@ -8,7 +8,7 @@ const styles = {
   })
 }
 
-// Component for the Admin page multi selectors.
+// Component for the add counselor page multi selectors.
 export default function MultiSelector({filters, id, onChange, isQuery }) {
   //options here is one list from filters.
 
