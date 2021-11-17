@@ -30,7 +30,7 @@ Counselor.aggregate([
           },
           "then": {
             "$cond": {
-              "if": false,   //IF CLIENT WANTS IN-PERSON APPOINTMENT
+              "if": true,   //IF CLIENT WANTS IN-PERSON APPOINTMENT
               "then": {"$cond": {"if": "$in_person_price", "then": "$in_person_price", "else": "$price"}},
               "else": {"$cond": {"if": "$virtual_price", "then": "$virtual_price", "else": "$price"}}
             }
@@ -54,6 +54,7 @@ Counselor.aggregate([
       pronouns: "$pronouns",
       title: "$title",
       id: "$id",
+      in_person: "$in_person", 
     },
 
     
@@ -92,7 +93,6 @@ Counselor.aggregate([
       // Counselor.find({ age:{$gt:40}})   // <----- returns counselors with age > 40
 
       //Counselor.find(parseQuery(query))
-      
       Counselor.aggregate([
         {
           "$project": {
@@ -129,7 +129,8 @@ Counselor.aggregate([
             specializations: "$specializations",
             pronouns: "$pronouns",
             title: "$title",  
-            id: "$id",     
+            id: "$id", 
+            in_person: "$in_person",    
           },
 
           
@@ -137,7 +138,7 @@ Counselor.aggregate([
         {
           $match: 
             parseQuery(query)
-            //{'$or': [ { age: {'$gte': 65, '$lte': 1000} } ]}
+            //{in_person: true}
         }
       ])
       
@@ -179,8 +180,8 @@ Counselor.aggregate([
           ageQueryArray.push(biggerAgeQuery);
         }
         parsedQuery["$or"] = ageQueryArray;
-      } else if (key === "issues") {
-        parsedQuery[key] = value.includes(",") ? { $in: value.replace(/_/g, ' ').split(",") } : value.replace(/_/g, ' ');
+      // } else if (key === "issues") {
+      //   parsedQuery[key] = value.includes(",") ? { $in: value.replace(/_/g, ' ').split(",") } : value.replace(/_/g, ' ');
       } else parsedQuery[key] = value.includes(",") ? { $in: value.split(",") } : value;
     }
 
@@ -196,7 +197,7 @@ Counselor.aggregate([
       parsedQuery['specializations'] = parsedQuery['issues'];
       delete parsedQuery['issues'];
     }
-    //console.log(parsedQuery);
+    console.log(parsedQuery);
     return parsedQuery;
   }
 
