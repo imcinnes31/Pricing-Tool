@@ -19,6 +19,6 @@ router.post("/userlogin", userControllers.userLogin);
 router.post("/userRoleChange/:emailKey/:role", userControllers.userRoleChange);
 router.delete("/userDelete/:emailKey", userControllers.userDeleteByEmail);
 router.get("/search-user/:emailKey", userControllers.searchByEmail);
-// router.put("update-user/:emailKey", userControllers.updateUserByEmail);
+router.put("/update-user/:emailKey", userControllers.updateUserByEmail);
 
 module.exports = router;

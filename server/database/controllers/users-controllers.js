@@ -239,96 +239,75 @@ const searchByEmail = async (req, res, next) => {
   });
 };
 
-// const updateUserByEmail = async (req, res, next) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return next(
-//       new HttpError("Invalid inputs passed, please check your data", 422)
-//     );
-//   }
+const updateUserByEmail = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data", 422)
+    );
+  }
 
-//   const email = req.params.emailKey;
+  const email = req.params.emailKey;
 
-//   const { firstName, lastName, email, phone, password } = req.body;
+  const { firstName, lastName, phone, password } = req.body;
 
-//   let existingUser;
+  let existingUser;
 
-//   try {
-//     existingUser = await UserModel.updateOne(
-//       { email: email },
-//       {
-//         $set: {
-//           phone: "123",
-//         },
-//       }
-//     );
-//   } catch (err) {}
+  if (password == null) {
+    try {
+      existingUser = await UserModel.updateOne(
+        { email: email },
+        {
+          $set: {
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+          },
+        }
+      );
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find user, lease try again later.",
+        500
+      );
+      return next(error);
+    }
+  } else {
+    let hashedPassword;
 
-//   try {
-//     existingUser = await UserModel.findOne({ email: email });
-//   } catch (err) {
-//     const error = new HttpError(
-//       "Signing up failed, please try again later.",
-//       500
-//     );
-//     return next(error);
-//   }
+    try {
+      hashedPassword = await bcrypt.hash(password, 12);
+    } catch (err) {
+      const error = new HttpError(
+        "Could not create user, please try again.",
+        500
+      );
+      return next(error);
+    }
 
-//   if (existingUser) {
-//     const error = new HttpError(
-//       "User exists already, please login instead.",
-//       422
-//     );
-//     return next(error);
-//   }
-
-//   let hashedPassword;
-//   try {
-//     hashedPassword = await bcrypt.hash(password, 12);
-//   } catch (err) {
-//     const error = new HttpError(
-//       "Could not create user, please try again.",
-//       500
-//     );
-//     return next(error);
-//   }
-
-//   const createdUser = new UserModel({
-//     userId: uuidv4(),
-//     firstName,
-//     lastName,
-//     email,
-//     phone,
-//     password: hashedPassword,
-//     role: "Client", //"Client, Counselor, Admin"
-//   });
-
-//   try {
-//     await createdUser.save();
-//   } catch (err) {
-//     const error = new HttpError("Signing up failed, please try again.", 500);
-//     return next(error);
-//   }
-
-//   let token;
-//   try {
-//     token = jwt.sign(
-//       { userId: createdUser.id, email: createdUser.email },
-//       "supersecret_dont_share",
-//       { expiresIn: "1h" } //login expires in 1hour
-//     );
-//   } catch (err) {
-//     const error = new HttpError("Signing up failed, please try again.", 500);
-//     return next(error);
-//   }
-
-//   res.status(201).json({
-//     userId: createdUser.id,
-//     email: createdUser.email,
-//     token: token,
-//     role: createdUser.role,
-//   });
-// };
+    try {
+      existingUser = await UserModel.updateOne(
+        { email: email },
+        {
+          $set: {
+            password: hashedPassword,
+          },
+        }
+      );
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find user, lease try again later.",
+        500
+      );
+      return next(error);
+    }
+  }
+  res.status(201).json({
+    userId: existingUser.id,
+    email: existingUser.email,
+    role: existingUser.role,
+  });
+};
 
 exports.getUsers = getUsers;
 exports.userRegister = userRegister;
@@ -336,4 +315,4 @@ exports.userLogin = userLogin;
 exports.userRoleChange = userRoleChange;
 exports.userDeleteByEmail = userDeleteByEmail;
 exports.searchByEmail = searchByEmail;
-// exports.updateUserByEmail = updateUserByEmail;
+exports.updateUserByEmail = updateUserByEmail;
