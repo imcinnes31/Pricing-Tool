@@ -21,4 +21,6 @@ router.delete("/userDelete/:emailKey", userControllers.userDeleteByEmail);
 router.get("/search-user/:emailKey", userControllers.searchByEmail);
 router.put("/update-user/:emailKey", userControllers.updateUserByEmail);
 
+router.post("/forgotPassword/:emailKey", userControllers.forgotPassword);
+
 module.exports = router;

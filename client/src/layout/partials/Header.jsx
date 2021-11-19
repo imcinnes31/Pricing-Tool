@@ -105,6 +105,27 @@ export default function Header({ company }) {
                 </p>
               </Form.Group>
 
+              <Form.Group className="mb-3" controlId="formRegister">
+                <p style={{ fontWeight: "bold" }}>
+                  Forgot Password? &nbsp;
+                  <NavLink to={ROUTES.FORGOTPASSWORD}>
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        color: "var(--secondary_3)",
+                        textDecoration: "underline",
+                      }}
+                      // Hack to close popover form when register is clicked.
+                      onClick={() => {
+                        document.body.click();
+                      }}
+                    >
+                      Reset here
+                    </span>
+                  </NavLink>
+                </p>
+              </Form.Group>
+
               <Form.Group className="mb-3" controlId="formSubmit">
                 <Button
                   type="submit"
