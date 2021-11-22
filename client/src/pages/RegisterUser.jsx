@@ -116,7 +116,7 @@ export default function RegisterUser() {
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
         >
-          ADD
+          Register
         </Button>
       </Form>
     </div>

@@ -38,12 +38,12 @@ export default function Header({ company }) {
         responseData.data.token,
         responseData.data.role
       );
+      setUser(responseData.data);
+      setEmail(responseData.data.email);
     } catch (err) {
       alert("Login Error");
       // throw new Error("Login Error");
     }
-    setUser(responseData.data);
-    setEmail(responseData.data.email);
   };
 
   const handleChange = (e) => {
@@ -100,6 +100,27 @@ export default function Header({ company }) {
                       }}
                     >
                       Register here
+                    </span>
+                  </NavLink>
+                </p>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formRegister">
+                <p style={{ fontWeight: "bold" }}>
+                  Forgot Password? &nbsp;
+                  <NavLink to={ROUTES.FORGOTPASSWORD}>
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        color: "var(--secondary_3)",
+                        textDecoration: "underline",
+                      }}
+                      // Hack to close popover form when register is clicked.
+                      onClick={() => {
+                        document.body.click();
+                      }}
+                    >
+                      Reset here
                     </span>
                   </NavLink>
                 </p>
@@ -171,12 +192,8 @@ export default function Header({ company }) {
             rootClose
           >
             <button type="button" className="btn primary-button">
-              {auth.isLoggedIn && (
-                <AiOutlineUser />
-              )}
-              {!auth.isLoggedIn && (
-                "Login"
-              )}
+              {auth.isLoggedIn && <AiOutlineUser />}
+              {!auth.isLoggedIn && "Login"}
             </button>
           </OverlayTrigger>
           {/* {!auth.isLoggedIn && (
@@ -213,8 +230,12 @@ export default function Header({ company }) {
             <Dropdown as="li">
               <Dropdown.Toggle as="a">ADMIN</Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item><NavLink to={ROUTES.ADDCOUNSELOR}>Add Counselor</NavLink></Dropdown.Item>
-                <Dropdown.Item><NavLink to={ROUTES.USERLIST}>User List</NavLink></Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.ADDCOUNSELOR}>Add Counselor</NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.USERLIST}>User List</NavLink>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           )}
