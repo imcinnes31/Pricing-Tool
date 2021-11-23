@@ -10,3 +10,4 @@ export { default as RegisterUser } from "./RegisterUser";
 export { default as Login } from "./Login";
 export { default as UserList } from "./UserList";
 export { default as UserProfile } from "./UserProfile";
+export { default as ForgotPassword } from "./ForgotPassword";

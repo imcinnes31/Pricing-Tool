@@ -4,6 +4,7 @@ const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const getUsers = async (req, res, next) => {
   let users;
@@ -223,12 +224,125 @@ const searchByEmail = async (req, res, next) => {
 
   try {
     existingUser = await UserModel.findOne({ email: email });
+    if (existingUser == null) {
+      throw "";
+    }
   } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, lease try again later.",
+      500
+    );
+    return next(error);
   }
   // console.log(existingUser);
-  res.json({
-    existingUser
+  res.status(200).json({
+    existingUser,
   });
+};
+
+const updateUserByEmail = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data", 422)
+    );
+  }
+
+  const email = req.params.emailKey;
+
+  const { firstName, lastName, phone, password } = req.body;
+
+  let existingUser;
+
+  if (password == null) {
+    try {
+      existingUser = await UserModel.updateOne(
+        { email: email },
+        {
+          $set: {
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+          },
+        }
+      );
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find user, lease try again later.",
+        500
+      );
+      return next(error);
+    }
+  } else {
+    let hashedPassword;
+
+    try {
+      hashedPassword = await bcrypt.hash(password, 12);
+    } catch (err) {
+      const error = new HttpError(
+        "Could not create user, please try again.",
+        500
+      );
+      return next(error);
+    }
+
+    try {
+      existingUser = await UserModel.updateOne(
+        { email: email },
+        {
+          $set: {
+            password: hashedPassword,
+          },
+        }
+      );
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find user, lease try again later.",
+        500
+      );
+      return next(error);
+    }
+  }
+  res.status(201).json({
+    userId: existingUser.id,
+    email: existingUser.email,
+    role: existingUser.role,
+  });
+};
+
+const forgotPassword = async (req, res, next) => {
+  const email = req.params.emailKey;
+  sendEmail(email).catch(console.error);
+};
+
+const sendEmail = async (receiverEmail) => {
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "stadiaresidentevil9@gmail.com",
+      pass: "ABCDE13579", 
+    },
+  });
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+    to: `${receiverEmail}`, // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>Hello world?</b>", // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 };
 
 exports.getUsers = getUsers;
@@ -237,3 +351,5 @@ exports.userLogin = userLogin;
 exports.userRoleChange = userRoleChange;
 exports.userDeleteByEmail = userDeleteByEmail;
 exports.searchByEmail = searchByEmail;
+exports.updateUserByEmail = updateUserByEmail;
+exports.forgotPassword = forgotPassword;

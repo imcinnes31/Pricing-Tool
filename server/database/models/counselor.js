@@ -59,7 +59,7 @@ const Counselor = new mongoose.Schema({
   },
   date: {
     type: String,
-    required: true,
+    required: false,
   },
 
   //new fields

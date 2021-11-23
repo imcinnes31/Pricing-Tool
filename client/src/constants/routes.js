@@ -12,4 +12,5 @@ export const ROUTES = {
   LOGIN: "/login",
   USERLIST: "/userlist",
   USERPROFILE: "/userProfile",
+  FORGOTPASSWORD: "/forgotPassword",
 };
