@@ -35,18 +35,14 @@ export default function UserProfile() {
     console.log(form);
 
     try {
-      // const responseData = await Axios.post("/api/users/usercreate", form);
-      // auth.login(
-      //   responseData.data.userId,
-      //   responseData.data.token,
-      //   responseData.data.role
-      // );
-      // console.log(responseData.data.userId);
-      // console.log(responseData.data.token);
-      // console.log(responseData.data.email);
+      const responseData = await Axios.put(
+        `/api/users/update-user/${userKey}`,
+        form
+      );
     } catch (err) {
-      alert("Registration Error");
-      // throw new Error("Login Error");
+      alert("Update Error");
+    } finally {
+      window.location.reload(false);
     }
   };
 
