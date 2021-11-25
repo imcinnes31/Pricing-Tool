@@ -36,7 +36,7 @@ export default function UserProfile() {
 
     try {
       const responseData = await Axios.put(
-        `/api/users/update-user/${userKey}`,
+        `${process.env.REACT_APP_BACKEND_URL}/users/update-user/${userKey}`,
         form
       );
     } catch (err) {
