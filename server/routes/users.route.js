@@ -22,5 +22,6 @@ router.get("/search-user/:emailKey", userControllers.searchByEmail);
 router.put("/update-user/:emailKey", userControllers.updateUserByEmail);
 
 router.post("/forgotPassword/:emailKey", userControllers.forgotPassword);
+router.post("/resetPassword/:resetKey/:emailKey", userControllers.resetPassword);
 
 module.exports = router;
