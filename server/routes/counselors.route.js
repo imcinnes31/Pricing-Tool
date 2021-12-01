@@ -1,10 +1,13 @@
 // routes/router.name.js
 /**/
+const express = require("express");
 const { DB, Mongo } = require("../database");
 const counselor = require("../database/models/counselor");
 // Displaying 0 - 0 of 8988
-
+const counselorControllers = require("../database/controllers/counselor-controllers");
+const router = express.Router();
 const locationFunctions = require("../utils/locations");
+const fileUpload = require('../middleware/file-upload');
 
 const DEFAULT_LIMIT = 4;
 const DEFAULT_PAGE = 1;
@@ -121,6 +124,12 @@ module.exports = (server) => {
 
   });
 
+  //handles adding new counselors in the admin page
+  server.post('/api/insertCounselor', 
+    fileUpload.single('pfp'),
+    //form data checker
+    counselorControllers.insertCounselor
+  );
   // insert new counselor data
   server.get('/api/v2/counselors/newCounselor', async (req, res) => {
     //get fields from new counselor form
