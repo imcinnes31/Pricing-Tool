@@ -10,14 +10,17 @@ const { useState } = React;
 
 export default function AddCounselor() {
   const [form, setForm] = useState({
-    pfp: "https://picsum.photos/360/240?random=0",
     date: "2021-05-31T12:04:39.572Z",
   });
 
-  const submitTest = (e) => {
+  const submitForm = (e) => {
     // alert(JSON.stringify(form));
-    console.log(form);
-    // Axios.post("/api/insertCounselor", form);
+    const formData = new FormData();
+    for(var key in form){
+      formData.append(key, form[key]);
+    }
+    console.log(formData);
+    Axios.post("/api/insertCounselor", formData);
     e.preventDefault();
   };
 
@@ -42,17 +45,17 @@ export default function AddCounselor() {
     });
   };
 
-  const handleImg = (id, file, isValid) => {
+  const handleImg = (file) => {
     setForm({
       ...form,
-      [id]: file,
+      "pfp": file,
     });
   };
   return (
     <div>
       <h1>Add Counselor</h1>
       {/* Change Form.Control id to control id in the form group  */}
-      <Form onSubmit={submitTest}>
+      <Form onSubmit={submitForm}>
           <ImageUpload id={"pfp"} center onInput={handleImg} />
         <Row>
           <Col>
@@ -106,7 +109,7 @@ export default function AddCounselor() {
         <Form.Label>Introduction</Form.Label>
         <Form.Control
           as="textarea"
-          id="description"
+          id="introduction"
           onChange={handleField}
           required
         ></Form.Control>

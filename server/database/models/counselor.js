@@ -29,7 +29,7 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: true
   },
-  therapy_type: [{
+  approach: [{
     type: String,
     required: true,
   }],
@@ -41,7 +41,7 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: true,
   }],
-  description: {
+  introduction: {
     type: String,
     required: true,
   },
