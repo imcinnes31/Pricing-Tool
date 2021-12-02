@@ -41,7 +41,7 @@ export default function UserCard({ user }) {
             <div style={{ marginBottom: "10px" }}>
               <small className="text-muted">{user.pronouns}</small>
             </div>
-            <p className="card-text"> {trimParagraph(user.description)} </p>
+            <p className="card-text"> {trimParagraph(user.introduction)} </p>
             <p>Cost per session: ${user.price}</p>
             <p className="">
               <Link to={`${ROUTES.PROFILE}/${user.id}`}>

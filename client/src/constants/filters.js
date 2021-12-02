@@ -107,7 +107,7 @@ export const FILTERS = [
   },
   { category: "Gender", list: ["Male", "Female"] },
   {
-    category: "Therapy Type",
+    category: "Approach",
     list: [
       "Accelerated Experiential-dynamic Psychotherapy",
       "Acceptance and Commitment (ACT)",
