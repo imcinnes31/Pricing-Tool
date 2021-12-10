@@ -21,7 +21,7 @@ export default function UserList() {
   const [searchData, setSearchData] = useState([]);
 
   const fetchUsers = async () => {
-    const { data } = await Axios.get(process.env.REACT_APP_BACKEND_URL + "/users/");
+    const { data } = await Axios.get(process.env.REACT_APP_BACKEND_API + "/users/");
     const userLists = data;
     setUsers(userLists.users);
   };
@@ -32,12 +32,12 @@ export default function UserList() {
 
   const handleChange = (emailKey) => async (e) => {
     const responseData = await Axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/users/userRoleChange/${emailKey}/${e.target.value}`
+      `${process.env.REACT_APP_BACKEND_API}/users/userRoleChange/${emailKey}/${e.target.value}`
     );
   };
 
   const handleDelete = async (emailKey) => {
-    await Axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/userDelete/${emailKey}`);
+    await Axios.delete(`${process.env.REACT_APP_BACKEND_API}/users/userDelete/${emailKey}`);
   };
 
   const handleSearch = async () => {
@@ -45,7 +45,7 @@ export default function UserList() {
     console.log(emailkey);
     let searchResult;
     try {
-      searchResult = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/search-user/${emailkey}`);
+      searchResult = await Axios.get(`${process.env.REACT_APP_BACKEND_API}/users/search-user/${emailkey}`);
       console.log(searchResult);
       setSearch(true);
       setSearchData(searchResult.data.existingUser);

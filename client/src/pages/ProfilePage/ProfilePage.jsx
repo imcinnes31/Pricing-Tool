@@ -9,7 +9,7 @@ import { ROUTES } from "../../constants/routes";
 export default function ProfilePage() {
   const { userid } = useParams();
   const { loading, error, data } = useHttpRequest(
-    `${process.env.REACT_APP_BACKEND_URL}/v2/counselors/id/${userid}`
+    `${process.env.REACT_APP_BACKEND_API}/v2/counselors/id/${userid}`
   ); // data in this context is a user object.
 
   if (loading) return <Spinner />;

@@ -5,7 +5,7 @@ import { Spinner } from "../components/Spinner";
 import CardList from "../components/Card/CardList";
 import { SKIP } from "../constants/skip";
 
-const ajaxUrl = process.env.REACT_APP_BACKEND_URL + "/v2/counselors";
+const ajaxUrl = process.env.REACT_APP_BACKEND_API + "/v2/counselors";
 
 export default function Main({ filters }) {
   const [isSelected, setIsSelected] = React.useState([]);

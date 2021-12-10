@@ -10,7 +10,7 @@ export default function ForgotPassword() {
 
     try {
       const emailkey = document.getElementById("formEmail").value;
-      const responseData = await Axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/forgotPassword/${emailkey}`);
+      const responseData = await Axios.post(`${process.env.REACT_APP_BACKEND_API}/users/forgotPassword/${emailkey}`);
     } catch (err) {
       alert("Email Error");
     }

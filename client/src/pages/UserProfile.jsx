@@ -14,7 +14,7 @@ export default function UserProfile() {
   const { userKey } = useParams();
 
   const { loading, error, data } = useHttpRequest(
-    `${process.env.REACT_APP_BACKEND_URL}/users/search-user/${userKey}`
+    `${process.env.REACT_APP_BACKEND_API}/users/search-user/${userKey}`
   ); // data in this context is a user object.
 
   // const [userInfo, setUserInfo] = useState();
@@ -36,7 +36,7 @@ export default function UserProfile() {
 
     try {
       const responseData = await Axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/users/update-user/${userKey}`,
+        `${process.env.REACT_APP_BACKEND_API}/users/update-user/${userKey}`,
         form
       );
     } catch (err) {

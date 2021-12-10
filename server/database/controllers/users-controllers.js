@@ -323,7 +323,7 @@ const forgotPassword = async (req, res, next) => {
     const resetId = uuidv4();
     existingUser.resetId = resetId;
 
-    const resetLink = `http://localhost:3000/resetPassword/${resetId}/${email}`;
+    const resetLink = `${process.env.REACT_APP_BACKEND_URL}/resetPassword/${resetId}/${email}`;
 
     sendEmail(email, resetLink).catch(console.error);
   } catch (err) {

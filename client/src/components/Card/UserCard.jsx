@@ -17,7 +17,7 @@ export default function UserCard({ user }) {
           {/* src={require("./assets/logo.jpg").default} */}
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
-            src={`http://localhost:5000/${user.pfp}`}
+            src={`${process.env.REACT_APP_BACKEND_URL}/${user.pfp}`}
             className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
             style={{ height: "100%", maxHeight: "325px"}}

@@ -21,7 +21,7 @@ export default function AddCounselor() {
       formData.append(key, form[key]);
     }
     console.log(formData);
-    Axios.post(process.env.REACT_APP_BACKEND_URL + "/insertCounselor", formData);
+    Axios.post(process.env.REACT_APP_BACKEND_API + "/insertCounselor", formData);
     e.preventDefault();
   };
 

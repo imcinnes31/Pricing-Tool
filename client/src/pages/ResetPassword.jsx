@@ -19,7 +19,7 @@ export default function ResetPassword() {
     try {
       const PWkey = document.getElementById("formPW").value;
       const responseData = await Axios.post(
-        `/api/users/resetPassword/${resetKey}/${emailKey}`,
+        `${process.env.REACT_APP_BACKEND_API}/users/resetPassword/${resetKey}/${emailKey}`,
         form
       );
     } catch (err) {

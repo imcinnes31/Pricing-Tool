@@ -7,7 +7,7 @@ export default function ProfilePanel({ user, loading }) {
     <Fragment>
       <div className='pfp-container' style={{ borderColor:'red' , height: '300px'}}>
         {/* use this when the pfp container is fixed */}
-        {loading ? <Spinner/> : <img className="mx-auto d-block" src={`http://localhost:5000/${user.pfp}` } style={{height:'100%', maxWidth:'350px'}} />}
+        {loading ? <Spinner/> : <img className="mx-auto d-block" src={`${process.env.REACT_APP_BACKEND_URL}/${user.pfp}` } style={{height:'100%', maxWidth:'350px'}} />}
 	    {/* loading ? <Spinner /> : <img className="py-3" src={`${user.pfp}`} /> */}
       </div>
       <div className="row">
