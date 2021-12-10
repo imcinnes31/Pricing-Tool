@@ -29,6 +29,7 @@ import {
   UserList,
   UserProfile,
   ForgotPassword,
+  ResetPassword,
 } from "./pages";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
@@ -142,6 +143,10 @@ export default function App(props) {
           <ForgotPassword />
         </Route>
 
+        <Route exact path={`${ROUTES.RESETPASSWORD}/:resetKey/:emailKey`}>
+          <ResetPassword />
+        </Route>
+
         <Route
           exact
           path={`${ROUTES.PROFILE}/:userid`}
@@ -208,6 +213,10 @@ export default function App(props) {
         
         <Route exact path={ROUTES.FORGOTPASSWORD}>
           <ForgotPassword />
+        </Route>
+
+        <Route exact path={`${ROUTES.RESETPASSWORD}/:resetKey/:emailKey`}>
+          <ResetPassword />
         </Route>
 
         <Route exact path={ROUTES.Login}>

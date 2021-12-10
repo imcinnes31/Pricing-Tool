@@ -29,7 +29,7 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: true
   },
-  therapy_type: [{
+  approach: [{
     type: String,
     required: true,
   }],
@@ -41,7 +41,7 @@ const Counselor = new mongoose.Schema({
     type: String,
     required: true,
   }],
-  description: {
+  introduction: {
     type: String,
     required: true,
   },
@@ -65,7 +65,7 @@ const Counselor = new mongoose.Schema({
   //new fields
   roles: [{
     type: String,
-    required: false,
+    required: true,
   }],
   capacity: {
     type: Number,
@@ -73,23 +73,19 @@ const Counselor = new mongoose.Schema({
   },
   in_person: {
     type: Boolean,
-    required: false,
+    required: true,
   },
   province: {
     type: String,
-    required: false,
+    required: true,
   },
   city: {
     type: String,
-    required: false,
+    required: true,
   },
   in_person_price: {
     type: Number,
-    required: false,
-  },
-  virtual_price: {
-    type: Number,
-    required: false,
+    required: true,
   },
   EMDR_price: {
     type: Number,

@@ -312,11 +312,93 @@ const updateUserByEmail = async (req, res, next) => {
 
 const forgotPassword = async (req, res, next) => {
   const email = req.params.emailKey;
-  sendEmail(email).catch(console.error);
+  let existingUser;
+
+  try {
+    existingUser = await UserModel.findOne({ email: email });
+    if (existingUser == null) {
+      throw "";
+    }
+
+    const resetId = uuidv4();
+    existingUser.resetId = resetId;
+
+    const resetLink = `http://localhost:3000/resetPassword/${resetId}/${email}`;
+
+    sendEmail(email, resetLink).catch(console.error);
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, lease try again later.",
+      500
+    );
+    return next(error);
+  }
+
+  try {
+    await existingUser.save();
+  } catch (err) {
+    const error = new HttpError("Reset error, please try again.", 500);
+    return next(error);
+  }
 };
 
-const sendEmail = async (receiverEmail) => {
+const resetPassword = async (req, res, next) => {
+  const email = req.params.emailKey;
+  const resetId = req.params.resetKey;
+  const { formPW } = req.body;
+  let existingUser;
 
+  try {
+    existingUser = await UserModel.findOne({ email: email });
+    if (existingUser.resetId != resetId) {
+      console.log("hello");
+      throw "Cannot find user, lease try again later.";
+    }
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, lease try again later.",
+      500
+    );
+    return next(error);
+  }
+
+  let hashedPassword;
+
+  try {
+    hashedPassword = await bcrypt.hash(formPW, 12);
+  } catch (err) {
+    const error = new HttpError(
+      "Could not create password, please try again.",
+      500
+    );
+    return next(error);
+  }
+
+  try {
+    existingUser = await UserModel.updateOne(
+      { email: email },
+      {
+        $set: {
+          password: hashedPassword,
+        },
+      }
+    );
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, lease try again later.",
+      500
+    );
+    return next(error);
+  }
+
+  res.status(201).json({
+    userId: existingUser.id,
+    email: existingUser.email,
+    role: existingUser.role,
+  });
+};
+
+const sendEmail = async (receiverEmail, resetLink) => {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -324,7 +406,7 @@ const sendEmail = async (receiverEmail) => {
     secure: false, // true for 465, false for other ports
     auth: {
       user: "stadiaresidentevil9@gmail.com",
-      pass: "ABCDE13579", 
+      pass: "ABCDE13579",
     },
   });
 
@@ -332,9 +414,9 @@ const sendEmail = async (receiverEmail) => {
   let info = await transporter.sendMail({
     from: '"Fred Foo 👻" <foo@example.com>', // sender address
     to: `${receiverEmail}`, // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
+    subject: "Phare Password Reset", // Subject line
+    text: resetLink, // plain text body
+    html: `<b>${resetLink}</b>`, // html body
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -353,3 +435,4 @@ exports.userDeleteByEmail = userDeleteByEmail;
 exports.searchByEmail = searchByEmail;
 exports.updateUserByEmail = updateUserByEmail;
 exports.forgotPassword = forgotPassword;
+exports.resetPassword = resetPassword;

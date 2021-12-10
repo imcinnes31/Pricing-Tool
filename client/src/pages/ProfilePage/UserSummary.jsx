@@ -16,7 +16,7 @@ export default function UserSummary({ user }) {
       <div className="pt-2 pb-3">
         <div className="pt-2 pb-3">
           <h4 className="pt-2 pb-3">Introduction</h4>
-          <p>{user.description}</p>
+          <p>{user.introduction}</p>
         </div>
 
         <div className="py-3">

@@ -29,6 +29,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  resetId: {
+    type: String,
+    required: false,
+  },
 });
 
 // UserSchema.plugin(uniqueValidator);

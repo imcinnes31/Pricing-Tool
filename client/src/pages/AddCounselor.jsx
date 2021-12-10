@@ -5,18 +5,23 @@ import { Form, Row, Col, Container, Button } from "react-bootstrap";
 import { OPTIONS } from "../constants/addCounselorOptions";
 import MultiSelector from "../components/MultiSelector";
 import SingleSelector from "../components/SingleSelector";
-
+import ImageUpload from "../components/ImageUpload";
 const { useState } = React;
 
 export default function AddCounselor() {
   const [form, setForm] = useState({
-    pfp: "https://picsum.photos/360/240?random=0",
     date: "2021-05-31T12:04:39.572Z",
   });
 
-  const submitTest = (e) => {
+  const submitForm = (e) => {
     // alert(JSON.stringify(form));
-    Axios.post(process.env.REACT_APP_BACKEND_URL + "/insertCounselor", form);
+
+    const formData = new FormData();
+    for(var key in form){
+      formData.append(key, form[key]);
+    }
+    console.log(formData);
+    Axios.post(process.env.REACT_APP_BACKEND_URL + "/insertCounselor", formData);
     e.preventDefault();
   };
 
@@ -33,11 +38,26 @@ export default function AddCounselor() {
       [selected.id]: selected.optionsSelected,
     });
   };
+
+  const handleCheck = (e) => {
+    setForm({
+      ...form,
+      [e.target.id]: e.target.checked,
+    });
+  };
+
+  const handleImg = (file) => {
+    setForm({
+      ...form,
+      "pfp": file,
+    });
+  };
   return (
     <div>
       <h1>Add Counselor</h1>
       {/* Change Form.Control id to control id in the form group  */}
-      <Form onSubmit={submitTest}>
+      <Form onSubmit={submitForm}>
+          <ImageUpload id={"pfp"} center onInput={handleImg} />
         <Row>
           <Col>
             <Form.Label>Full name</Form.Label>
@@ -84,13 +104,13 @@ export default function AddCounselor() {
               id="credentials"
               onChange={handleSelect}
               isQuery={false}
-            /> 
+            />
           </Col>
         </Row>
         <Form.Label>Introduction</Form.Label>
         <Form.Control
           as="textarea"
-          id="description"
+          id="introduction"
           onChange={handleField}
           required
         ></Form.Control>
@@ -136,7 +156,6 @@ export default function AddCounselor() {
           required
         ></Form.Control>
 
-
         <Form.Label>Price</Form.Label>
         <Form.Control
           type="number"
@@ -145,7 +164,17 @@ export default function AddCounselor() {
           required
         ></Form.Control>
 
-        <Button type="submit" style={{ marginTop: "20px" ,marginBottom: "202px" }}>
+        <Form.Label>In Person</Form.Label>
+        <Form.Check
+              name="terms"
+              onChange={handleCheck}
+              id="in_person"
+            />
+
+        <Button
+          type="submit"
+          style={{ marginTop: "20px", marginBottom: "202px" }}
+        >
           ADD
         </Button>
       </Form>

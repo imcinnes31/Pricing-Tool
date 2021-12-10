@@ -17,7 +17,7 @@ export default function UserCard({ user }) {
           {/* src={require("./assets/logo.jpg").default} */}
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
-            src={`${user.pfp}`}
+            src={`http://localhost:5000/${user.pfp}`}
             className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
             style={{ height: "100%", maxHeight: "325px"}}
@@ -41,7 +41,7 @@ export default function UserCard({ user }) {
             <div style={{ marginBottom: "10px" }}>
               <small className="text-muted">{user.pronouns}</small>
             </div>
-            <p className="card-text"> {trimParagraph(user.description)} </p>
+            <p className="card-text"> {trimParagraph(user.introduction)} </p>
             <p>Cost per session: ${user.price}</p>
             <p className="">
               <Link to={`${ROUTES.PROFILE}/${user.id}`}>
