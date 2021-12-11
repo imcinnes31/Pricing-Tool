@@ -163,6 +163,14 @@ export default function AddCounselor() {
           required
         ></Form.Control>
 
+          <Form.Label>Roles</Form.Label>
+            <MultiSelector
+              filters={OPTIONS[7]}
+              id="roles"
+              onChange={handleSelect}
+              isQuery={true}
+            />
+
         <Form.Label>In Person</Form.Label>
         <Form.Check
               name="terms"

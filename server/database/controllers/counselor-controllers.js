@@ -15,8 +15,10 @@ const insertCounselor = async (req, res) => {
     introduction,
     price,
     pronouns,
-    in_person
+    in_person,
+    roles
   } = req.body;
+  
   const newCounselor = new CounselorModel({
     id: uuid.v4(),
     name,
@@ -32,7 +34,7 @@ const insertCounselor = async (req, res) => {
     price,
     pfp: req.file.path,
     pronouns,
-    roles: [], //placeholder,
+    roles,,
     in_person,
     province: 'UNDEFINED_PLACE_HOLDER',
     city: 'UNDEFINED_PLACE_HOLDER',
