@@ -34,7 +34,7 @@ const insertCounselor = async (req, res) => {
     price,
     pfp: req.file.path,
     pronouns,
-    roles,,
+    roles,
     in_person,
     province: 'UNDEFINED_PLACE_HOLDER',
     city: 'UNDEFINED_PLACE_HOLDER',

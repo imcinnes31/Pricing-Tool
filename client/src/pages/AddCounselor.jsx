@@ -1,6 +1,7 @@
 import React from "react";
 import Axios from "axios";
 import { Form, Row, Col, Container, Button } from "react-bootstrap";
+import { Country, State, City } from "country-state-city";
 
 import { OPTIONS } from "../constants/addCounselorOptions";
 import MultiSelector from "../components/MultiSelector";
@@ -9,14 +10,12 @@ import ImageUpload from "../components/ImageUpload";
 const { useState } = React;
 
 export default function AddCounselor() {
-  const [form, setForm] = useState({
-    date: "2021-05-31T12:04:39.572Z",
-  });
+  const [form, setForm] = useState({});
 
   const submitForm = (e) => {
     // alert(JSON.stringify(form));
     const formData = new FormData();
-    for(var key in form){
+    for (var key in form) {
       formData.append(key, form[key]);
     }
     console.log(formData);
@@ -43,12 +42,13 @@ export default function AddCounselor() {
       ...form,
       [e.target.id]: e.target.checked,
     });
+    console.log(State.getStatesOfCountry("CA"));
   };
 
   const handleImg = (file) => {
     setForm({
       ...form,
-      "pfp": file,
+      pfp: file,
     });
   };
   return (
@@ -56,7 +56,7 @@ export default function AddCounselor() {
       <h1>Add Counselor</h1>
       {/* Change Form.Control id to control id in the form group  */}
       <Form onSubmit={submitForm}>
-          <ImageUpload id={"pfp"} center onInput={handleImg} />
+        <ImageUpload id={"pfp"} center onInput={handleImg} />
         <Row>
           <Col>
             <Form.Label>Full name</Form.Label>
@@ -163,21 +163,24 @@ export default function AddCounselor() {
           required
         ></Form.Control>
 
-          <Form.Label>Roles</Form.Label>
-            <MultiSelector
-              filters={OPTIONS[7]}
-              id="roles"
-              onChange={handleSelect}
-              isQuery={true}
-            />
+        <Form.Label>Roles</Form.Label>
+        <MultiSelector
+          filters={OPTIONS[7]}
+          id="roles"
+          onChange={handleSelect}
+          isQuery={true}
+        />
 
         <Form.Label>In Person</Form.Label>
-        <Form.Check
-              name="terms"
-              onChange={handleCheck}
-              id="in_person"
-            />
+        <Form.Check name="terms" onChange={handleCheck} id="in_person" />
 
+        <Form.Label>Province</Form.Label>
+        <SingleSelector
+          filters={OPTIONS[8]}
+          id="province"
+          onChange={handleSelect}
+          isQuery={true}
+        />
         <Button
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
