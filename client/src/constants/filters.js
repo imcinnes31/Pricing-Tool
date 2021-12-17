@@ -89,22 +89,6 @@ export const FILTERS = [
       "Women’s Issues",
     ],
   },
-  {
-    category: "Insurance",
-    list: [
-      "Aetna",
-      "Allegiance",
-      "Alliance",
-      "Behavioral Health Systems",
-      "Blue Care Network",
-      "Blue Cross",
-      "Blue Shield",
-      "Ceridian",
-      "Cigna",
-      "ComPsych",
-      "Great-West Life",
-    ],
-  },
   { category: "Gender", list: ["Male", "Female"] },
   {
     category: "Approach",
@@ -167,26 +151,5 @@ export const FILTERS = [
       "Trauma-Focused Compassionate Inquiry",
 ],
   },
-  {
-    category: "Age",
-    list: [
-      "Toddlers/Preschoolers (0 to 6)",
-      "Children (6 to 10)",
-      "Preteens/Tweens (11 to 13)",
-      "Adolescents/Teenagers (14 to 19)",
-      "Adults",
-      "Elders (65+)",
-    ],
-  },
-  {
-    category: "Ethnicity",
-    list: [
-      "Asian",
-      "Indigenous",
-      "Hispanic and Latino",
-      "Black",
-      "Hawaiian",
-      "Guatemalan",
-    ],
-  },
+  { category: "Roles", list: ["Counselor", "Supervision", "Life Coach"] },
 ];

@@ -55,6 +55,7 @@ Counselor.aggregate([
       title: "$title",
       id: "$id",
       in_person: "$in_person", 
+      roles: "$roles",
     },
 
     
@@ -130,7 +131,8 @@ Counselor.aggregate([
             pronouns: "$pronouns",
             title: "$title",  
             id: "$id", 
-            in_person: "$in_person",    
+            in_person: "$in_person",   
+            roles: "$roles",
           },
 
           
@@ -161,7 +163,7 @@ Counselor.aggregate([
   };
 
   function parseQuery(query) {
-    //console.log(query);
+    console.log(query);
     let parsedQuery = {};
     var ageQueryArray = [];
 
