@@ -7,10 +7,18 @@ import { OPTIONS } from "../constants/addCounselorOptions";
 import MultiSelector from "../components/MultiSelector";
 import SingleSelector from "../components/SingleSelector";
 import ImageUpload from "../components/ImageUpload";
-const { useState } = React;
+const { useState, useEffect } = React;
 
 export default function AddCounselor() {
   const [form, setForm] = useState({});
+  const [optionTest, setOptionTest] = useState(OPTIONS[0]);
+  
+  useEffect(() => {
+    if(!form.province){
+      setOptionTest({});
+    }else
+      setOptionTest(OPTIONS[1]);
+  }, [form.province]);
 
   const submitForm = (e) => {
     // alert(JSON.stringify(form));
@@ -178,6 +186,13 @@ export default function AddCounselor() {
         <SingleSelector
           filters={OPTIONS[8]}
           id="province"
+          onChange={handleSelect}
+          isQuery={true}
+        />
+        <Form.Label>City</Form.Label>
+        <SingleSelector
+          filters={optionTest}
+          id="city"
           onChange={handleSelect}
           isQuery={true}
         />

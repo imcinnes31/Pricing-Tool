@@ -13,7 +13,8 @@ export default function MultiSelector({filters, id, onChange, isQuery}) {
   //options here is one list from filters.
 
   //convert options in format of Select component
-  const options = filters.list.map((item, index) => ({value: index, label: item}));
+  //Will be empty if filters is empty.
+  const options = Object.entries(filters).length === 0?[]:filters.list.map((item, index) => ({value: index, label: item}));
   
   const [optionSelected, setSelectedOptions] = useState('');
 
