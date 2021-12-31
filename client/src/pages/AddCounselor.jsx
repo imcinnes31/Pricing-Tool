@@ -3,7 +3,7 @@ import Axios from "axios";
 import { Form, Row, Col, Container, Button } from "react-bootstrap";
 import { Country, State, City } from "country-state-city";
 
-import { OPTIONS } from "../constants/addCounselorOptions";
+import { OPTIONS, PROVINCE_CODE_MAP } from "../constants/addCounselorOptions";
 import MultiSelector from "../components/MultiSelector";
 import SingleSelector from "../components/SingleSelector";
 import ImageUpload from "../components/ImageUpload";
@@ -11,13 +11,14 @@ const { useState, useEffect } = React;
 
 export default function AddCounselor() {
   const [form, setForm] = useState({});
-  const [optionTest, setOptionTest] = useState(OPTIONS[0]);
+  const [optionTest, setOptionTest] = useState({});
   
   useEffect(() => {
     if(!form.province){
       setOptionTest({});
     }else
       setOptionTest(OPTIONS[1]);
+      console.log(City.getCitiesOfState("CA", PROVINCE_CODE_MAP[form.province]));
   }, [form.province]);
 
   const submitForm = (e) => {
@@ -50,7 +51,6 @@ export default function AddCounselor() {
       ...form,
       [e.target.id]: e.target.checked,
     });
-    console.log(State.getStatesOfCountry("CA"));
   };
 
   const handleImg = (file) => {
@@ -195,6 +195,7 @@ export default function AddCounselor() {
           id="city"
           onChange={handleSelect}
           isQuery={true}
+          isSearchable={true}
         />
         <Button
           type="submit"

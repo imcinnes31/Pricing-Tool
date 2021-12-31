@@ -9,7 +9,9 @@ const styles = {
 }
 
 // Component for the add counselor page single selectors.
-export default function MultiSelector({filters, id, onChange, isQuery}) {
+export default function SingleSelector({filters, id, onChange, isQuery, isSearchable}) {
+  //isQuery is true if it will be used as a filter option in the main find a counselor page
+
   //options here is one list from filters.
 
   //convert options in format of Select component
@@ -36,8 +38,12 @@ export default function MultiSelector({filters, id, onChange, isQuery}) {
       id={id}
       styles={styles}
       placeholder=""
-      isSearchable={false}//Single select cannot enter search values
+      isSearchable={isSearchable}
       required
     />
   );
+}
+//Most Single select should not have search feature
+SingleSelector.defaultProps = {
+  isSearchable : false
 }

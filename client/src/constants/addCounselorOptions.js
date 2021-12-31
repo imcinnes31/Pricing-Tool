@@ -218,3 +218,19 @@ export const OPTIONS = [
     ],
   },
 ];
+//These are lower case with _ because it will be like this is the form data in AddCounselor
+export const PROVINCE_CODE_MAP = {
+  'alberta': 'AB',
+  'british_columbia': 'BC',
+  'manitoba': 'MB',
+  'new_brunswick': 'NB',
+  'newfoundland_and_labrador': 'NL',
+  'northwest_territories': 'NT',
+  'nova_scotia': 'NS',
+  'nunavut': 'NU',
+  'ontario': 'ON',
+  'prince_edward_island': 'PE',
+  'quebec': 'QC',
+  'saskatchewan': 'SK',
+  'yukon':'YT'
+};
