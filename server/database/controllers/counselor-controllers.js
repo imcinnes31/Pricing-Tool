@@ -16,7 +16,10 @@ const insertCounselor = async (req, res) => {
     price,
     pronouns,
     in_person,
-    roles
+    roles,
+    province,
+    city,
+    in_person_price
   } = req.body;
   
   const newCounselor = new CounselorModel({
@@ -36,9 +39,9 @@ const insertCounselor = async (req, res) => {
     pronouns,
     roles,
     in_person,
-    province: 'UNDEFINED_PLACE_HOLDER',
-    city: 'UNDEFINED_PLACE_HOLDER',
-    in_person_price: -1, //placeholder
+    province,
+    city,
+    in_person_price,
 
   });
   try {

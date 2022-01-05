@@ -12,13 +12,12 @@ const { useState, useEffect } = React;
 export default function AddCounselor() {
   const [form, setForm] = useState({});
   const [optionTest, setOptionTest] = useState({});
-  
+
   useEffect(() => {
-    if(!form.province){
-      setOptionTest({});
-    }else
-      setOptionTest(OPTIONS[1]);
-      console.log(City.getCitiesOfState("CA", PROVINCE_CODE_MAP[form.province]));
+    const cityNames = City.getCitiesOfState("CA", PROVINCE_CODE_MAP[form.province]).map(function (city) {
+      return city.name;
+    });
+    setOptionTest({ category: "Cities", list: cityNames });
   }, [form.province]);
 
   const submitForm = (e) => {
@@ -197,6 +196,13 @@ export default function AddCounselor() {
           isQuery={true}
           isSearchable={true}
         />
+        <Form.Label>In Person Price</Form.Label>
+        <Form.Control
+          type="number"
+          id="in_person_price"
+          onChange={handleField}
+          required
+        ></Form.Control>
         <Button
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
