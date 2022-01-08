@@ -130,6 +130,27 @@ module.exports = (server) => {
     //form data checker
     counselorControllers.insertCounselor
   );
+
+  // get dictionary of provinces and cities available from counselor database
+  server.get('/api/v2/counselors/locations', async (req, res) => {
+    res.set("Access-Control-Allow-Origin", "*");
+ 
+    let locations = [];
+    let provinces = await counselor.distinct("province", { in_person: true });
+
+    for (const province of provinces) {
+      let currentProvince = {};
+      let cities = await counselor.distinct("city", {in_person: true, province: province});
+      currentProvince["category"] = province;
+      currentProvince["list"] = cities;
+      locations.push(currentProvince);
+    }
+
+    res.status(200).json({
+      locations: locations
+    });
+  });
+
   // insert new counselor data
   server.get('/api/v2/counselors/newCounselor', async (req, res) => {
     //get fields from new counselor form

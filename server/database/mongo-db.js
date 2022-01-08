@@ -30,7 +30,7 @@ Counselor.aggregate([
           },
           "then": {
             "$cond": {
-              "if": true,   //IF CLIENT WANTS IN-PERSON APPOINTMENT
+              "if": {"$eq": [parseQuery(query)['in_person'], true]},   //IF CLIENT WANTS IN-PERSON APPOINTMENT
               "then": {"$cond": {"if": "$in_person_price", "then": "$in_person_price", "else": "$price"}},
               "else": {"$cond": {"if": "$virtual_price", "then": "$virtual_price", "else": "$price"}}
             }
@@ -55,6 +55,9 @@ Counselor.aggregate([
       title: "$title",
       id: "$id",
       in_person: "$in_person", 
+      roles: "$roles",
+      province: "$province",
+      city: "$city",
     },
 
     
@@ -106,7 +109,7 @@ Counselor.aggregate([
                 },
                 "then": {
                   "$cond": {
-                    "if": false,   //IF CLIENT WANTS IN-PERSON APPOINTMENT
+                    "if": {"$eq": [parseQuery(query)['in_person'], true]},   //IF CLIENT WANTS IN-PERSON APPOINTMENT
                     "then": {"$cond": {"if": "$in_person_price", "then": "$in_person_price", "else": "$price"}},
                     "else": {"$cond": {"if": "$virtual_price", "then": "$virtual_price", "else": "$price"}}
                   }
@@ -130,7 +133,10 @@ Counselor.aggregate([
             pronouns: "$pronouns",
             title: "$title",  
             id: "$id", 
-            in_person: "$in_person",    
+            in_person: "$in_person",   
+            roles: "$roles",
+            province: "$province",
+            city: "$city",
           },
 
           
@@ -161,7 +167,7 @@ Counselor.aggregate([
   };
 
   function parseQuery(query) {
-    //console.log(query);
+    console.log(query);
     let parsedQuery = {};
     var ageQueryArray = [];
 
@@ -196,6 +202,10 @@ Counselor.aggregate([
     if (parsedQuery['issues']) {
       parsedQuery['specializations'] = parsedQuery['issues'];
       delete parsedQuery['issues'];
+    }
+    if (parsedQuery['in_person']) {
+      if (parsedQuery['in_person'] == 'true')
+        parsedQuery['in_person'] = true;
     }
     console.log(parsedQuery);
     return parsedQuery;
