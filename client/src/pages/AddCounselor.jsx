@@ -1,22 +1,29 @@
 import React from "react";
 import Axios from "axios";
 import { Form, Row, Col, Container, Button } from "react-bootstrap";
+import { Country, State, City } from "country-state-city";
 
-import { OPTIONS } from "../constants/addCounselorOptions";
+import { OPTIONS, PROVINCE_CODE_MAP } from "../constants/addCounselorOptions";
 import MultiSelector from "../components/MultiSelector";
 import SingleSelector from "../components/SingleSelector";
 import ImageUpload from "../components/ImageUpload";
-const { useState } = React;
+const { useState, useEffect } = React;
 
 export default function AddCounselor() {
-  const [form, setForm] = useState({
-    date: "2021-05-31T12:04:39.572Z",
-  });
+  const [form, setForm] = useState({});
+  const [optionTest, setOptionTest] = useState({});
+
+  useEffect(() => {
+    const cityNames = City.getCitiesOfState("CA", PROVINCE_CODE_MAP[form.province]).map(function (city) {
+      return city.name;
+    });
+    setOptionTest({ category: "Cities", list: cityNames });
+  }, [form.province]);
 
   const submitForm = (e) => {
     // alert(JSON.stringify(form));
     const formData = new FormData();
-    for(var key in form){
+    for (var key in form) {
       formData.append(key, form[key]);
     }
     console.log(formData);
@@ -48,7 +55,7 @@ export default function AddCounselor() {
   const handleImg = (file) => {
     setForm({
       ...form,
-      "pfp": file,
+      pfp: file,
     });
   };
   return (
@@ -56,7 +63,7 @@ export default function AddCounselor() {
       <h1>Add Counselor</h1>
       {/* Change Form.Control id to control id in the form group  */}
       <Form onSubmit={submitForm}>
-          <ImageUpload id={"pfp"} center onInput={handleImg} />
+        <ImageUpload id={"pfp"} center onInput={handleImg} />
         <Row>
           <Col>
             <Form.Label>Full name</Form.Label>
@@ -163,13 +170,39 @@ export default function AddCounselor() {
           required
         ></Form.Control>
 
-        <Form.Label>In Person</Form.Label>
-        <Form.Check
-              name="terms"
-              onChange={handleCheck}
-              id="in_person"
-            />
+        <Form.Label>Roles</Form.Label>
+        <MultiSelector
+          filters={OPTIONS[7]}
+          id="roles"
+          onChange={handleSelect}
+          isQuery={true}
+        />
 
+        <Form.Label>In Person</Form.Label>
+        <Form.Check name="terms" onChange={handleCheck} id="in_person" />
+
+        <Form.Label>Province</Form.Label>
+        <SingleSelector
+          filters={OPTIONS[8]}
+          id="province"
+          onChange={handleSelect}
+          isQuery={true}
+        />
+        <Form.Label>City</Form.Label>
+        <SingleSelector
+          filters={optionTest}
+          id="city"
+          onChange={handleSelect}
+          isQuery={true}
+          isSearchable={true}
+        />
+        <Form.Label>In Person Price</Form.Label>
+        <Form.Control
+          type="number"
+          id="in_person_price"
+          onChange={handleField}
+          required
+        ></Form.Control>
         <Button
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
