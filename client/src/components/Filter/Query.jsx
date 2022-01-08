@@ -3,7 +3,7 @@
 
 import React, { Fragment } from "react";
 
-export default function Query({ isSelected, setQuery, sliderVal }) {
+export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVal, inPersonVal }) {
   // Logic for building the query string and setting query
   function buildQuery() {
     let arrayAfterSplit = [];
@@ -68,6 +68,12 @@ export default function Query({ isSelected, setQuery, sliderVal }) {
     query === ""
       ? (query = query.concat("price=", sliderVal)) //    price=1    &heigh=10&colors=blue,red
       : (query = query.concat("&price=", sliderVal));
+
+    if (inPersonVal == true) {
+      query = query.concat("&in_person=true");
+      query = query.concat("&province=", provVal);
+      query = query.concat("&city=", cityVal);
+    }
 
     console.log({query})
     setQuery(query);
