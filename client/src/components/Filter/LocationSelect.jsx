@@ -8,7 +8,7 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
     const [locs, setLocs] = useState([]);
 
     const getLocations = async () => {
-        const { data } = await Axios.get("/api/v2/counselors/locations/");
+        const { data } = await Axios.get(process.env.REACT_APP_BACKEND_API + "/v2/counselors/locations/");
         const locLists = data;
         setLocs(locLists.locations);
     };
