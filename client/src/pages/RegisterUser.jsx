@@ -31,6 +31,8 @@ export default function RegisterUser() {
       const formData = new FormData();
       for (var key in form) {
         formData.append(key, form[key]);
+        console.log(key);
+        console.log(form[key]);
       }
       const responseData = await Axios.post("/api/users/usercreate", formData);
       auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
@@ -38,7 +40,7 @@ export default function RegisterUser() {
       console.log(responseData.data.token);
       console.log(responseData.data.email);
       if (checked && responseData.data.email != null) {
-        await Axios.post(`/api/users/requestForCounselorAccess/${responseData.data.email}`)
+        Axios.post(`/api/users/requestForCounselorAccess/${responseData.data.email}`)
       }
 
       localStorage.setItem(

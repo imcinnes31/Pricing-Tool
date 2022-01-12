@@ -83,13 +83,17 @@ export default function UserProfile() {
     const userInfo = data.data.existingUser;
     return (
       <div className="container">
-
-<div className="container  border-bottom">
-          <h1>{userKey}'s Counselor Profile</h1>
-          </div>
-
-       <AddCounselor />
-
+        {userInfo.role == "Counselor" || userInfo.role ==  "Admin" ? (
+          <Fragment>
+            <div className="container  border-bottom">
+              <h1>{userKey}'s Counselor Profile</h1>
+            </div>
+            <AddCounselor />
+          </Fragment>
+        ) : (
+          ""
+        )
+        }
         <div className="container  border-bottom">
           <h1>{userKey}'s Profile Page</h1>
         </div>
@@ -222,14 +226,14 @@ export default function UserProfile() {
           ) : (
             ""
           )}
-        <div className="container  border-top">
-           <br />
-        </div>
+          <div className="container  border-top">
+            <br />
+          </div>
         </Form>
 
-       
-      
-  
+
+
+
       </div>
 
     );

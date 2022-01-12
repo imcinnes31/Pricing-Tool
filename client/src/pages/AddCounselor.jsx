@@ -28,6 +28,7 @@ export default function AddCounselor() {
     }
     console.log(formData);
     Axios.post("/api/insertCounselor", formData);
+    window.location.reload(false);
     e.preventDefault();
   };
 

@@ -2,7 +2,7 @@ const express = require("express");
 const { check } = require("express-validator"); // use validation
 const userControllers = require("../database/controllers/users-controllers");
 const router = express.Router();
-const fileUpload = require('../middleware/file-upload');
+const counselorImageUpload = require('../middleware/counselor-register-image-upload');
 
 router.get("/", userControllers.getUsers);
 router.post(
@@ -14,7 +14,7 @@ router.post(
   //   check("phone").isMobilePhone(),
   //   check("password").isLength({ min: 6 }), //.isStrongPasswordNumber
   // ],
-  fileUpload.single('pfp'),
+  counselorImageUpload.single('pfp'),
   userControllers.userRegister
 );
 router.post("/userlogin", userControllers.userLogin);
