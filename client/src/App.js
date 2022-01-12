@@ -47,7 +47,7 @@ export default function App(props) {
   const [filters, setFilters] = React.useState(FILTERS);
 
   const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false); //delete false here?
+  const [userId, setUserId] = useState(false);
   const [role, setRole] = useState();
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
 
@@ -77,6 +77,7 @@ export default function App(props) {
     setRole(null);
     setTokenExpirationDate(null);
     localStorage.removeItem("userData");
+    localStorage.removeItem("userEmail");
   }, []);
 
   useEffect(() => {

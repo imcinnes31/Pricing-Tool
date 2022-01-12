@@ -39,6 +39,12 @@ export default function Header({ company }) {
         responseData.data.role
       );
       setUser(responseData.data);
+      localStorage.setItem(
+        "userEmail",
+        JSON.stringify(
+          responseData.data.email
+        )
+      );
       setEmail(responseData.data.email);
     } catch (err) {
       alert("Login Error");
@@ -140,8 +146,8 @@ export default function Header({ company }) {
           {auth.isLoggedIn && (
             <Container>
               <Form.Group className="mb-3">
-                <NavLink to={`${ROUTES.USERPROFILE}/${email}`}>
-                  <p>{email}</p>
+                <NavLink to={`${ROUTES.USERPROFILE}/${localStorage.getItem("userEmail").replace(/"/g,"")}`}>
+                  <p>{localStorage.getItem("userEmail").replace(/"/g,"")}</p>
                   {/* user == undefined ? "" : user.email */}
                 </NavLink>
               </Form.Group>

@@ -35,6 +35,15 @@ export default function RegisterUser() {
       if (checked && responseData.data.email != null) {
         await Axios.post(`/api/users/requestForCounselorAccess/${responseData.data.email}`)
       }
+
+      localStorage.setItem(
+        "userEmail",
+        JSON.stringify(
+          responseData.data.email
+        )
+      );
+      window.location.reload(false);
+
     } catch (err) {
       alert("Registration Error");
       // throw new Error("Login Error");
