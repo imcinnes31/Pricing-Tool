@@ -7,7 +7,7 @@ import MultiSelector from "../components/MultiSelector";
 import { Link, useParams } from "react-router-dom";
 import useHttpRequest from "../hooks/HttpRequestObjectType";
 import { Spinner } from "../components/Spinner";
-
+import SingleSelector from "../components/SingleSelector";
 const { useState } = React;
 
 export default function UserProfile() {
@@ -82,6 +82,139 @@ export default function UserProfile() {
     const userInfo = data.data.existingUser;
     return (
       <div className="container">
+
+<div className="container  border-bottom">
+          <h1>{userKey}'s Counselor Profile</h1>
+          </div>
+       
+        
+        <Form>
+         
+         <Row>
+           <Col>
+             <Form.Label>Full name</Form.Label>
+             <Form.Control
+               type="text"
+               id="name"
+             
+               required
+             ></Form.Control>
+           </Col>
+           <Col>
+             <Form.Label>Gender</Form.Label>
+             <Form.Control
+               type="text"
+               id="name"
+             
+               required
+             ></Form.Control>
+           </Col>
+           <Col>
+             <Form.Label>Pronouns</Form.Label>
+             <Form.Control
+               type="text"
+               id="name"
+             
+               required
+             ></Form.Control>
+           </Col>
+         </Row>
+         <Row>
+           <Col>
+             <Form.Label>Age</Form.Label>
+             <Form.Control
+               type="number"
+               id="age"
+       
+               required
+             ></Form.Control>
+           </Col>
+           <Col>
+             <Form.Label>Credentials</Form.Label>
+             <Form.Control
+               type="text"
+               id="name"
+             
+               required
+             ></Form.Control>
+           </Col>
+         </Row>
+         <Form.Label>Introduction</Form.Label>
+         <Form.Control
+           as="textarea"
+           id="introduction"
+   
+           required
+         ></Form.Control>
+         <Row>
+
+           <Col>
+             <Form.Label>Specialization</Form.Label>
+             <Form.Control
+               type="text"
+               id="name"
+             
+               required
+             ></Form.Control>
+           </Col>
+         </Row>
+         <Form.Label>Specialization Description</Form.Label>
+         <Form.Control
+           as="textarea"
+           id="specializationDesc"
+ 
+           required
+         ></Form.Control>
+         <Form.Label>Approach</Form.Label>
+         <Form.Control
+               type="text"
+               id="name"
+             
+               required
+             ></Form.Control>
+         <Form.Label>Approach Description</Form.Label>
+         <Form.Control
+           as="textarea"
+           id="approachDesc"
+ 
+           required
+         ></Form.Control>
+ 
+         <Form.Label>Price</Form.Label>
+         <Form.Control
+           type="number"
+           id="price"
+ 
+           required
+         ></Form.Control>
+ 
+         <Form.Label>In Person</Form.Label>
+         <Form.Control
+               type="text"
+               id="name"
+             
+               required
+             ></Form.Control>
+ 
+         <Button
+           type="submit"
+           style={{ marginTop: "20px", marginBottom: "202px" }}
+         >
+           Update
+         </Button>
+       </Form> 
+
+
+
+
+
+
+
+
+
+
+
+
         <div className="container  border-bottom">
           <h1>{userKey}'s Profile Page</h1>
         </div>
@@ -214,8 +347,16 @@ export default function UserProfile() {
           ) : (
             ""
           )}
+        <div className="container  border-top">
+           <br />
+        </div>
         </Form>
+
+       
+      
+  
       </div>
+
     );
   } else {
     return null;

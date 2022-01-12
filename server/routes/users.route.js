@@ -23,5 +23,5 @@ router.put("/update-user/:emailKey", userControllers.updateUserByEmail);
 
 router.post("/forgotPassword/:emailKey", userControllers.forgotPassword);
 router.post("/resetPassword/:resetKey/:emailKey", userControllers.resetPassword);
-
+router.post("/requestForCounselorAccess/:emailKey", userControllers.sendRequestCounselorEmail);
 module.exports = router;

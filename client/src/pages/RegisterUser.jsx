@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import Axios from "axios";
-import { Form, Row, Col, Container, Button } from "react-bootstrap";
+import { Form, Row, Col, Container, Button, FormCheck, ToggleButton } from "react-bootstrap";
 import { AuthContext } from "../context/auth-context";
 import { FILTERS } from "../constants/filters";
 import MultiSelector from "../components/MultiSelector";
-
+import ImageUpload from "../components/ImageUpload";
 const { useState } = React;
 
 export default function RegisterUser() {
+
+  const [checked, setChecked] = useState(false);
+
+  const [file, setFile] = useState();
+
+
   const [form, setForm] = useState({
     id: "3cfacbf3-5ba4-4827-8577-235aa3fa1aa8",
     pfp: "https://picsum.photos/360/240?random=0",
@@ -26,6 +32,9 @@ export default function RegisterUser() {
       console.log(responseData.data.userId);
       console.log(responseData.data.token);
       console.log(responseData.data.email);
+      if (checked && responseData.data.email != null) {
+        await Axios.post(`/api/users/requestForCounselorAccess/${responseData.data.email}`)
+      }
     } catch (err) {
       alert("Registration Error");
       // throw new Error("Login Error");
@@ -46,6 +55,18 @@ export default function RegisterUser() {
     });
   };
 
+  const requestCounselorImage = event => {
+    setFile(event.target.files[0]);
+    console.log(file);
+    console.log(event.target.files[0]);
+  }
+  
+  const handleImg = (file) => {
+    setForm({
+      ...form,
+      "pfp": file,
+    });
+  };
   const auth = useContext(AuthContext);
   return (
     <div>
@@ -112,6 +133,29 @@ export default function RegisterUser() {
             ></Form.Control>
           </Col>
         </Row>
+        <br />
+        <Row>
+          <Col>
+            <Form.Label>Tick the box if you are registering as a Counselor: </Form.Label>
+            <ToggleButton
+              id="toggle-check"
+              type="checkbox"
+              variant="outline-primary"
+              checked={checked}
+              value="1"
+              onChange={(e) => setChecked(e.currentTarget.checked)}
+            >
+              Checked
+            </ToggleButton>
+          </Col>
+        </Row>
+        {checked ? (
+
+<ImageUpload id={"pfp"} center onInput={handleImg} />
+        ) : (
+          ""
+        )}
+
         <Button
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
