@@ -67,6 +67,7 @@ const userRegister = async (req, res, next) => {
     email,
     phone,
     password: hashedPassword,
+    pfp: req.file.path,
     role: "Client", //"Client, Counselor, Admin"
   });
 
