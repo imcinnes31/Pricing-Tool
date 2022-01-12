@@ -66,6 +66,7 @@ const userRegister = async (req, res, next) => {
     email,
     phone,
     password: hashedPassword,
+    pfp: req.file.path,
     role: "Client", //"Client, Counselor, Admin"
   });
 
@@ -454,13 +455,13 @@ const sendRequestCounselorEmail = async (req, res, next) => {
     subject: "Phare Request Counselor Access", // Subject line
     text: `User ${email} is requesting for Cousnelor user role access`, // plain text body
     html: `<b>User ${email} is requesting for Cousnelor user role access</b>`, // html body
-    attachments: [
-      {
-        filename: data.title + ".jpg",
-        contentType: 'image/jpeg',
-        content: new Buffer.from(req.body.image.split("base64,")[1], "base64"),
-      }
-    ]
+    // attachments: [
+    //   {
+    //     filename: data.title + ".jpg",
+    //     contentType: 'image/jpeg',
+    //     content: new Buffer.from(req.body.image.split("base64,")[1], "base64"),
+    //   }
+    // ]
   });
 
   console.log("Message sent: %s", info.messageId);
