@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth-context";
 import { FILTERS } from "../constants/filters";
 import MultiSelector from "../components/MultiSelector";
 import ImageUpload from "../components/ImageUpload";
+
 const { useState } = React;
 
 export default function RegisterUser() {
@@ -71,7 +72,7 @@ export default function RegisterUser() {
   const handleImg = (file) => {
     setForm({
       ...form,
-      "pfp": file,
+      pfp: file,
     });
   };
   const auth = useContext(AuthContext);

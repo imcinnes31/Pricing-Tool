@@ -21,6 +21,7 @@ const getUsers = async (req, res, next) => {
 };
 
 const userRegister = async (req, res, next) => {
+  
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -454,13 +455,13 @@ const sendRequestCounselorEmail = async (req, res, next) => {
     subject: "Phare Request Counselor Access", // Subject line
     text: `User ${email} is requesting for Cousnelor user role access`, // plain text body
     html: `<b>User ${email} is requesting for Cousnelor user role access</b>`, // html body
-    attachments: [
-      {
-        filename: data.title + ".jpg",
-        contentType: 'image/jpeg',
-        content: new Buffer.from(req.body.image.split("base64,")[1], "base64"),
-      }
-    ]
+    // attachments: [
+    //   {
+    //     filename: data.title + ".png",
+    //     contentType: 'image/jpeg',
+    //     content: new Buffer.from(req.body.image.split("base64,")[1], "base64"),
+    //   }
+    // ]
   });
 
   console.log("Message sent: %s", info.messageId);
