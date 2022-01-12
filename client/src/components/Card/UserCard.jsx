@@ -17,7 +17,7 @@ export default function UserCard({ user }) {
           {/* src={require("./assets/logo.jpg").default} */}
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
-            src={`http://localhost:5000/${user.pfp}`}
+            src={user.pfp.startsWith("uploads/") ? `http://localhost:5000/${user.pfp}` : `https://picsum.photos/360/240?random=${Math.floor(Math.random() * 100)}`}
             className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
             style={{ height: "100%", maxHeight: "325px"}}
