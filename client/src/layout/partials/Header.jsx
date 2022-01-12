@@ -41,11 +41,12 @@ export default function Header({ company }) {
       setUser(responseData.data);
       localStorage.setItem(
         "userEmail",
-        JSON.stringify(
           responseData.data.email
-        )
+        
       );
       setEmail(responseData.data.email);
+      window.location.reload(false);
+
     } catch (err) {
       alert("Login Error");
       // throw new Error("Login Error");
@@ -62,6 +63,8 @@ export default function Header({ company }) {
   // useEffect(() => {
   //   console.log(user);
   // }, [user]);
+  // var userEmail = ""
+  
 
   const auth = useContext(AuthContext);
   const popoverForm = (
@@ -146,8 +149,9 @@ export default function Header({ company }) {
           {auth.isLoggedIn && (
             <Container>
               <Form.Group className="mb-3">
-                <NavLink to={`${ROUTES.USERPROFILE}/${localStorage.getItem("userEmail").replace(/"/g,"")}`}>
-                  <p>{localStorage.getItem("userEmail").replace(/"/g,"")}</p>
+                {}
+                <NavLink to={`${ROUTES.USERPROFILE}/${localStorage.getItem("userEmail")}`}>
+                  <p>{localStorage.getItem("userEmail")}</p>
                   {/* user == undefined ? "" : user.email */}
                 </NavLink>
               </Form.Group>

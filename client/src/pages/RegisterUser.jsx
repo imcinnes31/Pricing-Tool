@@ -38,9 +38,7 @@ export default function RegisterUser() {
 
       localStorage.setItem(
         "userEmail",
-        JSON.stringify(
           responseData.data.email
-        )
       );
       window.location.reload(false);
 
