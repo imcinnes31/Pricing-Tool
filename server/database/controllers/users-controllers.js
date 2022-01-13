@@ -438,6 +438,20 @@ const sendEmail = async (receiverEmail, subject, details) => {
 const sendRequestCounselorEmail = async (req, res, next) => {
   const email = req.params.emailKey;
 
+  try {
+    existingUser = await UserModel.findOne({ email: email });
+    if (existingUser.pfp == null) {
+      throw "Cannot find image, please try again later.";
+    }
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find image, please try again later.",
+      500
+    );
+    return next(error);
+  }
+
+
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -456,13 +470,14 @@ const sendRequestCounselorEmail = async (req, res, next) => {
     subject: "Phare Request Counselor Access", // Subject line
     text: `User ${email} is requesting for Cousnelor user role access`, // plain text body
     html: `<b>User ${email} is requesting for Cousnelor user role access</b>`, // html body
-    // attachments: [
-    //   {
-    //     filename: data.title + ".png",
-    //     contentType: 'image/jpeg',
-    //     content: new Buffer.from(req.body.image.split("base64,")[1], "base64"),
-    //   }
-    // ]
+    attachments: [
+      {
+        filename: `crendentials.png`,
+        path: `${existingUser.pfp}`
+        // contentType: 'image/jpeg',
+        // content: new Buffer.from(req.body.image.split("base64,")[1], "base64"),
+      }
+    ]
   });
 
   console.log("Message sent: %s", info.messageId);
