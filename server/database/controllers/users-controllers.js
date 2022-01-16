@@ -21,7 +21,7 @@ const getUsers = async (req, res, next) => {
 };
 
 const userRegister = async (req, res, next) => {
-  
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -59,18 +59,30 @@ const userRegister = async (req, res, next) => {
     );
     return next(error);
   }
-
-  const createdUser = new UserModel({
-    userId: uuidv4(),
-    firstName,
-    lastName,
-    email,
-    phone,
-    password: hashedPassword,
-    pfp: req.file.path,
-    role: "Client", //"Client, Counselor, Admin"
-  });
-
+  let createdUser;
+  if (typeof req.body.pfp === 'string' || myVar instanceof String) {
+    createdUser = new UserModel({
+      userId: uuidv4(),
+      firstName,
+      lastName,
+      email,
+      phone,
+      password: hashedPassword,
+      pfp: "placeholder",
+      role: "Client", //"Client, Counselor, Admin"
+    });
+  } else {
+    createdUser = new UserModel({
+      userId: uuidv4(),
+      firstName,
+      lastName,
+      email,
+      phone,
+      password: hashedPassword,
+      pfp: req.file.path,
+      role: "Client", //"Client, Counselor, Admin"
+    });
+  }
   try {
     await createdUser.save();
   } catch (err) {

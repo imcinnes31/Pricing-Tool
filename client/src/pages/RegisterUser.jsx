@@ -26,32 +26,51 @@ export default function RegisterUser() {
     e.preventDefault();
 
     console.log(form);
+    if (checked) {
+      try {
+        const formData = new FormData();
+        for (var key in form) {
+          formData.append(key, form[key]);
+          console.log(key);
+          console.log(form[key]);
+        }
+        const responseData = await Axios.post("/api/users/usercreate", formData);
+        auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
+        console.log(responseData.data.userId);
+        console.log(responseData.data.token);
+        console.log(responseData.data.email);
+        if (checked && responseData.data.email != null) {
+          Axios.post(`/api/users/requestForCounselorAccess/${responseData.data.email}`)
+        }
 
-    try {
-      const formData = new FormData();
-      for (var key in form) {
-        formData.append(key, form[key]);
-        console.log(key);
-        console.log(form[key]);
-      }
-      const responseData = await Axios.post("/api/users/usercreate", formData);
-      auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
-      console.log(responseData.data.userId);
-      console.log(responseData.data.token);
-      console.log(responseData.data.email);
-      if (checked && responseData.data.email != null) {
-        Axios.post(`/api/users/requestForCounselorAccess/${responseData.data.email}`)
-      }
-
-      localStorage.setItem(
-        "userEmail",
+        localStorage.setItem(
+          "userEmail",
           responseData.data.email
-      );
-      window.location.reload(false);
+        );
+        // window.location.reload(false);
 
-    } catch (err) {
-      alert("Registration Error");
-      // throw new Error("Login Error");
+      } catch (err) {
+        alert("Registration Error");
+        // throw new Error("Login Error");
+      }
+    } else {
+      try {
+        const responseData = await Axios.post("/api/users/usercreate", form);
+        auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
+        console.log(responseData.data.userId);
+        console.log(responseData.data.token);
+        console.log(responseData.data.email);
+
+        localStorage.setItem(
+          "userEmail",
+          responseData.data.email
+        );
+        // window.location.reload(false);
+
+      } catch (err) {
+        alert("Registration Error");
+        // throw new Error("Login Error");
+      }
     }
   };
 
@@ -74,7 +93,7 @@ export default function RegisterUser() {
     console.log(file);
     console.log(event.target.files[0]);
   }
-  
+
   const handleImg = (file) => {
     setForm({
       ...form,
@@ -165,7 +184,7 @@ export default function RegisterUser() {
         </Row>
         {checked ? (
 
-<ImageUpload id={"pfp"} center onInput={handleImg} />
+          <ImageUpload id={"pfp"} center onInput={handleImg} />
         ) : (
           ""
         )}
