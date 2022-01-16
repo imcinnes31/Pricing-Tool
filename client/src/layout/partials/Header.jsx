@@ -236,7 +236,7 @@ export default function Header({ company }) {
           <li>
             <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
           </li>
-          {(auth.role === "Admin" || auth.role === "Counselor") && (
+          {(auth.role === "Admin") && (
             <Dropdown as="li">
               <Dropdown.Toggle as="a">ADMIN</Dropdown.Toggle>
               <Dropdown.Menu>

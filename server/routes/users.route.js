@@ -7,14 +7,14 @@ const counselorImageUpload = require('../middleware/counselor-register-image-upl
 router.get("/", userControllers.getUsers);
 router.post(
   "/usercreate",
-  // [
-  //   check("firstName").not().isEmpty(),
-  //   check("lastName").not().isEmpty(),
-  //   check("email").normalizeEmail().isEmail(),
-  //   check("phone").isMobilePhone(),
-  //   check("password").isLength({ min: 6 }), //.isStrongPasswordNumber
-  // ],
   counselorImageUpload.single('pfp'),
+    [
+    check("firstName").not().isEmpty(),
+    check("lastName").not().isEmpty(),
+    check("email").normalizeEmail().isEmail(),
+    check("phone").isMobilePhone(),
+    check("password").isLength({ min: 6 }), //.isStrongPasswordNumber
+  ],
   userControllers.userRegister
 );
 router.post("/userlogin", userControllers.userLogin);

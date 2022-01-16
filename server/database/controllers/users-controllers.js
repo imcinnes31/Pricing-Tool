@@ -60,7 +60,7 @@ const userRegister = async (req, res, next) => {
     return next(error);
   }
   let createdUser;
-  if (typeof req.body.pfp === 'string' || myVar instanceof String) {
+  if (typeof req.body.pfp === 'string' || req.body.pfp instanceof String) {
     createdUser = new UserModel({
       userId: uuidv4(),
       firstName,
@@ -425,7 +425,7 @@ const sendEmail = async (receiverEmail, subject, details) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "stadiaresidentevil9@gmail.com",
+      user: "pharetest@gmail.com",
       pass: "ABCDE13579",
     },
   });
@@ -470,7 +470,7 @@ const sendRequestCounselorEmail = async (req, res, next) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "stadiaresidentevil9@gmail.com",
+      user: "pharetest@gmail.com",
       pass: "ABCDE13579",
     },
   });
@@ -478,7 +478,7 @@ const sendRequestCounselorEmail = async (req, res, next) => {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: '"Phare"', // sender address
-    to: `stadiaresidentevil9@gmail.com`, // list of receivers
+    to: `pharetest@gmail.com`, // list of receivers
     subject: "Phare Request Counselor Access", // Subject line
     text: `User ${email} is requesting for Cousnelor user role access`, // plain text body
     html: `<b>User ${email} is requesting for Cousnelor user role access</b>`, // html body

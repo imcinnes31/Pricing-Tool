@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import Axios from "axios";
 import { Form, Row, Col, Container, Button, FormCheck, ToggleButton } from "react-bootstrap";
 import { AuthContext } from "../context/auth-context";
@@ -47,10 +47,10 @@ export default function RegisterUser() {
           "userEmail",
           responseData.data.email
         );
-        // window.location.reload(false);
+        window.location.reload(false);
 
       } catch (err) {
-        alert("Registration Error");
+        alert("Check your name/email/phone or password format. Password should have min of 6 characters.");
         // throw new Error("Login Error");
       }
     } else {
@@ -68,7 +68,7 @@ export default function RegisterUser() {
         // window.location.reload(false);
 
       } catch (err) {
-        alert("Registration Error");
+        alert("Check your name/email/phone or password format. Password should have min of 6 characters.");
         // throw new Error("Login Error");
       }
     }
@@ -169,7 +169,7 @@ export default function RegisterUser() {
         <br />
         <Row>
           <Col>
-            <Form.Label>Tick the box if you are registering as a Counselor: </Form.Label>
+            <Form.Label>Tick the box if you are registering as a Counselor ----</Form.Label>
             <ToggleButton
               id="toggle-check"
               type="checkbox"
@@ -183,8 +183,10 @@ export default function RegisterUser() {
           </Col>
         </Row>
         {checked ? (
-
-          <ImageUpload id={"pfp"} center onInput={handleImg} />
+          <Fragment>
+            <Form.Label>Please upload a copy of your counselor credential in image format here:</Form.Label>
+            <ImageUpload id={"pfp"} center onInput={handleImg} />
+          </Fragment>
         ) : (
           ""
         )}
