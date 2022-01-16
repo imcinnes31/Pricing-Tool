@@ -141,8 +141,28 @@ module.exports = (server) => {
     for (const province of provinces) {
       let currentProvince = {};
       let cities = await counselor.distinct("city", {in_person: true, province: province});
-      currentProvince["category"] = province;
-      currentProvince["list"] = cities;
+      let provinceName = province;
+      provinceName = provinceName.replace(/_/g," ").toLowerCase().split(" ");
+      for (var i = 0; i < provinceName.length; i++) {
+          provinceName[i] = provinceName[i].charAt(0).toUpperCase() + provinceName[i].substring(1);     
+      }
+      provinceName = provinceName.join(" ");
+      currentProvince["category"] = provinceName;
+      let cityNames = [];
+      cities.forEach((cityName, index) => {
+        cityName = cityName.replace(/_/g," ").toLowerCase().split(" ");
+        for (var i = 0; i < cityName.length; i++) {
+          cityName[i] = cityName[i].charAt(0).toUpperCase() + cityName[i].substring(1);     
+        }
+        cityName = cityName.join(" ");
+        cityName = cityName.split("-");
+        for (var i = 0; i < cityName.length; i++) {
+          cityName[i] = cityName[i].charAt(0).toUpperCase() + cityName[i].substring(1);     
+        }
+        cityName = cityName.join("-");
+        cityNames.push(cityName)
+      });
+      currentProvince["list"] = cityNames;
       locations.push(currentProvince);
     }
 
@@ -151,68 +171,7 @@ module.exports = (server) => {
     });
   });
 
-  // insert new counselor data
-  server.get('/api/v2/counselors/newCounselor', async (req, res) => {
-    //get fields from new counselor form
-    
-    const id_ent = req.body.id;
-    const name_ent = req.body.name;
-    const gender_ent = req.body.gender;
-    const title_ent = req.body.title;
-    const age_ent = req.body.age;
-    const ethnicity_ent = req.body.ethnicity;
-    const issues_ent = req.body.issues;
-    const insurance_ent = req.body.insurance;
-    const therapy_type_ent = req.body.therapy_type;
-    const credentials_ent = req.body.credentials;
-    const description_ent = req.body.description;
-    const price_ent = req.body.price;
-    const pfp_ent = req.body.pfp;
-    const pronouns_ent = req.body.pronouns;
-    const date_ent = req.body.date;
-    const city_ent = req.body.city;
-    const in_person_ent = req.body.in_person;
-    const province_ent = req.body.province;
-    const in_person_price_ent = req.body.in_person_price;
-    const virtual_price_ent = req.body.virtual_price;
-    const EMDR_price_ent = req.body.EMDR_PRICE;
-    const package_number_ent = req.body.package_number;
-    const package_total_ent = req.body.package_total;
-    const capacity_ent = req.body.capacity;
-    
-    const new_counselor = new counselor({ 
-      //id: id_ent,
-      name: name_ent, 
-      gender: gender_ent,
-      title: title_ent,
-      age: age_ent,
-      ethnicity: ethnicity_ent,
-      issues: issues_ent,
-      insurance: insurance_ent,
-      therapy_type: therapy_type_ent,
-      credentials: credentials_ent,
-      description: description_ent,
-      price: price_ent,
-      pfp: pfp_ent,
-      pronouns: pronouns_ent,
-      date: date_ent,
-      city: city_ent,
-      in_person: in_person_ent,
-      province: province_ent,
-      in_person_price: in_person_price_ent,
-      virtual_price: virtual_price_ent,
-      EMDR_PRICE: EMDR_price_ent,
-      package_number: package_number_ent,
-      package_total: package_total_ent,
-      capacity: capacity_ent,
-    });
-
-    try {
-        await new_counselor.save();
-    } catch(err) {
-        console.log(err);
-    }
-});
+ 
 
 ///////////////////////////////////// OLD /////////////////////////////////////////////////////////////////
 

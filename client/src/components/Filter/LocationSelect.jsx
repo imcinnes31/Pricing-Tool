@@ -34,7 +34,7 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
         let cityList = null;
         //for (const location of LOCATIONS) {
         for (const location of locs) {
-            if(location.category == document.getElementById("province").value)
+            if(location.category == document.getElementById("province").value)            
             {
                 cityList = location.list;
                 break;
@@ -103,7 +103,7 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
                                 </div>
                                 :
                                 <div>
-                                    <select class="form-select" aria-label="Default select example"><option>Please wait...</option></select>
+                                    <select class="form-select" aria-label="Default select example" id="city"><option>Please wait...</option></select>
                                 </div>
                                 }   
                         </div>

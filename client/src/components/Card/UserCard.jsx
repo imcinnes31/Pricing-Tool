@@ -12,15 +12,14 @@ export default function UserCard({ user }) {
 
   return (
     <div className="card mb-3 offWhite">
-      <div className="row g-0">
-        <div className="col-md-4">
-          {/* src={require("./assets/logo.jpg").default} */}
+      <div className="row g-0 align-items-center">
+        <div className="col-md-4 d-block mx-auto">
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
-            src={`${process.env.REACT_APP_BACKEND_URL}/${user.pfp}`}
+            src={user.pfp}
             className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
-            style={{ height: "100%", maxHeight: "325px"}}
+            style={{ maxHeight: "325px", width:"auto" }}
           />
         </div>
         <div className="col-md-8">
