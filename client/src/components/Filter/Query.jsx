@@ -71,8 +71,10 @@ export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVa
 
     if (inPersonVal == true) {
       query = query.concat("&in_person=true");
-      query = query.concat("&province=", provVal);
-      query = query.concat("&city=", cityVal);
+      query = query.concat("&province=", provVal.toLowerCase().replaceAll(' ','_'));
+      //query = query.concat("&province=", provVal);
+      query = query.concat("&city=", cityVal.toLowerCase().replaceAll(' ','_'));
+      //query = query.concat("&city=", cityVal);
     }
 
     console.log({query})
