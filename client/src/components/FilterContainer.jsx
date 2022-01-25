@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import RoleSelector from "./Filter/RoleSelector";
 import DropdownComponent from "./Filter/Dropdown";
 import LocationSelect from "./Filter/LocationSelect";
 import Query from "./Filter/Query";
@@ -11,13 +12,15 @@ export default function FilterContainer({
   setQuery,
 }) {
   const [sliderVal, setSliderVal] = React.useState(0); // this variable holds the price slider value.
-  const [provVal, setProvVal] = React.useState(0);
-  const [cityVal, setCityVal] = React.useState(0);
+  const [provVal, setProvVal] = React.useState("");
+  const [cityVal, setCityVal] = React.useState("");
   const [inPersonVal, setInPerson] = React.useState(false);
 
   return (
     <Fragment>
       <Slider sliderVal={sliderVal} setSliderVal={setSliderVal} />
+
+      <RoleSelector/>
 
       <DropdownComponent // Filter
         filters={filters}

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import useHttpRequest from "../../hooks/HttpRequest";
 import { Spinner } from "../../components/Spinner";
 import UserSummary from "./UserSummary";
@@ -11,6 +11,11 @@ export default function ProfilePage() {
   const { loading, error, data } = useHttpRequest(
     `${process.env.REACT_APP_BACKEND_API}/v2/counselors/id/${userid}`
   ); // data in this context is a user object.
+  const location = useLocation();
+
+  // console.log("Scroll passed to profile page: " + location.scrollPosition)
+  // console.log("Query passed to profile page: " + location.query);
+  // console.log("Perpage passed to profile page: " + location.perPage);
 
   if (loading) return <Spinner />;
   if (error) return "Something went wrong. Please try again.";
@@ -19,8 +24,8 @@ export default function ProfilePage() {
       <Fragment>
         <div>
           {/* use history instead of static route */}
-          <Link className='glossary-button' to={ROUTES.MAIN}>
-            Go Back 
+          <Link className='glossary-button' to={{pathname: ROUTES.MAIN, query: location.query, perPage: location.perPage, scrollPosition: location.scrollPosition}}>
+            Go Back
             {/* <button className="btn secondary-button"> </button> */}
           </Link>
         </div>

@@ -2,7 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 
-export default function UserCard({ user }) {
+export default function UserCard({ user, query, perPage }) {
+  const [scrollPosition, setScrollPosition] = React.useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   function trimParagraph(paragraph) {
     const maxLength = 275;
     return paragraph.length > maxLength
@@ -16,7 +30,7 @@ export default function UserCard({ user }) {
         <div className="col-md-4 d-block mx-auto">
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
-            src={`${process.env.REACT_APP_BACKEND_URL}/${user.pfp}`}
+            src={user.pfp}
             className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
             style={{ maxHeight: "325px", width:"auto" }}
@@ -43,10 +57,9 @@ export default function UserCard({ user }) {
             <p className="card-text"> {trimParagraph(user.introduction)} </p>
             <p>Cost per session: ${user.price}</p>
             <p className="">
-              <Link to={`${ROUTES.PROFILE}/${user.id}`}>
+              <Link to={{pathname: `${ROUTES.PROFILE}/${user.id}`, query: query, perPage: perPage, scrollPosition: scrollPosition}}>
                 <button className="btn secondary-button">VIEW PROFILE</button>
-              </Link>           
-
+              </Link>
               <button className="btn primary-button">
                 BOOK AN APPOINTMENT
               </button>

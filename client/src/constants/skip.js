@@ -1,1 +1,1 @@
-export const SKIP = 4;
+export const SKIP = 25;
