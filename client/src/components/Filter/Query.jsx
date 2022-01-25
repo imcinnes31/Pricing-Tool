@@ -77,7 +77,7 @@ export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVa
       //query = query.concat("&city=", cityVal);
     }
 
-    console.log({query})
+    // console.log({query})
     setQuery(query);
   }
 

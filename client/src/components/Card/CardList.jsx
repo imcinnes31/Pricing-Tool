@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import { SKIP } from "../../constants/skip";
-
+import { useLocation } from "react-router-dom";
 import UserCard from "./UserCard";
 
-export default function CardList({ data, page, setPage, perPage, setPerPage }) {
+export default function CardList({ data, page, setPage, perPage, setPerPage, query, scrollPosition }) {
+
+    const location = useLocation();
 
     const handleScroll = () => {
 
@@ -24,6 +26,21 @@ export default function CardList({ data, page, setPage, perPage, setPerPage }) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+    
+  }, []);
+
+  React.useEffect(() => {
+      if (location.scrollPosition) {
+        // console.log("scrolling");
+        window.scrollTo({
+          top: location.scrollPosition,
+          left: 0,
+        });
+        location.scrollPosition = null;
+      }
+      else {
+        // console.log("not scrolling");
+      }
   }, []);
 
   return (
@@ -31,7 +48,7 @@ export default function CardList({ data, page, setPage, perPage, setPerPage }) {
     <Fragment>
       <div className="card-list pb-5 mb-5">
         {data?.data.map((user) => (
-          <UserCard key={user.id} user={user} />
+          <UserCard key={user.id} user={user} query={query} perPage={perPage} />
         ))}
 
         {/*////////////////// View more button /////////////////*/}
@@ -46,7 +63,9 @@ export default function CardList({ data, page, setPage, perPage, setPerPage }) {
           >
             scroll to view more
 
+
             {[...Array(20)].map((e, i) => <br></br>)}
+
             
           </a>
           </div>
@@ -56,6 +75,7 @@ export default function CardList({ data, page, setPage, perPage, setPerPage }) {
           </a>
         )}
       </div>
+
     </Fragment>
   );
 }

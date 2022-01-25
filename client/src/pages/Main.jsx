@@ -4,6 +4,7 @@ import useHttpRequest from "../hooks/HttpRequest";
 import { Spinner } from "../components/Spinner";
 import CardList from "../components/Card/CardList";
 import { SKIP } from "../constants/skip";
+import { useLocation } from "react-router-dom";
 
 const ajaxUrl = "http://localhost:5000/api/v2/counselors";
 
@@ -12,13 +13,33 @@ export default function Main({ filters }) {
   const [query, setQuery] = React.useState(""); // represents everything after the ? in a query. ex: api/counselor? ${query}
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(SKIP);
+  const location = useLocation();
+  // put loading, error data back here if doesn't work
+
+  var scrollPosition = null;
+  React.useEffect(() => {
+    if(location.perPage) {
+      setPerPage(location.perPage);
+      location.perPage = null;
+    }
+    else {
+      setPerPage(SKIP);
+    }
+    if(location.query) {
+      setQuery(location.query);
+      location.query = null;
+    }
+    else {
+      setQuery(query);
+    }
+    console.log("Perpage passed to main: " + perPage);
+    console.log("Query passed to main: " + query);
+  }, [query]);
+
   const { loading, error, data } = useHttpRequest(
-    `${ajaxUrl}?${query}&page=${page}&per_page=${perPage}&`
+    `${ajaxUrl}?${location.query ? location.query : query}&page=${page}&per_page=${location.perPage ? location.perPage : perPage}&`
   );
 
-  React.useEffect(() => {
-    setPerPage(SKIP);
-  }, [query]);
 
   return (
     <Fragment>
@@ -52,6 +73,8 @@ export default function Main({ filters }) {
           setPage={setPage}
           perPage={perPage}
           setPerPage={setPerPage}
+          query={query}
+          scrollPosition={scrollPosition}
         />
       )}
     </Fragment>
