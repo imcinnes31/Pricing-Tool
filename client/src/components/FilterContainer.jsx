@@ -20,7 +20,7 @@ export default function FilterContainer({
     <Fragment>
       <Slider sliderVal={sliderVal} setSliderVal={setSliderVal} />
 
-      <RoleSelector/>
+      <RoleSelector />
 
       <DropdownComponent // Filter
         filters={filters}
