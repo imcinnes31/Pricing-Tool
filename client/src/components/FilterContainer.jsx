@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-// import RoleSelector from "./Filter/RoleSelector";
+import RoleSelector from "./Filter/RoleSelector";
 import DropdownComponent from "./Filter/Dropdown";
 import LocationSelect from "./Filter/LocationSelect";
 import Query from "./Filter/Query";
