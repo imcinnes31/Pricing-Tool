@@ -21,7 +21,6 @@ export default function FilterContainer({
       <Slider sliderVal={sliderVal} setSliderVal={setSliderVal} />
 
       <RoleSelector />
-
       <DropdownComponent // Filter
         filters={filters}
         selected={isSelected}

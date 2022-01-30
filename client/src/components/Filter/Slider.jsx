@@ -1,11 +1,13 @@
 import React from "react";
 import useHttpRequest from "../../hooks/HttpRequest";
 import { Spinner } from "../Spinner";
+import { useLocation } from "react-router-dom";
 
 const MAX_PRICE = 500;
 const MIN_PRICE = 50;
 
 export default function Slider({ sliderVal, setSliderVal }) {
+  const location = useLocation();
   const { loading, error, data } = useHttpRequest(
     "http://localhost:5000/api/v2/counselors/meta-data"
   );
@@ -23,6 +25,11 @@ export default function Slider({ sliderVal, setSliderVal }) {
       const max = parseInt(slider.max);
       slider.value = min + (max - min) / 2;
       setSliderVal(slider.value);
+      if(location.price) {
+        slider.value = location.price;
+        setSliderVal(slider.value);
+        location.price = null;
+      }
     }
   }, [loading]);
 

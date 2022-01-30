@@ -1,10 +1,20 @@
 import React, { Fragment } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function DropdownComponent({ filters, selected, setSelected }) {
-
+  const location = useLocation();
   // (1) move the list of checked values to the home.jsx
   // (2) use the list to filter the results when you click find counselor now
   // (3) after clicking find counselor now, make the boxes auto filter without needing the button anymore
+
+  function checkBoxes(dropdowns) {
+    for (const dd of dropdowns) {
+      document.getElementById(dd).checked = true;
+      setSelected((prev) => prev.concat(document.getElementById(dd).name.replace(/ /g, "_").toLowerCase() +
+      "=" +
+      document.getElementById(dd).value.replace(/ /g, "_").toLowerCase()))
+    }
+  }
 
   function toggleSelected(event) {
     const { name, value, checked } = event.target;
@@ -71,6 +81,7 @@ export default function DropdownComponent({ filters, selected, setSelected }) {
               </ul>
             </Fragment>
           ))}
+          {location.dropdown ? checkBoxes(location.dropdown) : null}
       </div>
     </div>
   );

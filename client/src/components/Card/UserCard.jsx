@@ -10,6 +10,7 @@ export default function UserCard({ user, query, perPage }) {
   };
 
   React.useEffect(() => {
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -30,7 +31,7 @@ export default function UserCard({ user, query, perPage }) {
         <div className="col-md-4 d-block mx-auto">
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
-            src={user.pfp}
+            src={user.pfp.startsWith("uploads/") ? `http://localhost:5000/${user.pfp}` : user.pfp}
             className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
             style={{ maxHeight: "325px", width:"auto" }}
@@ -60,9 +61,11 @@ export default function UserCard({ user, query, perPage }) {
               <Link to={{pathname: `${ROUTES.PROFILE}/${user.id}`, query: query, perPage: perPage, scrollPosition: scrollPosition}}>
                 <button className="btn secondary-button">VIEW PROFILE</button>
               </Link>
+              <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
               <button className="btn primary-button">
                 BOOK AN APPOINTMENT
               </button>
+              </a>
             </p>
           </div>
         </div>
