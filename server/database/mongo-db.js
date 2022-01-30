@@ -58,6 +58,7 @@ Counselor.aggregate([
       roles: "$roles",
       province: "$province",
       city: "$city",
+      janeId: "$janeId",
     },
 
     
@@ -137,6 +138,7 @@ Counselor.aggregate([
             roles: "$roles",
             province: "$province",
             city: "$city",
+            janeId: "$janeId",
           },
 
           

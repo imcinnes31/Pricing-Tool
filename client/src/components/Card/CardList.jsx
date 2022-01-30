@@ -30,17 +30,17 @@ export default function CardList({ data, page, setPage, perPage, setPerPage, que
   }, []);
 
   React.useEffect(() => {
-      if (location.scrollPosition) {
-        // console.log("scrolling");
-        window.scrollTo({
-          top: location.scrollPosition,
-          left: 0,
-        });
-        location.scrollPosition = null;
-      }
-      else {
-        // console.log("not scrolling");
-      }
+    if (location.scrollPosition) {
+      // console.log("scrolling");
+      window.scrollTo({
+        top: location.scrollPosition,
+        left: 0,
+      });
+      location.scrollPosition = null;
+    }
+    else {
+      // console.log("not scrolling");
+    }
   }, []);
 
   return (
@@ -75,7 +75,6 @@ export default function CardList({ data, page, setPage, perPage, setPerPage, que
           </a>
         )}
       </div>
-
     </Fragment>
   );
 }

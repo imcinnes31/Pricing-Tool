@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import '../../assets/css/Profile.css'
 import { Spinner } from "../../components/Spinner";
+import { AuthContext } from "../../context/auth-context";
 
 export default function ProfilePanel({ user, loading }) {
+  const auth = React.useContext(AuthContext);
   return (
     <Fragment>
       <div className='pfp-container' style={{ borderColor:'red' , height: '300px'}}>
@@ -20,9 +22,14 @@ export default function ProfilePanel({ user, loading }) {
         </div>
 
         <div className="button_container">
-          <button className="btn primary-button py-2">
-            BOOK AN APPOINTMENT
-          </button>
+          <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
+              <button className="btn primary-button">
+                BOOK AN APPOINTMENT
+              </button>
+          </a>
+          {/* <button className="btn primary-button py-2">
+            ADD TO FAVORITES
+          </button> */}
         </div>
       </div>
     </Fragment>
