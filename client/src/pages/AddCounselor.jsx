@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import Axios from "axios";
 import { Form, Row, Col, Container, Button } from "react-bootstrap";
 import { Country, State, City } from "country-state-city";
@@ -12,6 +12,7 @@ const { useState, useEffect } = React;
 export default function AddCounselor() {
   const [form, setForm] = useState({});
   const [optionTest, setOptionTest] = useState({});
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const cityNames = City.getCitiesOfState("CA", PROVINCE_CODE_MAP[form.province]).map(function (city) {
@@ -51,6 +52,11 @@ export default function AddCounselor() {
       ...form,
       [e.target.id]: e.target.checked,
     });
+    if (checked == true) {
+      setChecked(false);
+    } else {
+      setChecked(true);
+    }
   };
 
   const handleImg = (file) => {
@@ -182,6 +188,20 @@ export default function AddCounselor() {
         <Form.Label>In Person</Form.Label>
         <Form.Check name="terms" onChange={handleCheck} id="in_person" />
 
+        {checked ? (
+          <Fragment>
+            <Form.Label>In Person Price</Form.Label>
+            <Form.Control
+              type="number"
+              id="in_person_price"
+              onChange={handleField}
+            //required
+            ></Form.Control>
+          </Fragment>
+        ) : (
+          ""
+        )}
+
         <Form.Label>Province</Form.Label>
         <SingleSelector
           filters={OPTIONS[8]}
@@ -197,12 +217,12 @@ export default function AddCounselor() {
           isQuery={true}
           isSearchable={true}
         />
-        <Form.Label>In Person Price</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Control
-          type="number"
-          id="in_person_price"
+          type="text"
+          id="email"
           onChange={handleField}
-          required
+          defaultValue={localStorage.getItem("userEmail")}
         ></Form.Control>
         <Button
           type="submit"

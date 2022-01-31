@@ -103,7 +103,7 @@ module.exports = (server) => {
      */
     res.set("Access-Control-Allow-Origin", "*");
 
-  
+
     let count = await Mongo.countDocuments("", {
       sort: 0,
       limit: 0,
@@ -125,7 +125,7 @@ module.exports = (server) => {
   });
 
   //handles adding new counselors in the admin page
-  server.post('/api/insertCounselor', 
+  server.post('/api/insertCounselor',
     fileUpload.single('pfp'),
     //form data checker
     counselorControllers.insertCounselor
@@ -134,13 +134,13 @@ module.exports = (server) => {
   // get dictionary of provinces and cities available from counselor database
   server.get('/api/v2/counselors/locations', async (req, res) => {
     res.set("Access-Control-Allow-Origin", "*");
- 
+
     let locations = [];
     let provinces = await counselor.distinct("province", { in_person: true });
 
     for (const province of provinces) {
       let currentProvince = {};
-      let cities = await counselor.distinct("city", {in_person: true, province: province});
+      let cities = await counselor.distinct("city", { in_person: true, province: province });
       currentProvince["category"] = province;
       currentProvince["list"] = cities;
       locations.push(currentProvince);
@@ -154,7 +154,7 @@ module.exports = (server) => {
   // insert new counselor data
   server.get('/api/v2/counselors/newCounselor', async (req, res) => {
     //get fields from new counselor form
-    
+
     const id_ent = req.body.id;
     const name_ent = req.body.name;
     const gender_ent = req.body.gender;
@@ -179,10 +179,11 @@ module.exports = (server) => {
     const package_number_ent = req.body.package_number;
     const package_total_ent = req.body.package_total;
     const capacity_ent = req.body.capacity;
-    
-    const new_counselor = new counselor({ 
+    const email_ent = req.body.email;
+
+    const new_counselor = new counselor({
       //id: id_ent,
-      name: name_ent, 
+      name: name_ent,
       gender: gender_ent,
       title: title_ent,
       age: age_ent,
@@ -205,16 +206,40 @@ module.exports = (server) => {
       package_number: package_number_ent,
       package_total: package_total_ent,
       capacity: capacity_ent,
+      email: email_ent,
     });
 
     try {
-        await new_counselor.save();
-    } catch(err) {
-        console.log(err);
+      await new_counselor.save();
+    } catch (err) {
+      console.log(err);
     }
-});
+  });
 
-///////////////////////////////////// OLD /////////////////////////////////////////////////////////////////
+  server.get('/api/v2/counselors/getCounselorByEmail/:emailKey', async (req, res, next) => {
+    const email = req.params.emailKey;
+    console.log(email);
+    let existingCounselor;
+
+    try {
+      existingCounselor = await counselor.findOne({ email: email });
+      if (existingCounselor == null) {
+        throw "";
+      }
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find Counselor with this email address, lease try again later.",
+        500
+      );
+      return next(error);
+    }
+    // console.log(existingUser);
+    res.status(200).json({
+      existingCounselor,
+    });
+  }
+  );
+  ///////////////////////////////////// OLD /////////////////////////////////////////////////////////////////
 
   server.get("/api/v1/counselors", async (req, res) => {
     res.set("Access-Control-Allow-Origin", "*"); // This tells cors to allow requests from any IP address

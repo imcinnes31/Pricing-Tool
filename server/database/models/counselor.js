@@ -73,7 +73,7 @@ const Counselor = new mongoose.Schema({
   },
   in_person: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   province: {
     type: String,
@@ -85,7 +85,7 @@ const Counselor = new mongoose.Schema({
   },
   in_person_price: {
     type: Number,
-    required: true,
+    required: false,
   },
   EMDR_price: {
     type: Number,
@@ -106,6 +106,10 @@ const Counselor = new mongoose.Schema({
   test_data: {
     type: Boolean,
     required: false,
+  },
+  email:{
+    type: String,
+    required: false
   }
 });
 //                                             v schema variable

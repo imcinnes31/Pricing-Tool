@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import Axios from "axios";
-import { Form, Row, Col, Container, Button } from "react-bootstrap";
+import { Form, Row, Col, Container, Button, Modal } from "react-bootstrap";
 import { AuthContext } from "../context/auth-context";
 import { FILTERS } from "../constants/filters";
 import MultiSelector from "../components/MultiSelector";
@@ -28,6 +28,11 @@ export default function UserProfile() {
 
   const [edit, setEdit] = useState(false);
   const [editPW, setPWEdit] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  //const handleShow = () => setShow(true);
+
 
   const submitTest = async (e) => {
     // alert(JSON.stringify(form));
@@ -75,6 +80,21 @@ export default function UserProfile() {
     } else {
       setPWEdit(true);
     }
+  };
+
+  const displayCounselorPage = async () => {
+    try {
+      const responseData = await Axios.get(
+        `/api/v2/counselors/getCounselorByEmail/${localStorage.getItem("userEmail")}`
+      );
+      console.log(responseData);
+    } catch (err) {
+      alert("Update Error");
+    } finally {
+      //window.location.reload(false);
+      setShow(true)
+    }
+
   };
 
   if (loading) return <Spinner />;
@@ -219,19 +239,42 @@ export default function UserProfile() {
             <br />
           </div>
         </Form>
-        {userInfo.role == "Counselor" || userInfo.role ==  "Admin" ? (
+        {userInfo.role == "Counselor" || userInfo.role == "Admin" ? (
           <Fragment>
-            <div className="container  border-bottom">
-              <h1>{userKey}'s Counselor Profile</h1>
-            </div>
-            <AddCounselor />
+            <Button
+              style={{ marginTop: "20px", marginBottom: "202px" }}
+              onClick={displayCounselorPage}
+            // onClick={handleShow}
+            >
+              Access Counselor Profile
+            </Button>
           </Fragment>
         ) : (
           ""
         )
         }
 
-
+        <Modal show={show} size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="container  border-bottom">
+              <h1>{userKey}'s Counselor Profile</h1>
+            </div>
+            <AddCounselor />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
       </div>
 

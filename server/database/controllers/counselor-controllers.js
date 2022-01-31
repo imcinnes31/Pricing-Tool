@@ -19,7 +19,8 @@ const insertCounselor = async (req, res) => {
     roles,
     province,
     city,
-    in_person_price
+    in_person_price,
+    email
   } = req.body;
   
   const newCounselor = new CounselorModel({
@@ -42,7 +43,7 @@ const insertCounselor = async (req, res) => {
     province,
     city,
     in_person_price,
-
+    email,
   });
   try {
     await newCounselor.save();
