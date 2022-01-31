@@ -169,5 +169,4 @@ export const FILTERS = [
       "Trauma-focused Compassionate Inquiry",
 ],
   },
-  { category: "Roles", list: ["Counselor", "Supervision", "Life Coach"] },
 ];

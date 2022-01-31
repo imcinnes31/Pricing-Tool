@@ -3,7 +3,7 @@
 
 import React, { Fragment } from "react";
 
-export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVal, inPersonVal }) {
+export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVal, inPersonVal, roleVal }) {
   // Logic for building the query string and setting query
   function buildQuery() {
     let arrayAfterSplit = [];
@@ -77,6 +77,7 @@ export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVa
       //query = query.concat("&city=", cityVal);
     }
 
+    query=query.concat("&roles=",roleVal.toLowerCase());
     // console.log({query})
     setQuery(query);
   }
