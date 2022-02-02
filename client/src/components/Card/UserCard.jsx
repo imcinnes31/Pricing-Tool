@@ -53,7 +53,7 @@ export default function UserCard({ user, query, perPage }) {
               ))}
             </div>
             <div style={{ marginBottom: "10px" }}>
-              <small className="text-muted">{user.pronouns}</small>
+              <small className="text-muted">{user.pronouns ? user.pronouns : null}</small>
             </div>
             <p className="card-text"> {trimParagraph(user.introduction)} </p>
             <p>Cost per session: ${user.price}</p>
