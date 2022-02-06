@@ -1,4 +1,6 @@
 export const FILTERS = [
+  { category: "Gender", list: ["Male", "Female", "Non-Binary"], },
+
   {
     category: "Issues",
     list: [
@@ -108,7 +110,6 @@ export const FILTERS = [
       "Youth/Young Adults",
     ],
   },
-  { category: "Gender", list: ["Male", "Female"] },
   {
     category: "Approach",
     list: [
@@ -169,5 +170,20 @@ export const FILTERS = [
       "Trauma-focused Compassionate Inquiry",
 ],
   },
-  { category: "Roles", list: ["Counselor", "Supervision", "Life Coach"] },
+  { category: "Languages", list: [
+    "Bosnian", 
+    "Cantonese", 
+    "Croatian",
+    "English",
+    "Farsi",
+    "French",
+    "Greek",
+    "Hindu",
+    "Korean",
+    "Mandarin",
+    "Punjabi",
+    "Serbian",
+    "Spanish",
+], 
+  },
 ];

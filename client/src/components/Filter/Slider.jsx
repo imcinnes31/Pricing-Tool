@@ -61,8 +61,9 @@ export default function Slider({ sliderVal, setSliderVal }) {
           type="range"
           className="form-range"
           id="customRange1"
-          min={data['min_price']}
-          max={data['max_price']}
+          min={10*Math.floor((data['min_price'])/10)}
+          max={10*Math.ceil((data['max_price'])/10)}
+          step="10"
           onChange={() => setSliderVal(document.getElementById("customRange1").value)}
         />
       )}

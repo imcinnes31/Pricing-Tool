@@ -15,12 +15,15 @@ export default function FilterContainer({
   const [provVal, setProvVal] = React.useState("");
   const [cityVal, setCityVal] = React.useState("");
   const [inPersonVal, setInPerson] = React.useState(false);
-
+  const [roleVal, setRoleVal] = React.useState("counselor");
   return (
     <Fragment>
+       <RoleSelector
+      roleVal={roleVal}
+      setRoleVal={setRoleVal}
+      />
+      
       <Slider sliderVal={sliderVal} setSliderVal={setSliderVal} />
-
-      <RoleSelector />
 
       <DropdownComponent // Filter
         filters={filters}
@@ -45,6 +48,8 @@ export default function FilterContainer({
         provVal={provVal}
         cityVal={cityVal}
         inPersonVal={inPersonVal}
+        roleVal={roleVal}
+
       />
     </Fragment>
   );

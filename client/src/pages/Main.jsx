@@ -35,19 +35,19 @@ export default function Main({ filters }) {
       var queryCategories = location.query.split('&');
       for (const category of queryCategories) {
 
-        if (!['price','in_person','province','city'].includes(category.split('=')[0])) {
+        if (!['price','in_person','province','city','roles'].includes(category.split('=')[0])) {
           var menuNumber;
             switch(category.split('=')[0]) {
-            case 'issues':
-              menuNumber = 0;
-              break;
             case 'gender':
+                menuNumber = 0;
+                break;
+            case 'issues':
               menuNumber = 1;
               break;
             case 'approach':
               menuNumber = 2;
               break;
-            case 'roles':
+            case 'languages':
               menuNumber = 3;
           }
           var chosen = category.split('=')[1].split(',');
@@ -63,6 +63,9 @@ export default function Main({ filters }) {
         else if (category.split('=')[0] == 'price') {
           location.price = category.split('=')[1];
         }
+        else if (category.split('=')[0] == 'roles') {
+          location.role = category.split('=')[1];
+        }
       }
       location.query = null;
     }
@@ -72,6 +75,9 @@ export default function Main({ filters }) {
 
   }, [query]);
 
+  if (query == "") {
+    setQuery("roles=counselor");
+  }
   const { loading, error, data } = useHttpRequest(
     `${ajaxUrl}?${location.query ? location.query : query}&page=${page}&per_page=${location.perPage ? location.perPage : perPage}&`
   );

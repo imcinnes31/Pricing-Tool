@@ -9,8 +9,13 @@ export default function UserSummary({ user }) {
           {i < user.credentials.length - 1 ? `${c}, ` : `${c}`}
         </span>
       ))}
-      <h6 className="profile-pronouns">{user.pronouns}</h6>
-
+      <h6 className="profile-pronouns">{user.pronouns ? user.pronouns : null}</h6>
+      <h6>Languages:</h6>
+      {user.languages.map((c, i) => (
+        <span key={c}>
+          {i < user.languages.length - 1 ? `${c[0].toUpperCase() + c.substring(1)}, ` : `${c[0].toUpperCase() + c.substring(1)}`}
+        </span>
+      ))}
       <hr className="mt-4" />
 
       <div className="pt-2 pb-3">
