@@ -78,6 +78,7 @@ export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVa
     }
 
     query=query.concat("&roles=",roleVal.toLowerCase());
+
     // console.log({query})
     setQuery(query);
   }

@@ -59,6 +59,7 @@ Counselor.aggregate([
       province: "$province",
       city: "$city",
       janeId: "$janeId",
+      languages: "$languages",
     },
 
     
@@ -139,6 +140,7 @@ Counselor.aggregate([
             province: "$province",
             city: "$city",
             janeId: "$janeId",
+            languages: "$languages",
           },
 
           
