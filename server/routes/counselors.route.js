@@ -8,7 +8,7 @@ const counselorControllers = require("../database/controllers/counselor-controll
 const router = express.Router();
 const locationFunctions = require("../utils/locations");
 const fileUpload = require('../middleware/file-upload');
-
+const HttpError = require("../database/models/http-error");
 const DEFAULT_LIMIT = 4;
 const DEFAULT_PAGE = 1;
 const DEFAULT_ORDER = "desc";
