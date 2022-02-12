@@ -3,7 +3,7 @@ import '../../assets/css/Profile.css'
 import { Spinner } from "../../components/Spinner";
 import { AuthContext } from "../../context/auth-context";
 
-export default function ProfilePanel({ user, loading }) {
+export default function ProfilePanel({ user, loading, roleVal }) {
   const auth = React.useContext(AuthContext);
   return (
     <Fragment>
@@ -17,16 +17,28 @@ export default function ProfilePanel({ user, loading }) {
         <div className="mb-3">
           <h6 className="col-8 px-3">
             {/* Going to change this to a pill later... */}
-            <strong>Cost per session: </strong>${user.price}
+            {roleVal == "Supervisor" ?
+              <p><strong>Supervision rate: </strong>${user.price}</p>
+            :
+              <p><strong>Cost per session: </strong>${user.price}</p>
+            }
+
           </h6>
         </div>
 
         <div className="button_container">
-          <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
-              <button className="btn primary-button">
-                BOOK AN APPOINTMENT
+          {user.janeId ? 
+                <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
+                    <button className="btn primary-button">
+                      BOOK A FREE INITIAL CONSULTATION
+                    </button>
+                </a>
+                :
+                <button className="btn danger-button">
+                BOOKING NOT AVAILABLE AT PRESENT
               </button>
-          </a>
+          }
+
           {/* <button className="btn primary-button py-2">
             ADD TO FAVORITES
           </button> */}

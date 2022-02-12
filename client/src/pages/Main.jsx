@@ -14,6 +14,8 @@ export default function Main({ filters }) {
   const [query, setQuery] = React.useState(""); // represents everything after the ? in a query. ex: api/counselor? ${query}
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(SKIP);
+  const [roleVal, setRoleVal] = React.useState("counselor");
+  const [currentProfile, setCurrentProfile] = React.useState("");
   const location = useLocation();
   const auth = React.useContext(AuthContext);
   var scrollPosition = null;
@@ -103,6 +105,9 @@ export default function Main({ filters }) {
         isSelected={isSelected}
         setIsSelected={setIsSelected}
         setQuery={setQuery}
+        roleVal={roleVal}
+        setRoleVal={setRoleVal}
+        setCurrentProfile={setCurrentProfile}
       />
 
       <div className="row mt-5 border-top pt-5">
@@ -124,6 +129,9 @@ export default function Main({ filters }) {
           setPerPage={setPerPage}
           query={query}
           scrollPosition={scrollPosition}
+          roleVal={roleVal}
+          currentProfile={currentProfile}
+          setCurrentProfile={setCurrentProfile}
         />
       )}
     </Fragment>
