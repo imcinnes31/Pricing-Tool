@@ -3,7 +3,7 @@ import { SKIP } from "../../constants/skip";
 import { useLocation } from "react-router-dom";
 import UserCard from "./UserCard";
 
-export default function CardList({ data, page, setPage, perPage, setPerPage, query, scrollPosition }) {
+export default function CardList({ data, page, setPage, perPage, setPerPage, query, scrollPosition, roleVal, currentProfile, setCurrentProfile }) {
 
     const location = useLocation();
 
@@ -48,7 +48,7 @@ export default function CardList({ data, page, setPage, perPage, setPerPage, que
     <Fragment>
       <div className="card-list pb-5 mb-5">
         {data?.data.map((user) => (
-          <UserCard key={user.id} user={user} query={query} perPage={perPage} />
+          <UserCard key={user.id} user={user} query={query} perPage={perPage} roleVal={roleVal} currentProfile={currentProfile} setCurrentProfile={setCurrentProfile} />
         ))}
 
         {/*////////////////// View more button /////////////////*/}

@@ -3,9 +3,10 @@
 
 import React, { Fragment } from "react";
 
-export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVal, inPersonVal, roleVal }) {
+export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVal, inPersonVal, roleVal, setCurrentProfile }) {
   // Logic for building the query string and setting query
   function buildQuery() {
+    // console.log(isSelected);
     let arrayAfterSplit = [];
 
     // (1) split the strings to identify the category
@@ -78,8 +79,8 @@ export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVa
     }
 
     query=query.concat("&roles=",roleVal.toLowerCase());
-
     // console.log({query})
+    setCurrentProfile("");
     setQuery(query);
   }
 

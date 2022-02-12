@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 
-export default function UserCard({ user, query, perPage }) {
+export default function UserCard({ user, query, perPage, roleVal, currentProfile, setCurrentProfile }) {
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -23,6 +23,14 @@ export default function UserCard({ user, query, perPage }) {
     return paragraph.length > maxLength
       ? paragraph.slice(0, maxLength) + "..."
       : paragraph;
+  }
+
+  function toggleProfileOn(event) {
+    setCurrentProfile(event.target.id);
+  }
+
+  function toggleProfileOff(event) {
+    setCurrentProfile("");
   }
 
   return (
@@ -56,20 +64,80 @@ export default function UserCard({ user, query, perPage }) {
               <small className="text-muted">{user.pronouns ? user.pronouns : null}</small>
             </div>
             <p className="card-text"> {trimParagraph(user.introduction)} </p>
+            <h6>{`Languages: `}
+          {user.languages.map((c, i) => (
+          <span key={c}> 
+          {i < user.languages.length - 1 ? `${c[0].toUpperCase() + c.substring(1)}, ` : `${c[0].toUpperCase() + c.substring(1)}`}
+          </span>
+          ))}
+          </h6>
+          {roleVal == "Supervisor" ?
+            <p>Supervision rate: ${user.price}</p>          
+            :
             <p>Cost per session: ${user.price}</p>
+            }
             <p className="">
-              <Link to={{pathname: `${ROUTES.PROFILE}/${user.id}`, query: query, perPage: perPage, scrollPosition: scrollPosition}}>
+              {/* <Link to={{pathname: `${ROUTES.PROFILE}/${user.id}`, query: query, perPage: perPage, scrollPosition: scrollPosition, roleVal: roleVal}}>
                 <button className="btn secondary-button">VIEW PROFILE</button>
-              </Link>
+              </Link> */}
+              {`profile_${user.id}` == currentProfile ?
+                <button className="btn primary-button" id={`profile_${user.id}`} onClick={(event) => toggleProfileOff(event)}>
+                  CLICK TO REDUCE
+                </button>
+              :
+                <button className="btn secondary-button" id={`profile_${user.id}`} onClick={(event) => toggleProfileOn(event)}>
+                  VIEW PROFILE
+                </button>
+              }
+              {user.janeId ? 
               <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
               <button className="btn primary-button">
-                BOOK AN APPOINTMENT
+                BOOK A FREE INITIAL CONSULTATION
               </button>
               </a>
+              :
+              <button className="btn danger-button">
+                BOOKING NOT AVAILABLE AT PRESENT
+              </button>
+              }
             </p>
           </div>
         </div>
       </div>
+      {`profile_${user.id}` == currentProfile ?
+      <div className="border-top border-dark row g-0 align-items-left">
+
+        <div className="col-md-11 md-1 mt-3 d-block mx-auto">         
+          <h5 className="py-0">{`An introduction to ${user.name}`}</h5>
+          <p>{user.descriptionLong}</p>
+        </div>
+        <div className="col-md-11 mt-md-1 d-block mx-auto">         
+          <h5 className="py-0">Treatment Areas</h5>
+          <p>{user.specializationDesc}</p>
+        </div>
+        <div className="col-md-11 mt-md-1 d-block mx-auto">         
+          <h5 className="py-0">Therapy Approach</h5>
+          <p>{user.approachDesc}</p>
+        </div>
+        <div className="col-md-11">
+          <div className="card-body">
+          {user.janeId ? 
+              <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
+              <button className="btn primary-button">
+                BOOK A FREE INITIAL CONSULTATION
+              </button>
+              </a>
+              :
+              <button className="btn danger-button">
+                BOOKING NOT AVAILABLE AT PRESENT
+              </button>
+              }
+          </div>
+        </div>
+      </div>
+
+      
+      : null}
     </div>
   );
 }

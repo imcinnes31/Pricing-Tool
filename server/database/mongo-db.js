@@ -60,6 +60,7 @@ Counselor.aggregate([
       city: "$city",
       janeId: "$janeId",
       languages: "$languages",
+      descriptionLong: "$descriptionLong",
     },
 
     
@@ -141,6 +142,7 @@ Counselor.aggregate([
             city: "$city",
             janeId: "$janeId",
             languages: "$languages",
+            descriptionLong: "$descriptionLong",
           },
 
           
@@ -148,7 +150,7 @@ Counselor.aggregate([
         {
           $match: 
             parseQuery(query)
-            //{in_person: true}
+            // {'$or': [ { age: {'$gte': 65, '$lte': 1000} } ]}
         }
       ])
       

@@ -6,7 +6,7 @@ import UserSummary from "./UserSummary";
 import ProfilePanel from "./ProfilePanel";
 import { ROUTES } from "../../constants/routes";
 
-export default function ProfilePage() {
+export default function ProfilePage(roleVal) {
   const { userid } = useParams();
   const { loading, error, data } = useHttpRequest(
     `${process.env.REACT_APP_BACKEND_API}/v2/counselors/id/${userid}`
@@ -35,7 +35,7 @@ export default function ProfilePage() {
         <div className="container row align-items-start">
 
           <div className="col-5">
-            <ProfilePanel user={data} loading={loading} />
+            <ProfilePanel user={data} loading={loading} roleVal={roleVal} />
           </div>
 
           <div className="col-7 my-2">
