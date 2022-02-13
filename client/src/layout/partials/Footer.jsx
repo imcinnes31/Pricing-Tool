@@ -32,10 +32,11 @@ export default function Footer({ children }) {
           <div className="col-4">
             <small className="text-muted">linkedIn</small>
           </div>
-
-          <div className="col-4 text-end">
-            <small className="text-muted"><NavLink to={ROUTES.LOGIN}>Counselor? Login here</NavLink></small>
-          </div>
+          {!auth.isLoggedIn ? (
+            <div className="col-4 text-end">
+              <small className="text-muted"><NavLink to={ROUTES.LOGIN}>Counselor? Login here</NavLink></small>
+            </div>
+          ) : ("")}
         </div>
       </div>
     </footer>

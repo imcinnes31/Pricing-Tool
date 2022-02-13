@@ -41,8 +41,8 @@ export default function Header({ company }) {
       setUser(responseData.data);
       localStorage.setItem(
         "userEmail",
-          responseData.data.email
-        
+        responseData.data.email
+
       );
       setEmail(responseData.data.email);
       window.location.reload(false);
@@ -59,7 +59,7 @@ export default function Header({ company }) {
       [e.target.id]: e.target.value,
     });
   };
-  
+
 
   const auth = useContext(AuthContext);
   const popoverForm = (
@@ -144,7 +144,7 @@ export default function Header({ company }) {
           {auth.isLoggedIn && (
             <Container>
               <Form.Group className="mb-3">
-                {}
+                { }
                 <NavLink to={`${ROUTES.USERPROFILE}/${localStorage.getItem("userEmail")}`}>
                   <p>{localStorage.getItem("userEmail")}</p>
                   {/* user == undefined ? "" : user.email */}
@@ -191,17 +191,18 @@ export default function Header({ company }) {
             </button>
           </NavLink>
           {/* This is hidden login button */}
-          {/* <OverlayTrigger
-            trigger="click"
-            placement="bottom"
-            overlay={popoverForm}
-            rootClose
-          >
-            <button type="button" className="btn primary-button">
-              {auth.isLoggedIn && <AiOutlineUser />}
-              {!auth.isLoggedIn && "Login"}
-            </button>
-          </OverlayTrigger> */}
+          {auth.isLoggedIn ? (
+            <OverlayTrigger
+              trigger="click"
+              placement="bottom"
+              overlay={popoverForm}
+              rootClose
+            >
+              <button type="button" className="btn primary-button">
+                {auth.isLoggedIn && <AiOutlineUser />}
+                {!auth.isLoggedIn && "Login"}
+              </button>
+            </OverlayTrigger>) : ("")}
         </div>
 
         <ul className="navigation">
