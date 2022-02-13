@@ -167,9 +167,7 @@ export default function App(props) {
         ) : (
           ""
         )}
-        {/* <Route exact path="/*">
-          <NotFound />
-        </Route> */}
+
         <Route exact path={`${ROUTES.USERPROFILE}/:userKey`}>
           <UserProfile />
         </Route>
@@ -211,7 +209,7 @@ export default function App(props) {
         <Route exact path={ROUTES.REGISTERUSER}>
           <RegisterUser />
         </Route>
-        
+
         <Route exact path={ROUTES.FORGOTPASSWORD}>
           <ForgotPassword />
         </Route>
@@ -220,13 +218,16 @@ export default function App(props) {
           <ResetPassword />
         </Route>
 
+        <Route
+          exact
+          path={`${ROUTES.PROFILE}/:userid`}
+          render={() => <ProfilePage />}
+        />
+
         <Route exact path={ROUTES.Login}>
           <Login />
         </Route>
 
-        {/* <Route exact path="/*">
-          <NotFound />
-        </Route> */}
         <Redirect to="/login" />
       </Switch>
     );
@@ -249,60 +250,9 @@ export default function App(props) {
     >
       <Router>
         <DefaultLayout company={company}>
-          {/* Switch is to switch between pages */}
 
-          {/* <Switch>
-            <Route exact path={ROUTES.HOME}>
-              <Home />
-            </Route> */}
-
-          {/* need exact so that the router doesn't try to take a shortened url */}
-          {/* <Route exact path={ROUTES.MAIN}>
-              <Main filters={filters}>{props.children}</Main>
-            </Route>
-
-            <Route exact path={ROUTES.INFO}>
-              <Information />
-            </Route>
-
-            <Route exact path={ROUTES.HISTORY}>
-              <History />
-            </Route>
-
-            <Route exact path={ROUTES.FAQ}>
-              <Faq />
-            </Route>
-
-            <Route exact path={ROUTES.CONTACT}>
-              <Contact />
-            </Route>
-
-            <Route exact path={ROUTES.ABOUT}>
-              <About />
-            </Route> */}
-
-          {/* <Route
-              exact
-              path={`${ROUTES.PROFILE}/:userid`}
-              render={() => <ProfilePage />}
-            />
-
-            <Route exact path={ROUTES.ADMIN}>
-              <Admin />
-            </Route> */}
-
-          {/* <Route exact path={ROUTES.REGISTERUSER}>
-              <RegisterUser />
-            </Route>
-
-            <Route exact path={ROUTES.Login}>
-              <Login />
-            </Route> */}
           <main>{routes}</main>
-          {/* <Route exact path="/*">
-            <NotFound />
-          </Route> */}
-          {/* </Switch> */}
+
         </DefaultLayout>
       </Router>
     </AuthContext.Provider>

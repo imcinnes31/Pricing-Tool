@@ -59,11 +59,6 @@ export default function Header({ company }) {
       [e.target.id]: e.target.value,
     });
   };
-
-  // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
-  // var userEmail = ""
   
 
   const auth = useContext(AuthContext);
@@ -195,7 +190,8 @@ export default function Header({ company }) {
               FIND A COUNSELOR
             </button>
           </NavLink>
-          <OverlayTrigger
+          {/* This is hidden login button */}
+          {/* <OverlayTrigger
             trigger="click"
             placement="bottom"
             overlay={popoverForm}
@@ -205,23 +201,7 @@ export default function Header({ company }) {
               {auth.isLoggedIn && <AiOutlineUser />}
               {!auth.isLoggedIn && "Login"}
             </button>
-          </OverlayTrigger>
-          {/* {!auth.isLoggedIn && (
-            <NavLink to={ROUTES.LOGIN}>
-              <button type="button" className="btn primary-button">
-                SIGN IN
-              </button>
-            </NavLink>
-          )}
-          {auth.isLoggedIn && (
-            <button
-              onClick={auth.logout}
-              type="button"
-              className="btn primary-button"
-            >
-              LOGOUT
-            </button>
-          )} */}
+          </OverlayTrigger> */}
         </div>
 
         <ul className="navigation">

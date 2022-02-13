@@ -244,7 +244,6 @@ export default function UserProfile() {
             ""
           )}
           <div className="container  border-top">
-            <br />
           </div>
         </Form>
         {userInfo.role == "Counselor" || userInfo.role == "Admin" ? (
@@ -438,7 +437,7 @@ export default function UserProfile() {
             <div className="container  border-bottom">
               <h1>{userKey}'s Counselor Profile</h1>
             </div>
-            {/* <AddCounselor /> */}
+            <AddCounselor />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>
