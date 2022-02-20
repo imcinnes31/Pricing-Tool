@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 export default function Home() {
 
   var slideImages = [
-    "quote-WeArePhare", "hero", "quote-Awesome", "couple", "quote-Mentors", "student", "quote-Appointment"
+    "quote-WeArePhare", "hero", "quote-Awesome", "couple", "quote-Mentors", "student", "quote-Appointment", "face"
   ]
 
   return (
