@@ -17,26 +17,26 @@ module.exports = (Mongo) => {
   Mongo.countDocuments = (query, options) => {
     return new Promise((resolve, reject) => {
 //      Counselor.find(parseQuery(query))
+const parsed=parseQuery(query)
 Counselor.aggregate([
+  {
+    $match:
+      {'inactive' : {$ne: true}}
+  },
   {
     "$project": {
       price: {
         "$cond": {
-          "if": {
-            "$eq": [
-              "$price",
-              0
-            ]
-          },
-          "then": {
+          "if": {"$eq": [parsed['roles'], 'supervisor']},   //IF COUNSELOR ROLE
+          "then": {"$cond": {"if": "$min_supervision_rate","then": "$min_supervision_rate", "else": "$price"}},
+          "else": {
             "$cond": {
-              "if": {"$eq": [parseQuery(query)['in_person'], true]},   //IF CLIENT WANTS IN-PERSON APPOINTMENT
-              "then": {"$cond": {"if": "$in_person_price", "then": "$in_person_price", "else": "$price"}},
-              "else": {"$cond": {"if": "$virtual_price", "then": "$virtual_price", "else": "$price"}}
+              "if":{"$eq": [parsed['in_person'], true]},
+              "then":{"$cond": {"if": "$in_person_price", "then": "$in_person_price", "else": "$price"}},
+              "else":{"$cond": {"if": "$virtual_price", "then": "$virtual_price", "else": "$price"}},
             }
-          },
-          "else": "$price"
-        }
+          }
+        },
       },
       name: "$name",
       credentials: "$credentials",
@@ -67,7 +67,7 @@ Counselor.aggregate([
   },
   {
     $match: 
-      parseQuery(query)
+      parsed
       //{'$or': [ { age: {'$gte': 65, '$lte': 1000} } ]}
   }
 ])
@@ -99,26 +99,26 @@ Counselor.aggregate([
       // Counselor.find({ age:{$gt:40}})   // <----- returns counselors with age > 40
 
       //Counselor.find(parseQuery(query))
+      const parsed = parseQuery(query)
       Counselor.aggregate([
+        {
+          $match:
+            {'inactive' : {$ne: true}}
+        },
         {
           "$project": {
             price: {
               "$cond": {
-                "if": {
-                  "$eq": [
-                    "$price",
-                    0
-                  ]
-                },
-                "then": {
+                "if": {"$eq": [parsed['roles'], 'supervisor']},   //IF COUNSELOR ROLE
+                "then": {"$cond": {"if": "$min_supervision_rate","then": "$min_supervision_rate", "else": "$price"}},
+                "else": {
                   "$cond": {
-                    "if": {"$eq": [parseQuery(query)['in_person'], true]},   //IF CLIENT WANTS IN-PERSON APPOINTMENT
-                    "then": {"$cond": {"if": "$in_person_price", "then": "$in_person_price", "else": "$price"}},
-                    "else": {"$cond": {"if": "$virtual_price", "then": "$virtual_price", "else": "$price"}}
+                    "if":{"$eq": [parsed['in_person'], true]},
+                    "then":{"$cond": {"if": "$in_person_price", "then": "$in_person_price", "else": "$price"}},
+                    "else":{"$cond": {"if": "$virtual_price", "then": "$virtual_price", "else": "$price"}},
                   }
-                },
-                "else": "$price"
-              }
+                }
+              },
             },
             name: "$name",
             credentials: "$credentials",
@@ -149,7 +149,7 @@ Counselor.aggregate([
         },
         {
           $match: 
-            parseQuery(query)
+            parsed
             // {'$or': [ { age: {'$gte': 65, '$lte': 1000} } ]}
         }
       ])
