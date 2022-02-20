@@ -14,7 +14,7 @@ export default function Main({ filters }) {
   const [query, setQuery] = React.useState(""); // represents everything after the ? in a query. ex: api/counselor? ${query}
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(SKIP);
-  const [roleVal, setRoleVal] = React.useState("counselor");
+  const [roleVal, setRoleVal] = React.useState("Counselor");
   const [currentProfile, setCurrentProfile] = React.useState("");
   const location = useLocation();
   const auth = React.useContext(AuthContext);
@@ -90,7 +90,9 @@ export default function Main({ filters }) {
       <div className="row">
         <div class="h-25 col-md-12 clearfix">
           <h1>
-            Find a <span style={{ color: "var(--secondary_1)" }}>counselor.</span>
+            Find a <span style={{ color: "var(--secondary_1)" }}>
+              { roleVal == "Counselor" ? 'counselor' : roleVal == "Supervisor" ? 'supervisor' : 'role that fits you' }
+          .</span>
           </h1>
           {/* {auth.isLoggedIn == true ?
             <button className="btn primary-button float-end">

@@ -33,7 +33,6 @@ export default function FilterDropdownComponent({ filters, setIsSelected, isSele
         {filters &&
           filters.map((obj, i) => (
             <div className="row" style={{width: '600px'}}>
-                
               <label style={labelStyles}>{obj.category}</label>
                 <RoundMultiSelector
                 filters={obj}
