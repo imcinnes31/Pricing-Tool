@@ -1,13 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../constants/routes.js";
+import Carousel from 'react-bootstrap/Carousel';
 
 export default function Home() {
+
+  var slideImages = [
+    "quote-WeArePhare", "hero", "quote-Awesome", "couple", "quote-Mentors", "student", "quote-Appointment", "face"
+  ]
+
   return (
     <div className="container">
       <div className="row">
-        <div className="col" style={{width:'560px', height:'340px'}}>
-          <img src={require("../assets/images/hero.jpg").default} />
+        <div className="col" style={{width:'560px', height:'300px'}}>
+          {/* <img src={require("../assets/images/hero.jpg").default} /> */}
+          <div class="carousel slide" data-bs-ride="carousel">
+          {/* <div class="carousel slide carousel-fade" data-bs-ride="carousel"> */}
+            <div class="carousel-inner">
+              {slideImages.map(eachFile=>{ 
+                return(
+                  <div  className={eachFile==="quote-WeArePhare"?"carousel-item active":"carousel-item "} key={`${eachFile}img`}>
+                    <img src={require(`../assets/images/${eachFile}.jpg`).default}
+                    className="d-block mx-auto" 
+                    style={eachFile.startsWith("quote-") ? { height: "350px", width: "560px" } : { maxHeight: "350px", width: "auto" }}
+                    alt="..."/>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         <div className="col">

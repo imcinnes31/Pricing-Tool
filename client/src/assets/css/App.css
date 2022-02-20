@@ -203,3 +203,18 @@ button:focus {
 .row-spacing{
   margin-top: 1.5rem;
 }
+
+.toggles{
+  background-color: aqua;
+  color: black;
+}
+
+.toggles:hover{
+  background-color: gray;
+  color: white;
+}
+
+.toggles:checked{
+  background-color: blue;
+  color: white;
+}
