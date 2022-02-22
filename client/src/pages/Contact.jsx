@@ -3,7 +3,8 @@ import { Form, Row, Col, Container } from "react-bootstrap";
 
 export default function Contact() {
   return (
-    <Container style={{ width: "50%" }}>
+    <div id="contactPage">
+    <Container>
       <h1 class="display-1 text-center">Contact Us</h1>
       <Form>
         <Form.Label>Name</Form.Label>
@@ -60,5 +61,6 @@ export default function Contact() {
         </Form.Group>
       </Form>
     </Container>
+    </div>
   );
 }

@@ -4,12 +4,12 @@ import { Container, Row, Col } from "react-bootstrap";
 
 export default function About() {
   return (
-    <Container>
+    <Container id="aboutPage" style={{ paddingBottom: "10vh" }}>
       <Row className="row-spacing">
         <h1 className="text-center display-3">Our Story</h1>
       </Row>
       <Row className="row-spacing">
-        <Col className="col-4">
+        <Col className="col-md-4 col-12 p-2">
           <h1 className="vertical-center">
             <b>
               Phare is a
@@ -19,11 +19,10 @@ export default function About() {
             </b>
           </h1>
         </Col>
-
-        <Col className="col-4">
+        <Col className="col-md-4 col-12 p-2">
           <h4 className="horizontal-center">{ABOUT_US_DATA1}</h4>
         </Col>
-        <Col className="col-4">
+        <Col className="col-md-4 col-12 p-2">
           <h4 className="horizontal-center">{ABOUT_US_DATA2}</h4>
         </Col>
       </Row>
@@ -31,7 +30,7 @@ export default function About() {
         <h1 className="text-center display-3">Our Values</h1>
       </Row>
       <Row className="row-spacing">
-        <Col className="col-6">
+        <Col className="col-md-6 p-2">
           <h2 className="text-center">
             <b><span style={{ color: "var(--secondary_1)" }}>Sustainability</span></b>
           </h2>
@@ -40,7 +39,7 @@ export default function About() {
             day after.
           </h4>
         </Col>
-        <Col className="col-6">
+        <Col className="col-md-6 col-12 p-2">
           <h2 className="text-center">
             <b><span style={{ color: "var(--secondary_1)" }}>Fairness</span></b>
           </h2>
@@ -50,7 +49,7 @@ export default function About() {
         </Col>
       </Row>
       <Row className="row-spacing">
-        <Col className="col-6">
+        <Col className="col-md-6 col-12 p-2">
           <h2 className="text-center">
             <b><span style={{ color: "var(--secondary_1)" }}>Generosity</span></b>
           </h2>
@@ -58,7 +57,7 @@ export default function About() {
             Take care of yourself and take care of each other.
           </h4>
         </Col>
-        <Col className="col-6">
+        <Col className="col-md-6 col-12 p-2">
           <h2 className="text-center">
             <b><span style={{ color: "var(--secondary_1)" }}>Equality</span></b>
           </h2>

@@ -3,7 +3,7 @@ import { FAQ_DATA } from "../constants/faqData";
 
 export default function Faq() {
   return (
-    <div className="container">
+    <div id="faqPage" className="container pb-5">
       <div className="container  border-bottom">
         <h1>Frequently Asked Questions</h1>
       </div>

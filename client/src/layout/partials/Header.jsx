@@ -181,7 +181,7 @@ export default function Header({ company }) {
 
         <div className="button_container">
           <NavLink to={ROUTES.MAIN}>
-            <button type="button" className="btn secondary-button">
+            <button type="button" id="findACounselorButton" className="btn secondary-button">
               FIND A COUNSELOR
             </button>
           </NavLink>
@@ -191,7 +191,7 @@ export default function Header({ company }) {
             overlay={popoverForm}
             rootClose
           >
-            <button type="button" className="btn primary-button">
+            <button type="button" id="loginButton" className="btn primary-button">
               {auth.isLoggedIn && <AiOutlineUser />}
               {!auth.isLoggedIn && "Login"}
             </button>
