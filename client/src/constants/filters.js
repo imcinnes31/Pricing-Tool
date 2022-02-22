@@ -2,7 +2,7 @@ export const FILTERS = [
   { category: "Gender", list: ["Male", "Female", "Non-Binary"], },
 
   {
-    category: "Issues",
+    category: "Specializations",
     list: [
       "Abuse",
       "Accessibility Concerns",

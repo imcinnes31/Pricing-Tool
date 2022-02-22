@@ -108,8 +108,9 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
         <div>
             <br></br>
             <div class="d-flex justify-content-center">  
-                <label>I would like an in-person appointment</label>
+                <label style={{fontSize:"24px"}}>I would like an in-person appointment&nbsp;&nbsp;</label>
                 <input
+                    style={{height:"30px",width:"30px"}}
                     id='inPersonToggle'
                     name='in-person'
                     type="checkbox"
@@ -126,9 +127,9 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
                     ?
                         <div>
                             <br></br>
-                            <label>Select Province:</label>
+                            <label style={{fontSize:"20px"}}>Select Province:</label>
                             <div>
-                                <select class="form-select" aria-label="Default select example" id="province" onChange={changeProvince}>
+                                <select style={{fontSize:"24px"}} class="form-select" aria-label="Default select example" id="province" onChange={changeProvince}>
                                     {locs.map((prov) =>                 
                                         {
                                             if (prov.list.length > 0) {
@@ -138,11 +139,11 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
                                 </select>
                             </div>
                             <br></br>
-                            <label>Select City:</label>
+                            <label style={{fontSize:"20px"}}>Select City:</label>
                                 {locs[0] 
                                 ?
                                 <div>
-                                    <select class="form-select" aria-label="Default select example" id="city" onChange={changeCity}>
+                                    <select style={{fontSize:"24px"}} class="form-select" aria-label="Default select example" id="city" onChange={changeCity}>
                                         {locs[0].list.map((city) => (
                                             <option key={city}>{city}</option>
                                         ))};
