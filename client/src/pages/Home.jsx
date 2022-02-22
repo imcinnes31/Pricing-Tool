@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="homeContainer container pb-5">
       <div className="row">
-        <div className="col-md-6 col-xs-9">
+        <div className="col-md-6">
           {/* <img src={require("../assets/images/hero.jpg").default} /> */}
           <div class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">

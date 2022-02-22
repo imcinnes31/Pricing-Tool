@@ -230,16 +230,15 @@ button:focus {
   padding-bottom: 10vh;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
-  /* home screen */
   .carousel-item {
-    width: 1120px;
-    height: 700px;
+    width: 280px;
+    height: 175px;
   }
 
   .homeContainer h1 {
-    font-size: 5em;
+    font-size: 2em;
     text-align: center;
   }
 
@@ -253,7 +252,6 @@ button:focus {
     font-size: 2em;
   }
 
-  /* about page */
   #aboutPage h1, h4 {
     text-align: center;
   }
@@ -266,7 +264,6 @@ button:focus {
     font-size: 2em;
   }
 
-  /* faq page */
   #faqPage h1 {
     font-Size: 3em;
   }
@@ -276,7 +273,6 @@ button:focus {
     padding: 5px;
   }
 
-  /* contact page */
   #contactPage .container {
     width: 100%;
   }
@@ -285,7 +281,6 @@ button:focus {
     font-size: 24px;
   }
 
-  /* page header */
   .header {
     height: 120px;
     width: 100%;
@@ -308,4 +303,4 @@ button:focus {
     height: 120px;
   }
 
-}
+} */
