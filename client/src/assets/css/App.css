@@ -247,21 +247,3 @@ button:focus {
     height: 700px;
   }
 }
-
-@media only screen and (min-device-width: 577px) and (max-device-width: 800px)
-{
-  .homeContainer h1 {
-    font-size: 72px;
-    text-align: center;
-  }
-
-  .homeContainer h3 {
-    font-size: 36px;
-    text-align: center;
-  }
-
-  .carousel-item {
-    width: 1120px;
-    height: 700px;
-  }
-}
