@@ -10,19 +10,22 @@ export default function Home() {
   ]
 
   return (
-    <div className="container">
+    <div className="homeContainer container pb-5">
       <div className="row">
-        <div className="col" style={{width:'560px', height:'300px'}}>
+        <div className="col-md-6 col-xs-9">
           {/* <img src={require("../assets/images/hero.jpg").default} /> */}
           <div class="carousel slide" data-bs-ride="carousel">
-          {/* <div class="carousel slide carousel-fade" data-bs-ride="carousel"> */}
             <div class="carousel-inner">
               {slideImages.map(eachFile=>{ 
                 return(
                   <div  className={eachFile==="quote-WeArePhare"?"carousel-item active":"carousel-item "} key={`${eachFile}img`}>
-                    <img src={require(`../assets/images/${eachFile}.jpg`).default}
-                    className="d-block mx-auto" 
-                    style={eachFile.startsWith("quote-") ? { height: "350px", width: "560px" } : { maxHeight: "350px", width: "auto" }}
+                    <img className={eachFile.startsWith("quote-") ? "carouselQuotePic d-block mx-auto" : "carouselPic d-block mx-auto"} 
+                    width={eachFile.startsWith("quote-") ? "100%" : "auto"}
+                    height="100%"
+                    margin="auto"
+                    src={require(`../assets/images/${eachFile}.jpg`).default}
+                    // className="d-block mx-auto" 
+                    // style={eachFile.startsWith("quote-") ? { height: "auto", width: "auto" } : { maxHeight: "100%", width: "auto" }}
                     alt="..."/>
                   </div>
                 );
@@ -62,7 +65,7 @@ export default function Home() {
 
       <div className="container">
         <Link to={ROUTES.MAIN}>
-          <button className="btn btn-lg primary-button horizontal-center px-3 py-2">
+          <button id="letsGoButton" className="btn btn-lg primary-button horizontal-center px-3 py-2">
             Let's go!
           </button>
         </Link>

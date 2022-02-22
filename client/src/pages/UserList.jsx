@@ -91,7 +91,7 @@ export default function UserList() {
 
   if (search && searchData != null) {
     return (
-      <div>
+      <div className="container pb-5">
         <div className="container  border-bottom">
           <h1>User Management</h1>
         </div>
@@ -165,7 +165,7 @@ export default function UserList() {
     );
   } else if (!search || searchData == null) {
     return (
-      <div>
+      <div className="container pb-5">
         <div className="container  border-bottom">
           <h1>User Management</h1>
         </div>
