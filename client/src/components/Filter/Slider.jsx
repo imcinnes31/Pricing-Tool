@@ -44,12 +44,8 @@ export default function Slider({ sliderVal, setSliderVal }) {
   return (
     <div className="row pt-5">
       <label
+        id="priceIndicator"
         className="form-label"
-        style={{
-          fontSize: "20px",
-          fontWeight: "700",
-          marginBottom: "30px",
-        }}
       >
         I can afford up to{" "}
         <span id="selectValue" style={{ color: "var(--secondary_1)" }}></span>

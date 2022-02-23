@@ -90,6 +90,7 @@ export default function Query({ isSelected, setQuery, sliderVal, provVal, cityVa
       <div className="row mt-5">
         <div className="col-4 w-100 h-100 text-center">
           <button
+            id="filterButton"
             className="btn primary-button px-4 py-2"
             onClick={() => buildQuery()}
           >
