@@ -230,7 +230,7 @@ button:focus {
   padding-bottom: 10vh;
 }
 
-/* @media only screen and (max-device-width: 576px)
+@media only screen and (max-device-width: 576px)
  {
   .homeContainer h1 {
     font-size: 72px;
@@ -251,4 +251,68 @@ button:focus {
     width: 300px;
   }
 
-} */
+
+
+  #aboutPage .col {
+    width: 1200px;
+  }
+
+  #aboutPage h2, h4 {
+    font-size: 36px;
+    padding: 5px;
+  }
+
+  #aboutPage h1 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+
+
+  #faqPage h1 {
+    font-size: 60px;
+  }
+
+  #faqPage h4 {
+    font-size: 48px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+  }
+
+  #faqPage p {
+    font-size: 36px;
+  }
+
+
+
+  #contactPage .container {
+    width: 90%;
+  }
+
+  #contactPage h1 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  #contactPage label {
+    font-size: 36px;
+  }
+
+  #contactPage .form-control {
+    font-size: 36px;
+  }
+
+  #contactPage .form-check-input {
+    font-size: 36px;
+    padding: 5px;
+  }
+
+  #contactPage .form-check-label {
+    font-size: 36px;
+    padding-right: 25px;
+  }
+
+  #contactPage .btn {
+    font-size: 36px;
+  }
+}
