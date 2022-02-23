@@ -65,7 +65,7 @@ export default function Home() {
 
       <div className="container">
         <Link to={ROUTES.MAIN}>
-          <button id="letsGoButton" className="btn btn-lg primary-button horizontal-center px-3 py-2">
+          <button className="btn btn-lg primary-button horizontal-center px-3 py-2">
             Let's go!
           </button>
         </Link>

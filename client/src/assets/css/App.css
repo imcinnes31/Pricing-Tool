@@ -230,7 +230,7 @@ button:focus {
   padding-bottom: 10vh;
 }
 
-@media only screen and (max-device-width: 576px)
+/* @media only screen and (max-device-width: 576px)
  {
   .homeContainer h1 {
     font-size: 72px;
@@ -239,11 +239,16 @@ button:focus {
 
   .homeContainer h3 {
     font-size: 36px;
-    text-align: center;
   }
 
-  .carousel-item {
+  .homeContainer .carousel-item {
     width: 1120px;
     height: 700px;
   }
-}
+
+  .homeContainer .btn {
+    font-size: 36px;
+    width: 300px;
+  }
+
+} */
