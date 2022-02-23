@@ -11,12 +11,14 @@ export default function RoundMultiSelector({filters, id, onChange, isQuery, plac
     menu: base => ({
       ...base,
       marginTop: 0,
+      fontSize: isMobile ? "24px" :  isTablet ? "18px" : "18px",
     }),
     control: provided => ({
       ...provided,
       height: isMobile ? 50 : isTablet ? 25 : 25,
       border: isMobile ? "3px solid #ff0000" : isTablet ? "1px solid #ff0000" : "1px solid #ff0000",
       borderRadius: "30px",
+      fontSize: isMobile ? "24px" :  isTablet ? "18px" : "18px",
     }),
     placeholder: (defaultStyles) => {
       return {
@@ -42,6 +44,7 @@ export default function RoundMultiSelector({filters, id, onChange, isQuery, plac
         fontWeight: isMobile ? "bold" : isTablet ? "none" : "none",
       };
     },
+   
   
   }
 
