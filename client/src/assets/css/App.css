@@ -230,8 +230,40 @@ button:focus {
   padding-bottom: 10vh;
 }
 
+#counselorImage {
+  max-height: 350px;
+  width: auto;
+}
+
+#priceIndicator {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+#filterDropdowns {
+  width: 600px;
+}
+
+#locationOptions label {
+  font-size: 20px;
+}
+
+#locationOptions .form-select {
+  font-size: 20px;
+}
+
+#locationOptions input {
+  height: 24px;
+  width: 24px;
+}
+
+/* MOBILE DEVICES */
 @media only screen and (max-device-width: 576px)
  {
+
+  /* home page */
+
   .homeContainer h1 {
     font-size: 72px;
     text-align: center;
@@ -251,7 +283,7 @@ button:focus {
     width: 300px;
   }
 
-
+  /* about page */
 
   #aboutPage .col {
     width: 1200px;
@@ -267,7 +299,7 @@ button:focus {
     font-weight: bold;
   }
 
-
+  /* faq page */
 
   #faqPage h1 {
     font-size: 60px;
@@ -283,7 +315,7 @@ button:focus {
     font-size: 36px;
   }
 
-
+  /* contact page */
 
   #contactPage .container {
     width: 90%;
@@ -314,5 +346,326 @@ button:focus {
 
   #contactPage .btn {
     font-size: 36px;
+  }
+
+  /* find a counselor page */
+
+  #filterPage #filterButton {
+    font-size: 48px;
+    width: 400px;
+  }
+
+  #filterPage h1 {
+    font-size: 48px;
+  }
+
+  #filterPage label {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #filterPage label {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #filterPage a {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #priceIndicator {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  #customRange1 {
+    padding-bottom: 50px;
+  }
+
+  #customRange1::-webkit-slider-runnable-track {
+    height: 24px;
+  }
+
+  #customRange1::-webkit-slider-thumb {
+    height: 30px;
+    width: 30px;
+  }
+
+  #filterDropdowns {
+    width: 1200px;
+  }
+
+  #locationOptions label {
+    font-size: 36px;
+  }
+  
+  #locationOptions .form-select {
+    font-size: 36px;
+  }
+  
+  #locationOptions input {
+    height: 36px;
+    width: 36px;
+  }
+
+  #counselorPic {
+    width: 1200px;
+    height: 450px;
+  }
+
+  #counselorInfo {
+    width: 1200px;
+  }
+
+  #counselorInfo p {
+    font-size: 24px;
+  }
+
+  #counselorInfo h5 {
+    font-size: 36px;
+  }
+
+  #counselorInfo h6 {
+    font-size: 30px;
+  }
+
+  #counselorInfo .btn {
+    font-size: 36px;
+  }
+
+  #counselorBio p {
+    font-size: 24px;
+  }
+
+  #counselorBio h5 {
+    font-size: 36px;
+  }
+
+  #counselorBio h6 {
+    font-size: 30px;
+  }
+
+  #counselorBio .btn {
+    font-size: 36px;
+  }
+
+  #counselorCredentials {
+    font-size: 36px;
+  }
+
+  #counselorImage {
+    max-height: 450px;
+    width: auto;
+  }
+
+  .buttonContainer {
+    text-align: center;
+  }
+}
+
+/* TABLET DEVICES */
+@media only screen and (min-device-width: 576px) and (max-device-width: 1024px)
+ {
+
+  /* home page */
+
+  .homeContainer h1 {
+    font-size: 72px;
+    text-align: center;
+  }
+
+  .homeContainer h3 {
+    font-size: 36px;
+  }
+
+  .homeContainer .carousel-item {
+    width: 1120px;
+    height: 700px;
+  }
+
+  .homeContainer .btn {
+    font-size: 36px;
+    width: 300px;
+  }
+
+  /* about page */
+
+  #aboutPage .col {
+    width: 1200px;
+  }
+
+  #aboutPage h2, h4 {
+    font-size: 36px;
+    padding: 5px;
+  }
+
+  #aboutPage h1 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  /* faq page */
+
+  #faqPage h1 {
+    font-size: 60px;
+  }
+
+  #faqPage h4 {
+    font-size: 48px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+  }
+
+  #faqPage p {
+    font-size: 36px;
+  }
+
+  /* contact page */
+
+  #contactPage .container {
+    width: 90%;
+  }
+
+  #contactPage h1 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  #contactPage label {
+    font-size: 36px;
+  }
+
+  #contactPage .form-control {
+    font-size: 36px;
+  }
+
+  #contactPage .form-check-input {
+    font-size: 36px;
+    padding: 5px;
+  }
+
+  #contactPage .form-check-label {
+    font-size: 36px;
+    padding-right: 25px;
+  }
+
+  #contactPage .btn {
+    font-size: 36px;
+  }
+
+  /* find a counselor page */
+
+  #filterPage #filterButton {
+    font-size: 48px;
+    width: 400px;
+  }
+
+  #filterPage h1 {
+    font-size: 48px;
+  }
+
+  #filterPage label {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #filterPage label {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #filterPage a {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #priceIndicator {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  #customRange1 {
+    padding-bottom: 50px;
+  }
+
+  #customRange1::-webkit-slider-runnable-track {
+    height: 24px;
+  }
+
+  #customRange1::-webkit-slider-thumb {
+    height: 30px;
+    width: 30px;
+  }
+
+  #filterDropdowns {
+    width: 1200px;
+  }
+
+  #locationOptions label {
+    font-size: 36px;
+  }
+  
+  #locationOptions .form-select {
+    font-size: 36px;
+  }
+  
+  #locationOptions input {
+    height: 36px;
+    width: 36px;
+  }
+
+  #counselorPic {
+    width: 1200px;
+    height: 450px;
+  }
+
+  #counselorInfo {
+    width: 1200px;
+  }
+
+  #counselorInfo p {
+    font-size: 24px;
+  }
+
+  #counselorInfo h5 {
+    font-size: 36px;
+  }
+
+  #counselorInfo h6 {
+    font-size: 30px;
+  }
+
+  #counselorInfo .btn {
+    font-size: 36px;
+  }
+
+  #counselorBio p {
+    font-size: 24px;
+  }
+
+  #counselorBio h5 {
+    font-size: 36px;
+  }
+
+  #counselorBio h6 {
+    font-size: 30px;
+  }
+
+  #counselorBio .btn {
+    font-size: 36px;
+  }
+
+  #counselorCredentials {
+    font-size: 36px;
+  }
+
+  #counselorImage {
+    max-height: 450px;
+    width: auto;
+  }
+
+  .buttonContainer {
+    text-align: center;
   }
 }

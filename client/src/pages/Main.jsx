@@ -87,6 +87,7 @@ export default function Main({ filters }) {
 
   return (
     <Fragment>
+      <div id="filterPage">
       <div className="row">
         <div class="h-25 col-md-12 clearfix">
           <h1>
@@ -113,7 +114,7 @@ export default function Main({ filters }) {
       />
 
       <div className="row mt-5 border-top pt-5">
-        <div style={{ marginBottom: "10px" }}>
+        <div style={{ marginBottom: "50px" }}>
           <small className="text-muted">
             {data && <label>{data.total} counselors available</label>}
           </small>
@@ -136,6 +137,7 @@ export default function Main({ filters }) {
           setCurrentProfile={setCurrentProfile}
         />
       )}
+      </div>
     </Fragment>
   );
 }

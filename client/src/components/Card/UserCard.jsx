@@ -36,22 +36,23 @@ export default function UserCard({ user, query, perPage, roleVal, currentProfile
   return (
     <div className="card mb-3 offWhite">
       <div className="row g-0 align-items-center">
-        <div className="col-md-4 d-block mx-auto">
+        <div className="col-md-4 d-block mx-auto" id="counselorPic">
           <img
             // src={require(`../assets/images/profiles/${user.pfp}`).default}
+            id="counselorImage"
             src={user.pfp.startsWith("uploads/") ? `http://localhost:5000/${user.pfp}` : user.pfp}
             className="mx-auto d-block img-fluid rounded-start"
             alt={user.name}
-            style={{ maxHeight: "325px", width:"auto" }}
           />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-8" id="counselorInfo">
           <div className="card-body">
             <h5 className="card-title" style={{ fontWeight: 700 }}>
               {user.name}
             </h5>
             <div
               className="b-2"
+              id="counselorCredentials"
               style={{ fontWeight: 500, marginBottom: "3px" }}
             >
               {user.credentials.map((c, i) => (
@@ -76,7 +77,7 @@ export default function UserCard({ user, query, perPage, roleVal, currentProfile
             :
             <p>Cost per session: ${user.price}</p>
             }
-            <p className="">
+            <p className="buttonContainer">
               {/* <Link to={{pathname: `${ROUTES.PROFILE}/${user.id}`, query: query, perPage: perPage, scrollPosition: scrollPosition, roleVal: roleVal}}>
                 <button className="btn secondary-button">VIEW PROFILE</button>
               </Link> */}
@@ -105,7 +106,7 @@ export default function UserCard({ user, query, perPage, roleVal, currentProfile
         </div>
       </div>
       {`profile_${user.id}` == currentProfile ?
-      <div className="border-top border-dark row g-0 align-items-left">
+      <div id="counselorBio" className="border-top border-dark row g-0 align-items-left">
 
         <div className="col-md-11 md-1 mt-3 d-block mx-auto">         
           <h5 className="py-0">{`An introduction to ${user.name}`}</h5>
