@@ -81,7 +81,7 @@ export default function UserProfile() {
   if (data) {
     const userInfo = data.data.existingUser;
     return (
-      <div className="container">
+      <div id="userProfilePage" className="container">
         <div className="container  border-bottom">
           <h1>{userKey}'s Profile Page</h1>
         </div>

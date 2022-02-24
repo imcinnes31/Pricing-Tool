@@ -12,9 +12,9 @@ export default function Home() {
   return (
     <div className="homeContainer container pb-5">
       <div className="row">
-        <div className="col">
+        <div className="col" id="slideShowColumn">
           {/* <img src={require("../assets/images/hero.jpg").default} /> */}
-          <div class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel slide" data-bs-ride="carousel" id="slideShow">
             <div class="carousel-inner">
               {slideImages.map(eachFile=>{ 
                 return(
@@ -45,7 +45,7 @@ export default function Home() {
       </div>
 
       <div
-        className="container"
+        className="container" id="missionStatement"
         style={{
           paddingLeft: "10%",
           paddingRight: "10%",
@@ -53,7 +53,7 @@ export default function Home() {
           paddingBottom: "5%",
         }}
       >
-        <h3 className="horizontal-center">
+        <h3>
           <b>
             We believe that mental health care service should be available for
             everyone. Let us find the{" "}
@@ -63,9 +63,9 @@ export default function Home() {
         </h3>
       </div>
 
-      <div className="container">
+      <div className="container" id="letsGoButton">
         <Link to={ROUTES.MAIN}>
-          <button className="btn btn-lg primary-button horizontal-center px-3 py-2">
+          <button className="btn btn-lg primary-button px-3 py-2">
             Let's go!
           </button>
         </Link>

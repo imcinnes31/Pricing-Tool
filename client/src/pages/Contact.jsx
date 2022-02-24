@@ -54,7 +54,7 @@ export default function Contact() {
           <button
             type="submit"
             className="btn primary-button w-100"
-            style={{ marginLeft: "0px" }}
+            // style={{ marginLeft: "0px" }}
           >
             Submit
           </button>

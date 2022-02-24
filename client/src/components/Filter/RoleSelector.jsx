@@ -35,7 +35,7 @@ export default function RoleSelector({roleVal, setRoleVal})
         <div>
             
             <ToggleButtonGroup onClick={(event) => toggleRole(event)} id="roleOptions" type="radio" name="roleOptions" defaultValue={"Counselor"}>
-                <div style={{display:"block", paddingRight:30}}> <h4>{`I am looking for a:`}</h4> </div>
+                <div style={{display:"block", paddingRight:30}}> <h4 id="rolePrompt">{`I am looking for a:`}</h4> </div>
     <ToggleButton className="toggles" id="tbg-radio-1" value={"Counselor"}>
       Counselor
     </ToggleButton>

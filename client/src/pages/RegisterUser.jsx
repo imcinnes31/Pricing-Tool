@@ -48,7 +48,7 @@ export default function RegisterUser() {
 
   const auth = useContext(AuthContext);
   return (
-    <div>
+    <div id="registerPage">
       <h1>Registration</h1>
       {/* Change Form.Control id to control id in the form group  */}
       <Form onSubmit={submitTest}>
@@ -112,12 +112,14 @@ export default function RegisterUser() {
             ></Form.Control>
           </Col>
         </Row>
+        <div id="registerButton">
         <Button
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
         >
           Register
         </Button>
+        </div>
       </Form>
     </div>
   );
