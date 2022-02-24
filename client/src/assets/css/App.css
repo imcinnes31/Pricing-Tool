@@ -388,11 +388,6 @@ button:focus {
     font-weight: bold;
   }
 
-  #filterPage label {
-    font-size: 36px;
-    font-weight: bold;
-  }
-
   #filterPage a {
     font-size: 36px;
     font-weight: bold;
@@ -597,38 +592,38 @@ button:focus {
 @media only screen and (min-device-width: 576px) and (max-device-width: 1024px)
  {
    body, h1, h2, h3, h4, h5, h6 {
-     width: 2300px;
+     width: 65vw;
    }
 
   /* home page */
 
   .homeContainer h1 {
-    font-size: 80px;
+    font-size: 65px;
     text-align: center;
   }
 
   .homeContainer .primary-button {
-    margin-left: 1000px;
+    margin-left: 28vw;
   }
   
   .homeContainer h1 {
-    width: 2000px;
+    width: 60vw;
     font-size: 120px;
   }
 
   .homeContainer h3 {
-    width: 2000px;
+    width: 60vw;
     font-size: 40px;
   }
 
   .homeContainer .carousel-item {
-    width: 2240px;
-    height: 1400px;
+    width: 65vw;
+    height: 36vh;
   }
 
   .homeContainer .carousel-inner {
-    width: 2240px;
-    height: 1400px;
+    width: 65vw;
+    height: 36vh;
   }
 
   .homeContainer .btn {
@@ -639,7 +634,8 @@ button:focus {
   /* about page */
 
   #aboutPage .col, h1, h2, h4, p {
-    width: 2000px;
+    width: 60vw;
+    text-align: center;
   }
 
   #aboutPage h2, h4 {
@@ -651,6 +647,12 @@ button:focus {
   #aboutPage h1 {
     font-size: 60px;
     font-weight: bold;
+  }
+
+  #aboutPage h4 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
   }
 
   /* faq page */
@@ -671,11 +673,11 @@ button:focus {
 
   /* contact page */
   #contactPage .container {
-    width: 2240px;
+    width: 65vw;
   }
 
   #contactPage .form-control {
-    width: 2000px;
+    width: 65vw;
     font-size: 36px;
   }
 
@@ -708,6 +710,15 @@ button:focus {
 
   /* find a counselor page */
 
+  #filterPage {
+    width: 65vw;
+  }
+
+  #filterPage h1, h2, h3, h4, h5, h6, p {
+    width: 65vw;
+    text-align: left;
+  }
+
   #filterPage #filterButton {
     font-size: 48px;
     width: 400px;
@@ -722,14 +733,13 @@ button:focus {
     font-weight: bold;
   }
 
-  #filterPage label {
+  #filterPage a {
     font-size: 36px;
     font-weight: bold;
   }
 
-  #filterPage a {
-    font-size: 36px;
-    font-weight: bold;
+  #rolePrompt {
+    width: 10vw;
   }
 
   #priceIndicator {
@@ -751,7 +761,7 @@ button:focus {
   }
 
   #filterDropdowns {
-    width: 1200px;
+    width: 70vw;
   }
 
   #locationOptions label {
@@ -768,12 +778,12 @@ button:focus {
   }
 
   #counselorPic {
-    width: 1200px;
+    width: 70vw;
     height: 450px;
   }
 
   #counselorInfo {
-    width: 1200px;
+    width: 70vw;
   }
 
   #counselorInfo p {
@@ -821,146 +831,19 @@ button:focus {
     text-align: center;
   }
 
-    /* find a counselor page */
-    #filterPage {
-      width: 2300px;
-    }
 
-    #filterPage h1, h2, h3, h4, h5, h6, p {
-      width: 2300px;
-      text-align: left;
-    }
-
-    #rolePrompt {
-      width: 500px;
-    }
-
-    #filterPage #filterButton {
-      font-size: 48px;
-      width: 400px;
-    }
-  
-    #filterPage h1 {
-      font-size: 48px;
-    }
-  
-    #filterPage label {
-      font-size: 36px;
-      font-weight: bold;
-    }
-  
-    #filterPage label {
-      font-size: 36px;
-      font-weight: bold;
-    }
-  
-    #filterPage a {
-      font-size: 36px;
-      font-weight: bold;
-    }
-  
-    #priceIndicator {
-      font-size: 48px;
-      font-weight: bold;
-    }
-  
-    #customRange1 {
-      padding-bottom: 50px;
-    }
-  
-    #customRange1::-webkit-slider-runnable-track {
-      height: 24px;
-    }
-  
-    #customRange1::-webkit-slider-thumb {
-      height: 30px;
-      width: 30px;
-    }
-  
-    #filterDropdowns {
-      width: 2300px;
-    }
-  
-    #locationOptions label {
-      font-size: 36px;
-    }
-    
-    #locationOptions .form-select {
-      font-size: 36px;
-    }
-    
-    #locationOptions input {
-      height: 36px;
-      width: 36px;
-    }
-  
-    #counselorPic {
-      width: 1200px;
-      height: 450px;
-      padding: 20px;
-    }
-  
-    #counselorInfo {
-      width: 1200px;
-    }
-  
-    #counselorInfo p {
-      font-size: 24px;
-    }
-  
-    #counselorInfo h5 {
-      font-size: 36px;
-    }
-  
-    #counselorInfo h6 {
-      font-size: 30px;
-    }
-  
-    #counselorInfo .btn {
-      font-size: 36px;
-    }
-  
-    #counselorBio p {
-      font-size: 24px;
-    }
-  
-    #counselorBio h5 {
-      font-size: 36px;
-    }
-  
-    #counselorBio h6 {
-      font-size: 30px;
-    }
-  
-    #counselorBio .btn {
-      font-size: 36px;
-    }
-  
-    #counselorCredentials {
-      font-size: 36px;
-    }
-  
-    #counselorImage {
-      max-height: 450px;
-      width: auto;
-    }
-  
-    .buttonContainer {
-      text-align: center;
-    }
-  
     /* add a counselor page */
     #addCounselorPage {
-      width: 2300px;
+      width: 65vw;
     }
 
     #addCounselorPage h1 {
       font-size: 72px;
-      width: 2300px;
+      width: 60vw;
     }
   
     #addCounselorPage .image-upload {
-      width: 2300px;
+      width: 60vw;
     }
 
     #addCounselorPage .image-upload__preview {
@@ -983,7 +866,7 @@ button:focus {
     }
   
     #addCounselorPage .form-control {
-      width: 2300px;
+      width: 65vw;
       font-size: 36px;
     }
   
@@ -999,11 +882,11 @@ button:focus {
     /* register page */
 
     #registerPage {
-      width: 2300px;
+      width: 65vw;
     }
 
     #registerPage h1 {
-      width: 2240px;
+      width: 65vw;
       font-size: 72px;
       text-align: center;
     }
@@ -1014,7 +897,7 @@ button:focus {
 
     #registerPage .form-control{
       font-size: 36px;
-      width: 1100px;
+      width: 32vw;
     }
 
     #registerPage #registerButton {
@@ -1028,15 +911,15 @@ button:focus {
 
   /* user list page */
   #userListPage {
-    width: 2300px;
+    width: 65vw;
   }
 
   #userListPage .card {
-    width: 2300px;
+    width: 65vw;
   }
 
   #userListPage .card-body {
-    width: 2240px;
+    width: 60vw;
   }
 
   #userListPage h1 {
@@ -1057,12 +940,12 @@ button:focus {
 
   #userListPage h5 {
     font-size: 36px;
-    width: 1000px;
+    width: 25vw;
   }
 
   #userListPage p {
     font-size: 28px;
-    width: 1000px;
+    width: 25vw;
   }
 
   #userListPage input[type="radio"] {
@@ -1071,7 +954,7 @@ button:focus {
   }
 
   #userListPage #radioContainer {
-    width: 1000px;
+    width: 25vw;
   }
 
   #userListPage label {
