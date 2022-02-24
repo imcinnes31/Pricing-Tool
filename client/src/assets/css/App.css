@@ -602,7 +602,8 @@ button:focus {
 
   /* home page */
 
-  .homeContainer , h1, h3 {
+  .homeContainer h1 {
+    font-size: 80px;
     text-align: center;
   }
 
@@ -617,7 +618,7 @@ button:focus {
 
   .homeContainer h3 {
     width: 2000px;
-    font-size: 72px;
+    font-size: 40px;
   }
 
   .homeContainer .carousel-item {
@@ -631,7 +632,7 @@ button:focus {
   }
 
   .homeContainer .btn {
-    font-size: 36px;
+    font-size: 40px;
     width: 300px;
   }
 
