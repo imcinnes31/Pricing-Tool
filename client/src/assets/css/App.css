@@ -269,6 +269,15 @@ button:focus {
   width: 24px;
 }
 
+#forgotPasswordPage {
+  width: 50%;
+  margin-bottom: 10vh;
+}
+
+#forgotPasswordPage .btn {
+  margin-left: 0px;
+}
+
 /* MOBILE DEVICES */
 @media only screen and (max-device-width: 576px)
  {
@@ -563,10 +572,12 @@ button:focus {
 
   #userListPage h5 {
     font-size: 28px;
+    width: 400px;
   }
 
   #userListPage p {
     font-size: 24px;
+    width: 400px;
   }
 
   #userListPage input[type="radio"] {
@@ -575,7 +586,7 @@ button:focus {
   }
 
   #userListPage #radioContainer {
-    width: 600px;
+    width: 500px;
   }
 
   #userListPage label {
@@ -584,6 +595,50 @@ button:focus {
 
   #userListPage .btn {
     font-size: 28px;
+  }
+
+  /* user profile page */
+
+  #userProfilePage h1 {
+    font-size: 72px;
+    text-align: center;
+  }
+
+  #userProfilePage input {
+    font-size: 36px;
+    width: 1200px;
+  }
+
+  #userProfilePage label {
+    font-size: 36px;
+  }
+
+  #userProfilePage .btn {
+    font-size: 36px;
+  }
+
+  #userProfilePage #buttonContainer {
+    text-align: center;
+  }
+
+  /* forgot password page */
+
+  #forgotPasswordPage {
+    width: 1200px;
+  }
+
+  #forgotPasswordPage h1 {
+    font-size: 72px;
+    font-weight: bold;
+  }
+
+  #forgotPasswordPage input {
+    font-size: 48px;
+  }
+
+  #forgotPasswordPage .btn {
+    font-size: 48px;
+    margin-left: 5px;
   }
 
 }
@@ -633,15 +688,14 @@ button:focus {
 
   /* about page */
 
-  #aboutPage .col, h1, h2, h4, p {
+  #aboutPage .col, #aboutPage h1, #aboutPage h2, #aboutPage h4, #aboutPage p {
     width: 60vw;
     text-align: center;
   }
 
-  #aboutPage h2, h4 {
+  #aboutPage h2, #aboutPage h4 {
     font-size: 36px;
     padding: 5px;
-    text-align: center;
   }
 
   #aboutPage h1 {
@@ -656,6 +710,10 @@ button:focus {
   }
 
   /* faq page */
+
+  #faqPage , #faqPage h1, #faqPage h4, #faqPage p {
+    width: 65vw;
+  }
 
   #faqPage h1 {
     font-size: 60px;
@@ -714,9 +772,14 @@ button:focus {
     width: 65vw;
   }
 
-  #filterPage h1, h2, h3, h4, h5, h6, p {
+  #filterPage h1, #filterPage h2, #filterPage h3, #filterPage h5, #filterPage h6, #filterPage p {
     width: 65vw;
     text-align: left;
+  }
+
+  #filterPage #rolePrompt {
+    width: 10vw;
+    font-size: 36px;
   }
 
   #filterPage #filterButton {
@@ -738,10 +801,6 @@ button:focus {
     font-weight: bold;
   }
 
-  #rolePrompt {
-    width: 10vw;
-  }
-
   #priceIndicator {
     font-size: 48px;
     font-weight: bold;
@@ -753,6 +812,7 @@ button:focus {
 
   #customRange1::-webkit-slider-runnable-track {
     height: 24px;
+    width: 65vw;
   }
 
   #customRange1::-webkit-slider-thumb {
@@ -761,7 +821,7 @@ button:focus {
   }
 
   #filterDropdowns {
-    width: 70vw;
+    width: 65vw;
   }
 
   #locationOptions label {
@@ -964,5 +1024,58 @@ button:focus {
   #userListPage .btn {
     font-size: 36px;
   }
+
+  /* user profile page */
+
+  #userListPage {
+    width: 65vw;
+  }
+
+  #userProfilePage h1 {
+    font-size: 72px;
+    text-align: center;
+  }
+  
+    #userProfilePage input {
+      font-size: 48px;
+      width: 65vw;
+    }
+  
+    #userProfilePage label {
+      font-size: 48px;
+    }
+  
+    #userProfilePage .btn {
+      font-size: 48px;
+      width: 400px;
+    }
+
+    #userProfilePage #buttonContainer {
+      width: 65vw;
+      margin-left: 20vw;
+    }
+
+    /* forgot password page */
+
+    #forgotPasswordPage {
+      width: 65vw;
+    }
+  
+    #forgotPasswordPage h1 {
+      font-size: 72px;
+      font-weight: bold;
+      width: 65vw;
+    }
+  
+    #forgotPasswordPage input {
+      font-size: 48px;
+      width: 65vw;
+    }
+  
+    #forgotPasswordPage .btn {
+      font-size: 48px;
+      width: 25vw;
+      margin-left:12vw;
+    }
   
 }

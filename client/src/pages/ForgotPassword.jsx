@@ -17,7 +17,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <Container style={{ width: "50%" }}>
+    <Container id="forgotPasswordPage">
       <h1 class="display-1 text-center">Forgot Password</h1>
       <Form>
         <hr />
@@ -29,11 +29,10 @@ export default function ForgotPassword() {
         {/* Hack: margin bottom for text-area */}
         <Form.Label></Form.Label>
 
-        <Form.Group className="mb-3" controlId="formSubmit">
+        <Form.Group className="mb-3" controlId="formSubmit" id="buttonContainer">
           <button
             type="submit"
             className="btn primary-button w-100"
-            style={{ marginLeft: "0px" }}
             onClick={submitTest}
           >
             Submit
