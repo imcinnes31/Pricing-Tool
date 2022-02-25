@@ -60,7 +60,7 @@ export default function AddCounselor() {
     });
   };
   return (
-    <div>
+    <div id="addCounselorPage">
       <h1>Add Counselor</h1>
       {/* Change Form.Control id to control id in the form group  */}
       <Form onSubmit={submitForm}>
@@ -204,12 +204,14 @@ export default function AddCounselor() {
           onChange={handleField}
           required
         ></Form.Control>
+        <div id="submitContainer">
         <Button
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
         >
           ADD
         </Button>
+        </div>
       </Form>
     </div>
   );

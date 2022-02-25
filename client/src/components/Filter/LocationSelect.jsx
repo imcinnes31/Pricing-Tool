@@ -128,7 +128,7 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
                             <br></br>
                             <label>Select Province:</label>
                             <div>
-                                <select style={{fontSize:"24px",borderColor:"blue", borderWidth:"1px", borderStyle:"solid"}} 
+                                <select
                                     class="form-select" aria-label="Default select example" id="province" onChange={changeProvince}>
                                     {locs.map((prov) =>                 
                                         {
@@ -143,7 +143,7 @@ export default function LocationSelect({ setProvVal, setCityVal, inPersonVal, se
                                 {locs[0] 
                                 ?
                                 <div>
-                                    <select style={{fontSize:"24px", borderColor:"blue", borderWidth:"1px", borderStyle:"solid"}} 
+                                    <select 
                                         class="form-select" aria-label="Default select example" id="city" onChange={changeCity}>
                                         {locs[0].list.map((city) => (
                                             <option key={city}>{city}</option>

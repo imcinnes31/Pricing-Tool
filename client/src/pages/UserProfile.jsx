@@ -81,7 +81,7 @@ export default function UserProfile() {
   if (data) {
     const userInfo = data.data.existingUser;
     return (
-      <div className="container">
+      <div id="userProfilePage" className="container">
         <div className="container  border-bottom">
           <h1>{userKey}'s Profile Page</h1>
         </div>
@@ -160,6 +160,7 @@ export default function UserProfile() {
           </Row>
           {edit == false && editPW == false ? (
             <Fragment>
+              <div id="buttonContainer">
               <Button
                 style={{ marginTop: "20px", marginBottom: "202px" }}
                 onClick={switchEditMode}
@@ -172,6 +173,7 @@ export default function UserProfile() {
               >
                 Change Password
               </Button>
+              </div>
             </Fragment>
           ) : (
             ""

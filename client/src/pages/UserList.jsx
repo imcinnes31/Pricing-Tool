@@ -91,7 +91,7 @@ export default function UserList() {
 
   if (search && searchData != null) {
     return (
-      <div className="container pb-5">
+      <div id="userListPage" className="container pb-5">
         <div className="container  border-bottom">
           <h1>User Management</h1>
         </div>
@@ -116,7 +116,7 @@ export default function UserList() {
                     defaultChecked={radioClient}
                     onChange={handleChange(searchData.email)}
                   />
-                  Client &nbsp;
+                  <label>Client &nbsp;</label>
                   <input
                     type="radio"
                     value="Counselor"
@@ -124,7 +124,7 @@ export default function UserList() {
                     defaultChecked={radioCounselor}
                     onChange={handleChange(searchData.email)}
                   />
-                  Counselor &nbsp;
+                  <label>Counselor &nbsp;</label>
                   <input
                     type="radio"
                     value="Admin"
@@ -132,7 +132,7 @@ export default function UserList() {
                     defaultChecked={radioAdmin}
                     onChange={handleChange(searchData.email)}
                   />
-                  Admin
+                  <label>Admin &nbsp;</label>
                 </div>
               </Col>
               <Col>
@@ -165,7 +165,7 @@ export default function UserList() {
     );
   } else if (!search || searchData == null) {
     return (
-      <div className="container pb-5">
+      <div id="userListPage" className="container pb-5">
         <div className="container  border-bottom">
           <h1>User Management</h1>
         </div>
@@ -200,7 +200,7 @@ export default function UserList() {
                   </p>
                 </Col>
                 <Col>
-                  <div>
+                  <div id="radioContainer">
                     <input
                       type="radio"
                       value="Client"
@@ -208,7 +208,7 @@ export default function UserList() {
                       defaultChecked={radioClient}
                       onChange={handleChange(user.email)}
                     />
-                    Client &nbsp;
+                    <label>Client &nbsp;</label>
                     <input
                       type="radio"
                       value="Counselor"
@@ -216,7 +216,7 @@ export default function UserList() {
                       defaultChecked={radioCounselor}
                       onChange={handleChange(user.email)}
                     />
-                    Counselor &nbsp;
+                    <label>Counselor &nbsp;</label>
                     <input
                       type="radio"
                       value="Admin"
@@ -224,7 +224,7 @@ export default function UserList() {
                       defaultChecked={radioAdmin}
                       onChange={handleChange(user.email)}
                     />
-                    Admin
+                    <label>Admin</label>
                   </div>
                 </Col>
                 <Col>

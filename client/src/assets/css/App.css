@@ -220,6 +220,10 @@ button:focus {
   color: white;
 }
 
+.homeContainer .primary-button {
+  margin-left: 500px;
+}
+
 .carousel-item {
   width: 560px;
   height: 350px;
@@ -228,6 +232,10 @@ button:focus {
 #contactPage .container {
   width: 50%;
   padding-bottom: 10vh;
+}
+
+#contactPage .primary-button {
+  margin-left: 0px;
 }
 
 #counselorImage {
@@ -250,12 +258,24 @@ button:focus {
 }
 
 #locationOptions .form-select {
-  font-size: 20px;
+  font-size: 24px;
+  border-color: blue; 
+  border-width: 1px; 
+  border-style: solid;
 }
 
 #locationOptions input {
   height: 24px;
   width: 24px;
+}
+
+#forgotPasswordPage {
+  width: 50%;
+  margin-bottom: 10vh;
+}
+
+#forgotPasswordPage .btn {
+  margin-left: 0px;
 }
 
 /* MOBILE DEVICES */
@@ -278,208 +298,7 @@ button:focus {
     height: 700px;
   }
 
-  .homeContainer .btn {
-    font-size: 36px;
-    width: 300px;
-  }
-
-  /* about page */
-
-  #aboutPage .col {
-    width: 1200px;
-  }
-
-  #aboutPage h2, h4 {
-    font-size: 36px;
-    padding: 5px;
-  }
-
-  #aboutPage h1 {
-    font-size: 60px;
-    font-weight: bold;
-  }
-
-  /* faq page */
-
-  #faqPage h1 {
-    font-size: 60px;
-  }
-
-  #faqPage h4 {
-    font-size: 48px;
-    padding-bottom: 5px;
-    padding-top: 10px;
-  }
-
-  #faqPage p {
-    font-size: 36px;
-  }
-
-  /* contact page */
-
-  #contactPage .container {
-    width: 90%;
-  }
-
-  #contactPage h1 {
-    font-size: 60px;
-    font-weight: bold;
-  }
-
-  #contactPage label {
-    font-size: 36px;
-  }
-
-  #contactPage .form-control {
-    font-size: 36px;
-  }
-
-  #contactPage .form-check-input {
-    font-size: 36px;
-    padding: 5px;
-  }
-
-  #contactPage .form-check-label {
-    font-size: 36px;
-    padding-right: 25px;
-  }
-
-  #contactPage .btn {
-    font-size: 36px;
-  }
-
-  /* find a counselor page */
-
-  #filterPage #filterButton {
-    font-size: 48px;
-    width: 400px;
-  }
-
-  #filterPage h1 {
-    font-size: 48px;
-  }
-
-  #filterPage label {
-    font-size: 36px;
-    font-weight: bold;
-  }
-
-  #filterPage label {
-    font-size: 36px;
-    font-weight: bold;
-  }
-
-  #filterPage a {
-    font-size: 36px;
-    font-weight: bold;
-  }
-
-  #priceIndicator {
-    font-size: 48px;
-    font-weight: bold;
-  }
-
-  #customRange1 {
-    padding-bottom: 50px;
-  }
-
-  #customRange1::-webkit-slider-runnable-track {
-    height: 24px;
-  }
-
-  #customRange1::-webkit-slider-thumb {
-    height: 30px;
-    width: 30px;
-  }
-
-  #filterDropdowns {
-    width: 1200px;
-  }
-
-  #locationOptions label {
-    font-size: 36px;
-  }
-  
-  #locationOptions .form-select {
-    font-size: 36px;
-  }
-  
-  #locationOptions input {
-    height: 36px;
-    width: 36px;
-  }
-
-  #counselorPic {
-    width: 1200px;
-    height: 450px;
-  }
-
-  #counselorInfo {
-    width: 1200px;
-  }
-
-  #counselorInfo p {
-    font-size: 24px;
-  }
-
-  #counselorInfo h5 {
-    font-size: 36px;
-  }
-
-  #counselorInfo h6 {
-    font-size: 30px;
-  }
-
-  #counselorInfo .btn {
-    font-size: 36px;
-  }
-
-  #counselorBio p {
-    font-size: 24px;
-  }
-
-  #counselorBio h5 {
-    font-size: 36px;
-  }
-
-  #counselorBio h6 {
-    font-size: 30px;
-  }
-
-  #counselorBio .btn {
-    font-size: 36px;
-  }
-
-  #counselorCredentials {
-    font-size: 36px;
-  }
-
-  #counselorImage {
-    max-height: 450px;
-    width: auto;
-  }
-
-  .buttonContainer {
-    text-align: center;
-  }
-}
-
-/* TABLET DEVICES */
-@media only screen and (min-device-width: 576px) and (max-device-width: 1024px)
- {
-
-  /* home page */
-
-  .homeContainer h1 {
-    font-size: 72px;
-    text-align: center;
-  }
-
-  .homeContainer h3 {
-    font-size: 36px;
-  }
-
-  .homeContainer .carousel-item {
+  .homeContainer .carousel-inner {
     width: 1120px;
     height: 700px;
   }
@@ -489,6 +308,10 @@ button:focus {
     width: 300px;
   }
 
+  .homeContainer .primary-button {
+    margin-left: 400px;
+  }
+
   /* about page */
 
   #aboutPage .col {
@@ -554,6 +377,10 @@ button:focus {
     font-size: 36px;
   }
 
+  #contactPage .primary-button {
+    margin-left: 0px;
+  }
+
   /* find a counselor page */
 
   #filterPage #filterButton {
@@ -563,11 +390,6 @@ button:focus {
 
   #filterPage h1 {
     font-size: 48px;
-  }
-
-  #filterPage label {
-    font-size: 36px;
-    font-weight: bold;
   }
 
   #filterPage label {
@@ -668,4 +490,592 @@ button:focus {
   .buttonContainer {
     text-align: center;
   }
+
+  /* add a counselor page */
+
+  #addCounselorPage h1 {
+    font-size: 72px;
+  }
+
+  #addCounselorPage .image-upload__preview {
+    width: 42rem;
+    height: 42rem;
+  }
+
+  #addCounselorPage p {
+    font-size: 48px;
+  }
+
+  #addCounselorPage .btn {
+    font-size: 36px;
+    width: 300px;
+  }
+
+  #addCounselorPage .form-label {
+    font-size: 36px;
+  }
+
+  #addCounselorPage .form-control {
+    width: 1200px;
+    font-size: 36px;
+  }
+
+  #addCounselorPage .form-check-input {
+    height: 36px;
+    width: 36px;
+  }
+
+  #addCounselorPage #submitContainer {
+    text-align: center;
+  }
+
+  /* register page */
+
+  #registerPage h1 {
+    font-size: 72px;
+    text-align: center;
+  }
+
+  #registerPage .form-label{
+    font-size: 36px;
+  }
+
+  #registerPage .form-control{
+    font-size: 36px;
+  }
+
+  #registerPage #registerButton {
+    text-align: center;
+  }
+
+  #registerPage .btn {
+    width: 300px;
+    font-size: 36px;
+  }
+
+  /* user list page */
+  #userListPage h1 {
+    font-size: 72px;
+  }
+
+  #userListPage .form-input {
+    font-size: 36px;
+  }
+
+  #userListPage .form-control {
+    font-size: 36px;
+  }
+
+  #userListPage #button-addon2 {
+    font-size: 36px;
+  }
+
+  #userListPage h5 {
+    font-size: 28px;
+    width: 400px;
+  }
+
+  #userListPage p {
+    font-size: 24px;
+    width: 400px;
+  }
+
+  #userListPage input[type="radio"] {
+    height: 28px;
+    width: 28px;
+  }
+
+  #userListPage #radioContainer {
+    width: 500px;
+  }
+
+  #userListPage label {
+    font-size: 28px;
+  }
+
+  #userListPage .btn {
+    font-size: 28px;
+  }
+
+  /* user profile page */
+
+  #userProfilePage h1 {
+    font-size: 72px;
+    text-align: center;
+  }
+
+  #userProfilePage input {
+    font-size: 36px;
+    width: 1200px;
+  }
+
+  #userProfilePage label {
+    font-size: 36px;
+  }
+
+  #userProfilePage .btn {
+    font-size: 36px;
+  }
+
+  #userProfilePage #buttonContainer {
+    text-align: center;
+  }
+
+  /* forgot password page */
+
+  #forgotPasswordPage {
+    width: 1200px;
+  }
+
+  #forgotPasswordPage h1 {
+    font-size: 72px;
+    font-weight: bold;
+  }
+
+  #forgotPasswordPage input {
+    font-size: 48px;
+  }
+
+  #forgotPasswordPage .btn {
+    font-size: 48px;
+    margin-left: 5px;
+  }
+
+}
+
+/* TABLET DEVICES */
+@media only screen and (min-device-width: 576px) and (max-device-width: 1024px)
+ {
+   body, h1, h2, h3, h4, h5, h6 {
+     width: 65vw;
+   }
+
+  /* home page */
+
+  .homeContainer h1 {
+    font-size: 65px;
+    text-align: center;
+  }
+
+  .homeContainer .primary-button {
+    margin-left: 28vw;
+  }
+  
+  .homeContainer h1 {
+    width: 60vw;
+    font-size: 120px;
+  }
+
+  .homeContainer h3 {
+    width: 60vw;
+    font-size: 40px;
+  }
+
+  .homeContainer .carousel-item {
+    width: 65vw;
+    height: 36vh;
+  }
+
+  .homeContainer .carousel-inner {
+    width: 65vw;
+    height: 36vh;
+  }
+
+  .homeContainer .btn {
+    font-size: 40px;
+    width: 300px;
+  }
+
+  /* about page */
+
+  #aboutPage .col, #aboutPage h1, #aboutPage h2, #aboutPage h4, #aboutPage p {
+    width: 60vw;
+    text-align: center;
+  }
+
+  #aboutPage h2, #aboutPage h4 {
+    font-size: 36px;
+    padding: 5px;
+  }
+
+  #aboutPage h1 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  #aboutPage h4 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* faq page */
+
+  #faqPage , #faqPage h1, #faqPage h4, #faqPage p {
+    width: 65vw;
+  }
+
+  #faqPage h1 {
+    font-size: 60px;
+  }
+
+  #faqPage h4 {
+    font-size: 48px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+  }
+
+  #faqPage p {
+    font-size: 36px;
+  }
+
+  /* contact page */
+  #contactPage .container {
+    width: 65vw;
+  }
+
+  #contactPage .form-control {
+    width: 65vw;
+    font-size: 36px;
+  }
+
+  #contactPage h1 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  #contactPage label {
+    font-size: 36px;
+  }
+
+  #contactPage .form-check-input {
+    font-size: 36px;
+    padding: 5px;
+  }
+
+  #contactPage .form-check-label {
+    font-size: 36px;
+    padding-right: 25px;
+  }
+
+  #contactPage .btn {
+    font-size: 36px;
+  }
+
+  #contactPage .primary-button {
+    margin-left: 400px;
+  }
+
+  /* find a counselor page */
+
+  #filterPage {
+    width: 65vw;
+  }
+
+  #filterPage h1, #filterPage h2, #filterPage h3, #filterPage h5, #filterPage h6, #filterPage p {
+    width: 65vw;
+    text-align: left;
+  }
+
+  #filterPage #rolePrompt {
+    width: 10vw;
+    font-size: 36px;
+  }
+
+  #filterPage #filterButton {
+    font-size: 48px;
+    width: 400px;
+  }
+
+  #filterPage h1 {
+    font-size: 48px;
+  }
+
+  #filterPage label {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #filterPage a {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  #priceIndicator {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  #customRange1 {
+    padding-bottom: 50px;
+  }
+
+  #customRange1::-webkit-slider-runnable-track {
+    height: 24px;
+    width: 65vw;
+  }
+
+  #customRange1::-webkit-slider-thumb {
+    height: 30px;
+    width: 30px;
+  }
+
+  #filterDropdowns {
+    width: 65vw;
+  }
+
+  #locationOptions label {
+    font-size: 36px;
+  }
+  
+  #locationOptions .form-select {
+    font-size: 36px;
+  }
+  
+  #locationOptions input {
+    height: 36px;
+    width: 36px;
+  }
+
+  #counselorPic {
+    width: 70vw;
+    height: 450px;
+  }
+
+  #counselorInfo {
+    width: 70vw;
+  }
+
+  #counselorInfo p {
+    font-size: 24px;
+  }
+
+  #counselorInfo h5 {
+    font-size: 36px;
+  }
+
+  #counselorInfo h6 {
+    font-size: 30px;
+  }
+
+  #counselorInfo .btn {
+    font-size: 36px;
+  }
+
+  #counselorBio p {
+    font-size: 24px;
+  }
+
+  #counselorBio h5 {
+    font-size: 36px;
+  }
+
+  #counselorBio h6 {
+    font-size: 30px;
+  }
+
+  #counselorBio .btn {
+    font-size: 36px;
+  }
+
+  #counselorCredentials {
+    font-size: 36px;
+  }
+
+  #counselorImage {
+    max-height: 450px;
+    width: auto;
+  }
+
+  .buttonContainer {
+    text-align: center;
+  }
+
+
+    /* add a counselor page */
+    #addCounselorPage {
+      width: 65vw;
+    }
+
+    #addCounselorPage h1 {
+      font-size: 72px;
+      width: 60vw;
+    }
+  
+    #addCounselorPage .image-upload {
+      width: 60vw;
+    }
+
+    #addCounselorPage .image-upload__preview {
+      width: 42rem;
+      height: 42rem;
+    }
+  
+    #addCounselorPage p {
+      font-size: 48px;
+      text-align: center;
+    }
+  
+    #addCounselorPage .btn {
+      font-size: 36px;
+      width: 300px;
+    }
+  
+    #addCounselorPage .form-label {
+      font-size: 36px;
+    }
+  
+    #addCounselorPage .form-control {
+      width: 65vw;
+      font-size: 36px;
+    }
+  
+    #addCounselorPage .form-check-input {
+      height: 36px;
+      width: 36px;
+    }
+  
+    #addCounselorPage #submitContainer {
+      text-align: center;
+    }
+
+    /* register page */
+
+    #registerPage {
+      width: 65vw;
+    }
+
+    #registerPage h1 {
+      width: 65vw;
+      font-size: 72px;
+      text-align: center;
+    }
+
+    #registerPage .form-label{
+      font-size: 36px;
+    }
+
+    #registerPage .form-control{
+      font-size: 36px;
+      width: 32vw;
+    }
+
+    #registerPage #registerButton {
+      text-align: center;
+    }
+
+    #registerPage .btn {
+      width: 300px;
+      font-size: 36px;
+    }
+
+  /* user list page */
+  #userListPage {
+    width: 65vw;
+  }
+
+  #userListPage .card {
+    width: 65vw;
+  }
+
+  #userListPage .card-body {
+    width: 60vw;
+  }
+
+  #userListPage h1 {
+    font-size: 72px;
+  }
+
+  #userListPage .form-input {
+    font-size: 36px;
+  }
+
+  #userListPage .form-control {
+    font-size: 36px;
+  }
+
+  #userListPage #button-addon2 {
+    font-size: 36px;
+  }
+
+  #userListPage h5 {
+    font-size: 36px;
+    width: 25vw;
+  }
+
+  #userListPage p {
+    font-size: 28px;
+    width: 25vw;
+  }
+
+  #userListPage input[type="radio"] {
+    height: 36px;
+    width: 36px;
+  }
+
+  #userListPage #radioContainer {
+    width: 25vw;
+  }
+
+  #userListPage label {
+    font-size: 36px;
+  }
+
+  #userListPage .btn {
+    font-size: 36px;
+  }
+
+  /* user profile page */
+
+  #userListPage {
+    width: 65vw;
+  }
+
+  #userProfilePage h1 {
+    font-size: 72px;
+    text-align: center;
+  }
+  
+    #userProfilePage input {
+      font-size: 48px;
+      width: 65vw;
+    }
+  
+    #userProfilePage label {
+      font-size: 48px;
+    }
+  
+    #userProfilePage .btn {
+      font-size: 48px;
+      width: 400px;
+    }
+
+    #userProfilePage #buttonContainer {
+      width: 65vw;
+      margin-left: 20vw;
+    }
+
+    /* forgot password page */
+
+    #forgotPasswordPage {
+      width: 65vw;
+    }
+  
+    #forgotPasswordPage h1 {
+      font-size: 72px;
+      font-weight: bold;
+      width: 65vw;
+    }
+  
+    #forgotPasswordPage input {
+      font-size: 48px;
+      width: 65vw;
+    }
+  
+    #forgotPasswordPage .btn {
+      font-size: 48px;
+      width: 25vw;
+      margin-left:12vw;
+    }
+  
 }

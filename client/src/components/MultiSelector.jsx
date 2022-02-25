@@ -1,15 +1,46 @@
 import React, { useState } from "react";
 import Select from 'react-select'
+import { useMediaQuery } from 'react-responsive'
 
-const styles = {
-  menu: base => ({
-    ...base,
-    marginTop: 0
-  })
-}
 
 // Component for the add counselor page multi selectors.
 export default function MultiSelector({filters, id, onChange, isQuery }) {
+  const isMobile = useMediaQuery({ query: '(max-device-width: 576px)' })
+  const isTablet = useMediaQuery({ query: '(max-device-width: 1024px)' })
+
+  const styles = {
+    menu: base => ({
+      ...base,
+      marginTop: 0
+    }),
+    control: provided => ({
+      ...provided,
+      height: isMobile ? 50 : isTablet ? 25 : 25,
+      fontSize: isMobile ? "24px" :  isTablet ? "14px" : "14px",
+    }),
+    placeholder: (defaultStyles) => {
+      return {
+          ...defaultStyles,
+          fontSize: isMobile ? "24px" :  isTablet ? "14px" : "14px",
+          fontWeight: isMobile ? "bold" :  isTablet ? "none" : "none",
+      }
+    },
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return {
+        ...styles,
+        fontSize: isMobile ? "24px" : isTablet ? "14px" : "14px",
+        fontWeight: isMobile ? "bold" : isTablet ? "none" : "none",
+      }
+    },
+    multiValue: (styles, { data }) => {
+      return {
+        ...styles,
+        fontSize: isMobile ? "20px" : isTablet ? "14px" : "14px",
+        fontWeight: isMobile ? "bold" : isTablet ? "none" : "none",
+      };
+    },
+  }
+
   //options here is one list from filters.
 
   //convert options in format of Select component
