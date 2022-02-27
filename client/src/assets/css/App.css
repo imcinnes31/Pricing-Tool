@@ -840,12 +840,12 @@ button:focus {
 
   #homeContainer .carousel-item {
     width: 65vw;
-    height: 50vh;
+    height: 36vh;
   }
 
   #homeContainer .carousel-inner {
     width: 65vw;
-    height: 50vh;
+    height: 36vh;
   }
 
   #homeContainer .btn {
