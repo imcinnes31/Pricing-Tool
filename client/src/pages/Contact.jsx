@@ -10,10 +10,10 @@ export default function Contact() {
         <Form.Label>Name</Form.Label>
         <Form.Group as={Row} className="mb-3" controlId="formFullName">
           <Col>
-            <Form.Control type="firstname" placeholder="First name" required />
+            <Form.Control id="firstName" type="firstname" placeholder="First name" required />
           </Col>
           <Col>
-            <Form.Control type="lastname" placeholder="Last name" required />
+            <Form.Control id="lastName" type="lastname" placeholder="Last name" required />
           </Col>
         </Form.Group>
 

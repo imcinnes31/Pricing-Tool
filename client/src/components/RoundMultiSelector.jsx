@@ -11,20 +11,20 @@ export default function RoundMultiSelector({filters, id, onChange, isQuery, plac
     menu: base => ({
       ...base,
       marginTop: 0,
-      fontSize: isMobile ? "24px" :  isTablet ? "18px" : "18px",
+      fontSize: isMobile ? "48px" :  isTablet ? "72px" : "18px",
     }),
     control: provided => ({
       ...provided,
-      height: isMobile ? 50 : isTablet ? 25 : 25,
+      height: isMobile ? 84 : isTablet ? 120 : 25,
       border: isMobile ? "3px solid #ff0000" : isTablet ? "1px solid #ff0000" : "1px solid #ff0000",
       borderRadius: "30px",
-      fontSize: isMobile ? "24px" :  isTablet ? "18px" : "18px",
+      fontSize: isMobile ? "48px" :  isTablet ? "72px" : "18px",
     }),
     placeholder: (defaultStyles) => {
       return {
           ...defaultStyles,
           color: '#ff0000',
-          fontSize: isMobile ? "24px" :  isTablet ? "18px" : "18px",
+          fontSize: isMobile ? "48px" :  isTablet ? "72px" : "18px",
           fontWeight: isMobile ? "bold" :  isTablet ? "none" : "none",
       }
     },
@@ -32,7 +32,7 @@ export default function RoundMultiSelector({filters, id, onChange, isQuery, plac
       return {
         ...styles,
         color: '#ff0000',
-        fontSize: isMobile ? "24px" : isTablet ? "18px" : "18px",
+        fontSize: isMobile ? "48px" : isTablet ? "60px" : "18px",
         fontWeight: isMobile ? "bold" : isTablet ? "none" : "none",
       }
     },
@@ -40,10 +40,14 @@ export default function RoundMultiSelector({filters, id, onChange, isQuery, plac
       return {
         ...styles,
         backgroundColor: "#ffdddd",
-        fontSize: isMobile ? "20px" : isTablet ? "14px" : "14px",
+        fontSize: isMobile ? "40px" : isTablet ? "64px" : "14px",
         fontWeight: isMobile ? "bold" : isTablet ? "none" : "none",
       };
     },
+    menuList: base => ({
+      ...base,
+      maxHeight:  isMobile ? "600px" : isTablet ? "600px" : "400px",
+    })
    
   
   }
