@@ -218,11 +218,13 @@ module.exports = (server) => {
 
   server.get('/api/v2/counselors/getCounselorByEmail/:emailKey', async (req, res, next) => {
     const email = req.params.emailKey;
+    console.log("This is:");
     console.log(email);
     let existingCounselor;
 
     try {
       existingCounselor = await counselor.findOne({ email: email });
+      console.log(existingCounselor);
       if (existingCounselor == null) {
         throw "";
       }
@@ -239,6 +241,24 @@ module.exports = (server) => {
     });
   }
   );
+
+  server.delete("/api/v2/counselors/counselorDelete/:emailKey", async (req, res, next) => {
+    const email = req.params.emailKey;
+    let existingUser;
+
+    try {
+      existingUser = await counselor.deleteOne({ email: email });
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find counselor, please try again later.",
+        500
+      );
+      return next(error);
+    }
+
+  });
+
+
   ///////////////////////////////////// OLD /////////////////////////////////////////////////////////////////
 
   server.get("/api/v1/counselors", async (req, res) => {

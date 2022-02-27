@@ -9,7 +9,7 @@ import SingleSelector from "../components/SingleSelector";
 import ImageUpload from "../components/ImageUpload";
 const { useState, useEffect } = React;
 
-export default function AddCounselor() {
+export default function AddCounselor(props) {
   const [form, setForm] = useState({});
   const [optionTest, setOptionTest] = useState({});
   const [checked, setChecked] = useState(false);
@@ -22,7 +22,9 @@ export default function AddCounselor() {
   }, [form.province]);
 
   const submitForm = (e) => {
-    // alert(JSON.stringify(form));
+    if(props.isUpdate){
+      Axios.delete(`/api/v2/counselors/counselorDelete/${localStorage.getItem("userEmail")}`);
+    }
     const formData = new FormData();
     for (var key in form) {
       formData.append(key, form[key]);
@@ -67,10 +69,10 @@ export default function AddCounselor() {
   };
   return (
     <div>
-      <h1>Add Counselor</h1>
+      <h1>Counselor Profile Management</h1>
       {/* Change Form.Control id to control id in the form group  */}
       <Form onSubmit={submitForm}>
-        <ImageUpload id={"pfp"} center onInput={handleImg} />
+        <ImageUpload id={"pfp"} center onInput={handleImg}/>
         <Row>
           <Col>
             <Form.Label>Full name</Form.Label>
@@ -222,13 +224,13 @@ export default function AddCounselor() {
           type="text"
           id="email"
           onChange={handleField}
-          defaultValue={localStorage.getItem("userEmail")}
+          // defaultValue={localStorage.getItem("userEmail")}
         ></Form.Control>
         <Button
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
         >
-          ADD
+          SAVE
         </Button>
       </Form>
     </div>

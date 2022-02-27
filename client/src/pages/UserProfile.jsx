@@ -9,6 +9,8 @@ import useHttpRequest from "../hooks/HttpRequestObjectType";
 import { Spinner } from "../components/Spinner";
 import SingleSelector from "../components/SingleSelector";
 import AddCounselor from "./AddCounselor";
+// import counselorsRoute from "../../../server/routes/counselors.route";
+// import { ConnectionStates } from "mongoose";
 const { useState } = React;
 
 export default function UserProfile() {
@@ -95,6 +97,7 @@ export default function UserProfile() {
         `/api/v2/counselors/getCounselorByEmail/${localStorage.getItem("userEmail")}`
       );
       setUserWithData(responseData.data.existingCounselor);
+      console.log("------------------");
       console.log(responseData.data.existingCounselor);
     } catch (err) {
       alert("Please Update your Counselor Profile");
@@ -437,15 +440,15 @@ export default function UserProfile() {
             <div className="container  border-bottom">
               <h1>{userKey}'s Counselor Profile</h1>
             </div>
-            <AddCounselor />
+            <AddCounselor isUpdate={true} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleCloseEdit}>
+            {/* <Button variant="primary" onClick={handleCloseEdit}>
               Save
-            </Button>
+            </Button> */}
           </Modal.Footer>
         </Modal>
       </div>
