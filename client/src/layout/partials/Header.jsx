@@ -14,10 +14,13 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
+import { useMediaQuery } from 'react-responsive'
 
 // const { useState } = React;
 
 export default function Header({ company }) {
+
+
   const [form, setForm] = useState({
     id: "3cfacbf3-5ba4-4827-8577-235aa3fa1aa8",
     pfp: "https://picsum.photos/360/240?random=0",
@@ -63,11 +66,11 @@ export default function Header({ company }) {
 
   const auth = useContext(AuthContext);
   const popoverForm = (
-    <Popover id="popover-basic" style={{ backgroundColor: "var(--offWhite)" }}>
+    <Popover id="popover-basic">
       <Popover.Body>
         <Form onSubmit={submitTest}>
           {!auth.isLoggedIn && (
-            <Container>
+            <Container id="loginPopup">
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -142,7 +145,7 @@ export default function Header({ company }) {
             </Container>
           )}
           {auth.isLoggedIn && (
-            <Container>
+            <Container id="loginPopup">
               <Form.Group className="mb-3">
                 { }
                 <NavLink to={`${ROUTES.USERPROFILE}/${localStorage.getItem("userEmail")}`}>
@@ -167,9 +170,57 @@ export default function Header({ company }) {
     </Popover>
   );
 
+  const isMobile = useMediaQuery({ query: '(max-device-width: 576px)' })
+
   return (
     <header className="header">
       <div className="inner_header">
+      {isMobile ?
+      <div className="logo_container" id="mobile_menu">
+          <Dropdown as="li">
+          <Dropdown.Toggle as="a"><img
+              id="menu-icon"
+              src={require("../../assets/images/menuIcon.png").default}
+              // title is for hovering.
+              title="..."
+              alt="..."
+            />
+            </Dropdown.Toggle>
+            {(auth.role === "Admin" || auth.role === "Counselor") ? (
+              <Dropdown.Menu id="mobile_menu_trigger">
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.ABOUT}>ABOUT US</NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.FAQ}>FAQ</NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.ADDCOUNSELOR}>ADMIN - Add Counselor</NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.USERLIST}>ADMIN - User List</NavLink>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            )
+            :
+              <Dropdown.Menu id="mobile_menu_trigger">
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.ABOUT}>ABOUT US</NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.FAQ}>FAQ</NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            }
+          </Dropdown>
+        </div>
+        : null }
         <div className="logo_container">
           {/* <Link to={'/'} onClick={() => setShowCounselors(false)}> */}
           <NavLink to={ROUTES.HOME}>
@@ -179,7 +230,6 @@ export default function Header({ company }) {
               // title is for hovering.
               title={company.name}
               alt={company.name}
-              style={{ width: "90%" }}
             />
           </NavLink>
         </div>
@@ -204,7 +254,10 @@ export default function Header({ company }) {
               </button>
             </OverlayTrigger>) : ("")}
         </div>
-
+        
+        {isMobile ?
+          null
+        :
         <ul className="navigation">
           <li>
             <NavLink to={ROUTES.ABOUT}>ABOUT US</NavLink>
@@ -231,6 +284,7 @@ export default function Header({ company }) {
             </Dropdown>
           )}
         </ul>
+        }
       </div>
     </header>
   );
