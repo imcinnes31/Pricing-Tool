@@ -170,7 +170,7 @@ export default function RegisterUser() {
         <br />
         <Row>
           <Col>
-            <Form.Label>Tick the box if you are registering as a Counselor ----</Form.Label>
+            <Form.Label>Tick the box if you are registering as a Counselor ---</Form.Label>
             <ToggleButton
               id="toggle-check"
               type="checkbox"
@@ -185,13 +185,14 @@ export default function RegisterUser() {
         </Row>
         {checked ? (
           <Fragment>
-            <Form.Label>Please upload a copy of your counselor credential in image format here:</Form.Label>
+            <Form.Label id="credentialUpload">Please upload a copy of your counselor credential in image format here:</Form.Label>
             <ImageUpload id={"pfp"} center onInput={handleImg} />
           </Fragment>
         ) : (
           ""
         )}
         <Button
+          id="registerButton"
           type="submit"
           style={{ marginTop: "20px", marginBottom: "202px" }}
         >

@@ -62,7 +62,7 @@ export default function Login() {
   const auth = useContext(AuthContext);
 
   return (
-    <Container style={{ width: "50%" }}>
+    <Container id="loginPage">
       <h1 class="display-1 text-center">Login</h1>
       <Form onSubmit={submitTest}>
         <Row>
@@ -88,7 +88,7 @@ export default function Login() {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col id="loginButton">
             <Button
               type="submit"
               style={{ marginTop: "20px", marginBottom: "202px" }}
@@ -96,7 +96,7 @@ export default function Login() {
               Login
             </Button>
           </Col>
-          <Col>
+          <Col id="loginOptions">
             <p style={{ fontWeight: "bold" }}>
               New user? &nbsp;
               <NavLink to={ROUTES.REGISTERUSER}>

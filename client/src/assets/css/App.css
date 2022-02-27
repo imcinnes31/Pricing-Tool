@@ -296,6 +296,10 @@ button:focus {
   padding: 0px;
 }
 
+#loginPage {
+  width: 50%;
+}
+
 /* MOBILE DEVICES */
 @media only screen and (max-device-width: 576px)
  {
@@ -583,6 +587,36 @@ button:focus {
     font-size: 48px;
   }
 
+    /* login page */
+
+    #loginPage {
+      width: 1200px;
+    }
+
+    #loginPage h1 {
+      font-size: 72px;
+      text-align: center;
+    }
+  
+    #loginPage .form-label{
+      font-size: 48px;
+    }
+  
+    #loginPage .form-control{
+      font-size: 48px;
+      width: 1200px;
+    }
+  
+    #loginPage .btn {
+      width: 300px;
+      font-size: 48px;
+    }
+
+    #loginPage p {
+      font-size: 36px;
+    }
+  
+
   /* user list page */
   #userListPage h1 {
     font-size: 72px;
@@ -749,15 +783,27 @@ button:focus {
   }
 
   .footer small {
-    font-size: 72px;
+    font-size: 48px;
     font-weight: bold;
   }
 
   .footer img {
-    width: 96px;
-    height: 96px;
+    width: 72px;
+    height: 72px;
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .footer #companyName {
+    width: 350px;
+  }
+
+  .footer #registerPrompt {
+    width: 550px;
+  }
+
+  .footer #footerLinks {
+    width: 300px;
   }
 
 
@@ -1085,18 +1131,59 @@ button:focus {
 
     #registerPage .form-control{
       font-size: 72px;
-      width: 32vw;
+      width: 65vw;
     }
 
     #registerPage #registerButton {
       text-align: center;
+      font-size: 72px;
     }
 
     #registerPage .btn {
-      width: 300px;
+      width: 600px;
+      font-size: 72px;
+    }
+
+    #registerPage .image-upload__preview {
+      width: 800px;
+      height: 800px;
+    }
+
+    /* login page */
+
+    #loginPage {
+      width: 65vw;
+    }
+
+    #loginPage h1 {
+      font-size: 72px;
+      text-align: center;
+    }
+  
+    #loginPage .form-label{
+      font-size: 60px;
+    }
+  
+    #loginPage .form-control{
+      font-size: 60px;
+      width: 65vw;
+    }
+
+    #loginPage .form-input{
+      font-size: 60px;
+      width: 65vw;
+    }
+  
+    #loginPage .btn {
+      width: 65vw;
       font-size: 60px;
     }
 
+    #loginPage p {
+      width: 65vw;
+      font-size: 72px;
+    }
+  
   /* user list page */
   #userListPage {
     width: 65vw;
@@ -1272,6 +1359,18 @@ button:focus {
     .footer img {
       width: 72px;
       height: 72px;
+    }
+
+    .footer #companyName {
+      width: 25vw;;
+    }
+  
+    .footer #registerPrompt {
+      width: 25vw;
+    }
+  
+    .footer #footerLinks {
+      width: 50vw;
     }
     
 }
