@@ -8,7 +8,7 @@ const counselorControllers = require("../database/controllers/counselor-controll
 const router = express.Router();
 const locationFunctions = require("../utils/locations");
 const fileUpload = require('../middleware/file-upload');
-
+const HttpError = require("../database/models/http-error");
 const DEFAULT_LIMIT = 4;
 const DEFAULT_PAGE = 1;
 const DEFAULT_ORDER = "desc";
@@ -103,7 +103,7 @@ module.exports = (server) => {
      */
     res.set("Access-Control-Allow-Origin", "*");
 
-  
+
     let count = await Mongo.countDocuments("", {
       sort: 0,
       limit: 0,
@@ -125,7 +125,7 @@ module.exports = (server) => {
   });
 
   //handles adding new counselors in the admin page
-  server.post('/api/insertCounselor', 
+  server.post('/api/insertCounselor',
     fileUpload.single('pfp'),
     //form data checker
     counselorControllers.insertCounselor
@@ -134,7 +134,7 @@ module.exports = (server) => {
   // get dictionary of provinces and cities available from counselor database
   server.get('/api/v2/counselors/locations', async (req, res) => {
     res.set("Access-Control-Allow-Origin", "*");
- 
+
     let locations = [];
     let provinces = await counselor.distinct("province", { in_person: true });
 
@@ -171,9 +171,115 @@ module.exports = (server) => {
     });
   });
 
- 
+  // insert new counselor data
+  server.get('/api/v2/counselors/newCounselor', async (req, res) => {
+    //get fields from new counselor form
 
-///////////////////////////////////// OLD /////////////////////////////////////////////////////////////////
+    const id_ent = req.body.id;
+    const name_ent = req.body.name;
+    const gender_ent = req.body.gender;
+    const title_ent = req.body.title;
+    const age_ent = req.body.age;
+    const ethnicity_ent = req.body.ethnicity;
+    const issues_ent = req.body.issues;
+    const insurance_ent = req.body.insurance;
+    const therapy_type_ent = req.body.therapy_type;
+    const credentials_ent = req.body.credentials;
+    const description_ent = req.body.description;
+    const price_ent = req.body.price;
+    const pfp_ent = req.body.pfp;
+    const pronouns_ent = req.body.pronouns;
+    const date_ent = req.body.date;
+    const city_ent = req.body.city;
+    const in_person_ent = req.body.in_person;
+    const province_ent = req.body.province;
+    const in_person_price_ent = req.body.in_person_price;
+    const virtual_price_ent = req.body.virtual_price;
+    const EMDR_price_ent = req.body.EMDR_PRICE;
+    const package_number_ent = req.body.package_number;
+    const package_total_ent = req.body.package_total;
+    const capacity_ent = req.body.capacity;
+    const email_ent = req.body.email;
+
+    const new_counselor = new counselor({
+      //id: id_ent,
+      name: name_ent,
+      gender: gender_ent,
+      title: title_ent,
+      age: age_ent,
+      ethnicity: ethnicity_ent,
+      issues: issues_ent,
+      insurance: insurance_ent,
+      therapy_type: therapy_type_ent,
+      credentials: credentials_ent,
+      description: description_ent,
+      price: price_ent,
+      pfp: pfp_ent,
+      pronouns: pronouns_ent,
+      date: date_ent,
+      city: city_ent,
+      in_person: in_person_ent,
+      province: province_ent,
+      in_person_price: in_person_price_ent,
+      virtual_price: virtual_price_ent,
+      EMDR_PRICE: EMDR_price_ent,
+      package_number: package_number_ent,
+      package_total: package_total_ent,
+      capacity: capacity_ent,
+      email: email_ent,
+    });
+
+    try {
+      await new_counselor.save();
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  server.get('/api/v2/counselors/getCounselorByEmail/:emailKey', async (req, res, next) => {
+    const email = req.params.emailKey;
+    console.log("This is:");
+    console.log(email);
+    let existingCounselor;
+
+    try {
+      existingCounselor = await counselor.findOne({ email: email });
+      console.log(existingCounselor);
+      if (existingCounselor == null) {
+        throw "";
+      }
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find Counselor with this email address, lease try again later.",
+        500
+      );
+      return next(error);
+    }
+    // console.log(existingUser);
+    res.status(200).json({
+      existingCounselor,
+    });
+  }
+  );
+
+  server.delete("/api/v2/counselors/counselorDelete/:emailKey", async (req, res, next) => {
+    const email = req.params.emailKey;
+    let existingUser;
+
+    try {
+      existingUser = await counselor.deleteOne({ email: email });
+    } catch (err) {
+      const error = new HttpError(
+        "Cannot find counselor, please try again later.",
+        500
+      );
+      return next(error);
+    }
+
+  });
+
+
+  ///////////////////////////////////// OLD /////////////////////////////////////////////////////////////////
 
   server.get("/api/v1/counselors", async (req, res) => {
     res.set("Access-Control-Allow-Origin", "*"); // This tells cors to allow requests from any IP address

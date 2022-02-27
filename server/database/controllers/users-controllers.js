@@ -21,6 +21,7 @@ const getUsers = async (req, res, next) => {
 };
 
 const userRegister = async (req, res, next) => {
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -58,17 +59,30 @@ const userRegister = async (req, res, next) => {
     );
     return next(error);
   }
-
-  const createdUser = new UserModel({
-    userId: uuidv4(),
-    firstName,
-    lastName,
-    email,
-    phone,
-    password: hashedPassword,
-    role: "Client", //"Client, Counselor, Admin"
-  });
-
+  let createdUser;
+  if (typeof req.body.pfp === 'string' || req.body.pfp instanceof String) {
+    createdUser = new UserModel({
+      userId: uuidv4(),
+      firstName,
+      lastName,
+      email,
+      phone,
+      password: hashedPassword,
+      pfp: "placeholder",
+      role: "Client", //"Client, Counselor, Admin"
+    });
+  } else {
+    createdUser = new UserModel({
+      userId: uuidv4(),
+      firstName,
+      lastName,
+      email,
+      phone,
+      password: hashedPassword,
+      pfp: req.file.path,
+      role: "Client", //"Client, Counselor, Admin"
+    });
+  }
   try {
     await createdUser.save();
   } catch (err) {
@@ -184,6 +198,12 @@ const userRoleChange = async (req, res, next) => {
   }
 
   console.log(existingUser);
+
+  if (existingUser.role == "Counselor") {
+    sendEmail(email, "Phare Counselor Access Update",
+      "Your access to Phare Counselor Role profile has been granted, please login and fill out your Counselor information")
+      .catch(console.error);
+  }
 
   // let isValidPassword = false;
   // try {
@@ -323,9 +343,9 @@ const forgotPassword = async (req, res, next) => {
     const resetId = uuidv4();
     existingUser.resetId = resetId;
 
-    const resetLink = `http://localhost:3000/resetPassword/${resetId}/${email}`;
+    const resetLink = `Use the following link to reset your Phare password: http://localhost:3000/resetPassword/${resetId}/${email}`;
 
-    sendEmail(email, resetLink).catch(console.error);
+    sendEmail(email, "Reset Password", resetLink).catch(console.error);
   } catch (err) {
     const error = new HttpError(
       "Cannot find user, lease try again later.",
@@ -398,25 +418,78 @@ const resetPassword = async (req, res, next) => {
   });
 };
 
-const sendEmail = async (receiverEmail, resetLink) => {
+const sendEmail = async (receiverEmail, subject, details) => {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "stadiaresidentevil9@gmail.com",
+      user: "pharetest@gmail.com",
       pass: "ABCDE13579",
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+    from: '"Phare"', // sender address
     to: `${receiverEmail}`, // list of receivers
-    subject: "Phare Password Reset", // Subject line
-    text: resetLink, // plain text body
-    html: `<b>${resetLink}</b>`, // html body
+    subject: `${subject}`, // Subject line
+    text: details, // plain text body
+    html: `<b>${details}</b>`, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+};
+
+const sendRequestCounselorEmail = async (req, res, next) => {
+  const email = req.params.emailKey;
+
+  try {
+    existingUser = await UserModel.findOne({ email: email });
+    if (existingUser.pfp == null) {
+      throw "Cannot find image, please try again later.";
+    }
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find image, please try again later.",
+      500
+    );
+    return next(error);
+  }
+
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "pharetest@gmail.com",
+      pass: "ABCDE13579",
+    },
+  });
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"Phare"', // sender address
+    to: `pharetest@gmail.com`, // list of receivers
+    subject: "Phare Request Counselor Access", // Subject line
+    text: `User ${email} is requesting for Cousnelor user role access`, // plain text body
+    html: `<b>User ${email} is requesting for Cousnelor user role access</b>`, // html body
+    attachments: [
+      {
+        filename: `crendentials.png`,
+        path: `${existingUser.pfp}`
+        // contentType: 'image/jpeg',
+        // content: new Buffer.from(req.body.image.split("base64,")[1], "base64"),
+      }
+    ]
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -436,3 +509,4 @@ exports.searchByEmail = searchByEmail;
 exports.updateUserByEmail = updateUserByEmail;
 exports.forgotPassword = forgotPassword;
 exports.resetPassword = resetPassword;
+exports.sendRequestCounselorEmail = sendRequestCounselorEmail;

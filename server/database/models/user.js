@@ -33,6 +33,10 @@ const UserSchema = new Schema({
     type: String,
     required: false,
   },
+  pfp: {
+    type: String,
+    required: true,
+  },
 });
 
 // UserSchema.plugin(uniqueValidator);

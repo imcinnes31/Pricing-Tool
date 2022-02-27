@@ -39,7 +39,14 @@ export default function Header({ company }) {
         responseData.data.role
       );
       setUser(responseData.data);
+      localStorage.setItem(
+        "userEmail",
+        responseData.data.email
+
+      );
       setEmail(responseData.data.email);
+      window.location.reload(false);
+
     } catch (err) {
       alert("Login Error");
       // throw new Error("Login Error");
@@ -53,9 +60,6 @@ export default function Header({ company }) {
     });
   };
 
-  // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
 
   const auth = useContext(AuthContext);
   const popoverForm = (
@@ -140,8 +144,9 @@ export default function Header({ company }) {
           {auth.isLoggedIn && (
             <Container>
               <Form.Group className="mb-3">
-                <NavLink to={`${ROUTES.USERPROFILE}/${email}`}>
-                  <p>{email}</p>
+                { }
+                <NavLink to={`${ROUTES.USERPROFILE}/${localStorage.getItem("userEmail")}`}>
+                  <p>{localStorage.getItem("userEmail")}</p>
                   {/* user == undefined ? "" : user.email */}
                 </NavLink>
               </Form.Group>
@@ -185,33 +190,19 @@ export default function Header({ company }) {
               FIND A COUNSELOR
             </button>
           </NavLink>
-          <OverlayTrigger
-            trigger="click"
-            placement="bottom"
-            overlay={popoverForm}
-            rootClose
-          >
-            <button type="button" id="loginButton" className="btn primary-button">
-              {auth.isLoggedIn && <AiOutlineUser />}
-              {!auth.isLoggedIn && "Login"}
-            </button>
-          </OverlayTrigger>
-          {/* {!auth.isLoggedIn && (
-            <NavLink to={ROUTES.LOGIN}>
-              <button type="button" className="btn primary-button">
-                SIGN IN
-              </button>
-            </NavLink>
-          )}
-          {auth.isLoggedIn && (
-            <button
-              onClick={auth.logout}
-              type="button"
-              className="btn primary-button"
+          {/* This is hidden login button */}
+          {auth.isLoggedIn ? (
+            <OverlayTrigger
+              trigger="click"
+              placement="bottom"
+              overlay={popoverForm}
+              rootClose
             >
-              LOGOUT
-            </button>
-          )} */}
+              <button type="button" className="btn primary-button">
+                {auth.isLoggedIn && <AiOutlineUser />}
+                {!auth.isLoggedIn && "Login"}
+              </button>
+            </OverlayTrigger>) : ("")}
         </div>
 
         <ul className="navigation">
@@ -226,7 +217,7 @@ export default function Header({ company }) {
           <li>
             <NavLink to={ROUTES.CONTACT}>CONTACT US</NavLink>
           </li>
-          {(auth.role === "Admin" || auth.role === "Counselor") && (
+          {(auth.role === "Admin") && (
             <Dropdown as="li">
               <Dropdown.Toggle as="a">ADMIN</Dropdown.Toggle>
               <Dropdown.Menu>
