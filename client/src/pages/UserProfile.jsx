@@ -213,6 +213,7 @@ export default function UserProfile() {
 
           {edit == true ? (
             <Fragment>
+              <div id="buttonContainer">
               <Button
                 type="submit"
                 style={{ marginTop: "20px", marginBottom: "202px" }}
@@ -225,6 +226,7 @@ export default function UserProfile() {
               >
                 Back
               </Button>
+              </div>
             </Fragment>
           ) : (
             ""
@@ -232,6 +234,7 @@ export default function UserProfile() {
 
           {editPW == true ? (
             <Fragment>
+              <div id="buttonContainer">
               <Button
                 type="submit"
                 style={{ marginTop: "20px", marginBottom: "202px" }}
@@ -244,6 +247,7 @@ export default function UserProfile() {
               >
                 Back
               </Button>
+              </div>
             </Fragment>
           ) : (
             ""
@@ -253,25 +257,27 @@ export default function UserProfile() {
         </Form>
         {userInfo.role == "Counselor" || userInfo.role == "Admin" ? (
           <Fragment>
+            <div id="buttonContainer">
             <Button
-              style={{ marginTop: "20px", marginBottom: "202px" }}
+              id="accessButton"
               onClick={displayCounselorPage}
             // onClick={handleShow}
             >
               Access Counselor Profile
             </Button>
+            </div>
           </Fragment>
         ) : (
           ""
         )
         }
 
-        <Modal show={show} size="lg"
+        <Modal show={show} size="lg" id="profileModal"
           aria-labelledby="contained-modal-title-vcenter"
           centered onHide={handleClose}>
-          <Modal.Header closeButton>
+          {/* <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Modal heading</Modal.Title>
-          </Modal.Header>
+          </Modal.Header> */}
           <Modal.Body>
             <div className="container  border-bottom">
               <h1>{userKey}'s Counselor Profile</h1>
@@ -432,15 +438,15 @@ export default function UserProfile() {
         </Modal>
 
 
-        <Modal show={showEdit} size="lg"
+        <Modal show={showEdit} size="lg" id="profileModalContainer"
           aria-labelledby="contained-modal-title-vcenter"
           centered onHide={handleCloseEdit}>
-          <Modal.Header closeButton>
+          {/* <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Modal heading</Modal.Title>
-          </Modal.Header>
+          </Modal.Header> */}
           <Modal.Body>
             <div className="container  border-bottom">
-              <h1>{userKey}'s Counselor Profile</h1>
+              <h1>{userKey}</h1>
             </div>
             <AddCounselor isUpdate={true} />
           </Modal.Body>
