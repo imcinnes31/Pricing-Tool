@@ -300,6 +300,11 @@ button:focus {
   width: 50%;
 }
 
+#accessButton {
+  margin-top: 20px; 
+  margin-bottom: 202px;
+}
+
 /* MOBILE DEVICES */
 @media only screen and (max-device-width: 576px)
  {
@@ -683,6 +688,28 @@ button:focus {
 
   #userProfilePage #buttonContainer {
     text-align: center;
+  }
+
+  .modal-dialog {
+    max-width: 1250px;
+    margin-top: 200px;
+    margin-bottom: 150px;
+  }
+
+  .modal-dialog h1 {
+    font-size: 72px;
+  }
+
+  .modal-dialog .form-label {
+    font-size: 36px;
+  }
+
+  .modal-dialog .form-control {
+    font-size: 36px;
+  }
+
+  .modal-dialog .btn {
+    font-size: 48px;
   }
 
   /* forgot password page */
@@ -1268,6 +1295,33 @@ button:focus {
 
     #userProfilePage #buttonContainer {
       width: 65vw;
+      margin-left: 12vw;
+    }
+
+    .modal-dialog {
+      max-width: 70vw;
+      margin-top: 300px;
+      margin-bottom: 150px;
+    }
+  
+    .modal-dialog h1 {
+      text-align: left;
+      font-size: 96px;
+    }
+  
+    .modal-dialog .form-label {
+      font-size: 60px;
+    }
+  
+    .modal-dialog .form-control {
+      font-size: 60px;
+    }
+  
+    .modal-dialog .btn {
+      font-size: 72px;
+    }
+
+    #accessButton {
       margin-left: 12vw;
     }
 
