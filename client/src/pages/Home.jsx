@@ -10,7 +10,7 @@ export default function Home() {
   ]
 
   return (
-    <div className="homeContainer container pb-5">
+    <div id="homeContainer" className="container pb-5">
       <div className="row">
         <div className="col" id="slideShowColumn">
           {/* <img src={require("../assets/images/hero.jpg").default} /> */}

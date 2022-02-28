@@ -16,6 +16,9 @@ export default function Login() {
     date: "2021-05-31T12:04:39.572Z",
   });
 
+  const [user, setUser] = useState();
+  const [email, setEmail] = useState();
+
   const submitTest = async (e) => {
     // alert(JSON.stringify(form));
     e.preventDefault();
@@ -24,11 +27,19 @@ export default function Login() {
     try {
       const responseData = await Axios.post(process.env.REACT_APP_BACKEND_API + "/users/userlogin", form);
       auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
-      //console.log(responseData.data.userId);
-      //console.log(responseData.data.token);
-      //console.log(responseData.data.email);
-      //console.log(responseData.data.role);
-    } catch (err){
+      console.log(responseData.data.userId);
+      console.log(responseData.data.token);
+      console.log(responseData.data.email);
+      console.log(responseData.data.role);
+      setUser(responseData.data);
+      localStorage.setItem(
+        "userEmail",
+        responseData.data.email
+
+      );
+      setEmail(responseData.data.email);
+      window.location.reload(false);
+    } catch (err) {
       alert("Login Error");
       // throw new Error("Login Error");
     }
@@ -51,7 +62,7 @@ export default function Login() {
   const auth = useContext(AuthContext);
 
   return (
-    <Container style={{ width: "50%" }}>
+    <Container id="loginPage">
       <h1 class="display-1 text-center">Login</h1>
       <Form onSubmit={submitTest}>
         <Row>
@@ -77,7 +88,7 @@ export default function Login() {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col id="loginButton">
             <Button
               type="submit"
               style={{ marginTop: "20px", marginBottom: "202px" }}
@@ -85,7 +96,7 @@ export default function Login() {
               Login
             </Button>
           </Col>
-          <Col>
+          <Col id="loginOptions">
             <p style={{ fontWeight: "bold" }}>
               New user? &nbsp;
               <NavLink to={ROUTES.REGISTERUSER}>
@@ -97,6 +108,24 @@ export default function Login() {
                   }}
                 >
                   Register here
+                </span>
+              </NavLink>
+            </p>
+            <p style={{ fontWeight: "bold" }}>
+              Forgot Password? &nbsp;
+              <NavLink to={ROUTES.FORGOTPASSWORD}>
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    color: "var(--secondary_3)",
+                    textDecoration: "underline",
+                  }}
+                  // Hack to close popover form when register is clicked.
+                  onClick={() => {
+                    document.body.click();
+                  }}
+                >
+                  Reset here
                 </span>
               </NavLink>
             </p>

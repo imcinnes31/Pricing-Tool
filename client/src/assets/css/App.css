@@ -59,6 +59,16 @@ button:focus {
   z-index: 9999;
 }
 
+.footer img {
+  width: 24px;
+  height: 24px;
+}
+
+.footer a {
+  color: 'grey';
+  font-size: '15px';
+}
+
 .inner_header {
   width: 1200px;
   height: 100%;
@@ -83,6 +93,10 @@ button:focus {
 
 .logo_container h1 span {
   font-weight: 800;
+}
+
+.logo_container #img-logo {
+  width: 90%;
 }
 
 .navigation {
@@ -220,7 +234,7 @@ button:focus {
   color: white;
 }
 
-.homeContainer .primary-button {
+#homeContainer .primary-button {
   margin-left: 500px;
 }
 
@@ -278,37 +292,50 @@ button:focus {
   margin-left: 0px;
 }
 
+#counselorPic {
+  padding: 0px;
+}
+
+#loginPage {
+  width: 50%;
+}
+
 /* MOBILE DEVICES */
 @media only screen and (max-device-width: 576px)
  {
 
+  body {
+    padding-top: 50px;
+    padding-bottom: 70px;
+  }
+
   /* home page */
 
-  .homeContainer h1 {
+  #homeContainer h1 {
     font-size: 72px;
     text-align: center;
   }
 
-  .homeContainer h3 {
-    font-size: 36px;
+  #homeContainer h3 {
+    font-size: 56px;
   }
 
-  .homeContainer .carousel-item {
+  #homeContainer .carousel-item {
     width: 1120px;
     height: 700px;
   }
 
-  .homeContainer .carousel-inner {
+  #homeContainer .carousel-inner {
     width: 1120px;
     height: 700px;
   }
 
-  .homeContainer .btn {
-    font-size: 36px;
+  #homeContainer .btn {
+    font-size: 48px;
     width: 300px;
   }
 
-  .homeContainer .primary-button {
+  #homeContainer .primary-button {
     margin-left: 400px;
   }
 
@@ -319,29 +346,30 @@ button:focus {
   }
 
   #aboutPage h2, h4 {
-    font-size: 36px;
+    font-size: 48px;
     padding: 5px;
   }
 
   #aboutPage h1 {
-    font-size: 60px;
+    font-size: 72px;
     font-weight: bold;
+    text-align: center;
   }
 
   /* faq page */
 
   #faqPage h1 {
-    font-size: 60px;
+    font-size: 72px;
   }
 
   #faqPage h4 {
-    font-size: 48px;
+    font-size: 56px;
     padding-bottom: 5px;
     padding-top: 10px;
   }
 
   #faqPage p {
-    font-size: 36px;
+    font-size: 48px;
   }
 
   /* contact page */
@@ -351,30 +379,31 @@ button:focus {
   }
 
   #contactPage h1 {
-    font-size: 60px;
+    font-size: 72px;
     font-weight: bold;
   }
 
   #contactPage label {
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #contactPage .form-control {
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #contactPage .form-check-input {
-    font-size: 36px;
-    padding: 5px;
+    font-size: 48px;
+    padding: 10px;
   }
 
   #contactPage .form-check-label {
-    font-size: 36px;
-    padding-right: 25px;
+    font-size: 48px;
+    padding-right: 72px;
+    padding-left: 20px;
   }
 
   #contactPage .btn {
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #contactPage .primary-button {
@@ -389,16 +418,16 @@ button:focus {
   }
 
   #filterPage h1 {
-    font-size: 48px;
+    font-size: 72px;
   }
 
   #filterPage label {
-    font-size: 36px;
+    font-size: 48px;
     font-weight: bold;
   }
 
   #filterPage a {
-    font-size: 36px;
+    font-size: 48px;
     font-weight: bold;
   }
 
@@ -412,12 +441,12 @@ button:focus {
   }
 
   #customRange1::-webkit-slider-runnable-track {
-    height: 24px;
+    height: 48px;
   }
 
   #customRange1::-webkit-slider-thumb {
-    height: 30px;
-    width: 30px;
+    height: 56px;
+    width: 56px;
   }
 
   #filterDropdowns {
@@ -425,16 +454,16 @@ button:focus {
   }
 
   #locationOptions label {
-    font-size: 36px;
+    font-size: 48px;
   }
   
   #locationOptions .form-select {
-    font-size: 36px;
+    font-size: 48px;
   }
   
   #locationOptions input {
-    height: 36px;
-    width: 36px;
+    height: 56px;
+    width: 56px;
   }
 
   #counselorPic {
@@ -442,20 +471,29 @@ button:focus {
     height: 450px;
   }
 
+  #counselorImage {
+    max-height: 450px;
+    width: auto;
+  }
+
   #counselorInfo {
     width: 1200px;
   }
 
   #counselorInfo p {
+    font-size: 36px;
+  }
+
+  #counselorInfo small {
     font-size: 24px;
   }
 
   #counselorInfo h5 {
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #counselorInfo h6 {
-    font-size: 30px;
+    font-size: 36px;
   }
 
   #counselorInfo .btn {
@@ -463,15 +501,15 @@ button:focus {
   }
 
   #counselorBio p {
-    font-size: 24px;
-  }
-
-  #counselorBio h5 {
     font-size: 36px;
   }
 
+  #counselorBio h5 {
+    font-size: 48px;
+  }
+
   #counselorBio h6 {
-    font-size: 30px;
+    font-size: 42px;
   }
 
   #counselorBio .btn {
@@ -479,12 +517,7 @@ button:focus {
   }
 
   #counselorCredentials {
-    font-size: 36px;
-  }
-
-  #counselorImage {
-    max-height: 450px;
-    width: auto;
+    font-size: 42px;
   }
 
   .buttonContainer {
@@ -507,22 +540,22 @@ button:focus {
   }
 
   #addCounselorPage .btn {
-    font-size: 36px;
+    font-size: 48px;
     width: 300px;
   }
 
   #addCounselorPage .form-label {
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #addCounselorPage .form-control {
     width: 1200px;
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #addCounselorPage .form-check-input {
-    height: 36px;
-    width: 36px;
+    height: 48px;
+    width: 48px;
   }
 
   #addCounselorPage #submitContainer {
@@ -537,11 +570,12 @@ button:focus {
   }
 
   #registerPage .form-label{
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #registerPage .form-control{
-    font-size: 36px;
+    font-size: 48px;
+    width: 1200px;
   }
 
   #registerPage #registerButton {
@@ -550,8 +584,38 @@ button:focus {
 
   #registerPage .btn {
     width: 300px;
-    font-size: 36px;
+    font-size: 48px;
   }
+
+    /* login page */
+
+    #loginPage {
+      width: 1200px;
+    }
+
+    #loginPage h1 {
+      font-size: 72px;
+      text-align: center;
+    }
+  
+    #loginPage .form-label{
+      font-size: 48px;
+    }
+  
+    #loginPage .form-control{
+      font-size: 48px;
+      width: 1200px;
+    }
+  
+    #loginPage .btn {
+      width: 300px;
+      font-size: 48px;
+    }
+
+    #loginPage p {
+      font-size: 36px;
+    }
+  
 
   /* user list page */
   #userListPage h1 {
@@ -641,48 +705,151 @@ button:focus {
     margin-left: 5px;
   }
 
+  /* HEADER */
+
+  .header {
+    height: 150px;
+  }
+  
+  .inner_header {
+    width: 1200px;
+  }
+
+  .logo_container #img-logo {
+    width: 150px;
+    height: 150px;
+    padding-top: 20px;
+  }
+
+  .header .button_container .btn {
+    font-size: 48px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 15px;
+    height: 90px;
+  }
+
+  .popover {
+    max-width: 100%;
+    width: 600px;
+  }
+
+  .popover label, .popover input, .popover .btn {
+    font-size: 48px;
+  }
+
+  .popover p, .popover a {
+    font-size: 36px;
+  }
+
+  #findACounselorButton {
+    width: 500px;
+  }
+
+  #loginButton {
+    height: 85px;
+  }
+
+  #menu-icon {
+    width: 150px;
+  }
+
+  .header .dropdown-menu {
+    border: 1px solid blue;
+  }
+
+  #mobile_menu {
+    width: 100px;
+  }
+
+  #mobile_menu a {
+    font-size: 60px;
+    font-weight: bold;
+    padding-right: 20px;
+  }
+
+  #mobile_menu_trigger.show {
+    transform: translate3d(0px, 160px, 0px) !important;
+  }
+
+  /* FOOTER */
+  .footer, .footer-inner {
+    height: 100px;
+  }
+
+  .footer .container {
+    max-width: 1200px;
+    width: 1200px;
+  }
+
+  .footer small {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  .footer img {
+    width: 72px;
+    height: 72px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .footer #companyName {
+    width: 350px;
+  }
+
+  .footer #registerPrompt {
+    width: 550px;
+  }
+
+  .footer #footerLinks {
+    width: 300px;
+  }
+
+
 }
 
 /* TABLET DEVICES */
 @media only screen and (min-device-width: 576px) and (max-device-width: 1024px)
  {
+   body {
+     padding-top: 5vh;
+     padding-bottom: 5vh;
+   }
    body, h1, h2, h3, h4, h5, h6 {
      width: 65vw;
    }
 
   /* home page */
 
-  .homeContainer h1 {
-    font-size: 65px;
+  #homeContainer h1 {
+    padding-top: 2vh;
     text-align: center;
-  }
-
-  .homeContainer .primary-button {
-    margin-left: 28vw;
-  }
-  
-  .homeContainer h1 {
-    width: 60vw;
+    width: 65vw;
     font-size: 120px;
   }
 
-  .homeContainer h3 {
-    width: 60vw;
-    font-size: 40px;
+  #homeContainer .primary-button {
+    margin-left: 28vw;
   }
 
-  .homeContainer .carousel-item {
+  #homeContainer h3 {
+    width: 65vw;
+    font-size: 96px;
+  }
+
+  #homeContainer .carousel-item {
     width: 65vw;
     height: 36vh;
   }
 
-  .homeContainer .carousel-inner {
+  #homeContainer .carousel-inner {
     width: 65vw;
     height: 36vh;
   }
 
-  .homeContainer .btn {
-    font-size: 40px;
+  #homeContainer .btn {
+    font-size: 60px;
     width: 300px;
   }
 
@@ -694,17 +861,17 @@ button:focus {
   }
 
   #aboutPage h2, #aboutPage h4 {
-    font-size: 36px;
+    font-size: 96px;
     padding: 5px;
   }
 
   #aboutPage h1 {
-    font-size: 60px;
+    font-size: 120px;
     font-weight: bold;
   }
 
   #aboutPage h4 {
-    font-size: 36px;
+    font-size: 72px;
     font-weight: bold;
     text-align: center;
   }
@@ -716,17 +883,17 @@ button:focus {
   }
 
   #faqPage h1 {
-    font-size: 60px;
+    font-size: 120px;
   }
 
   #faqPage h4 {
-    font-size: 48px;
+    font-size: 72px;
     padding-bottom: 5px;
     padding-top: 10px;
   }
 
   #faqPage p {
-    font-size: 36px;
+    font-size: 60px;
   }
 
   /* contact page */
@@ -736,34 +903,38 @@ button:focus {
 
   #contactPage .form-control {
     width: 65vw;
-    font-size: 36px;
+    font-size: 96px;
+  }
+
+  #contactPage #firstName, #contactPage #lastName {
+    margin-bottom: 25px;
   }
 
   #contactPage h1 {
-    font-size: 60px;
+    font-size: 120px;
     font-weight: bold;
   }
 
   #contactPage label {
-    font-size: 36px;
+    font-size: 96px;
   }
 
   #contactPage .form-check-input {
-    font-size: 36px;
+    font-size: 96px;
     padding: 5px;
   }
 
   #contactPage .form-check-label {
-    font-size: 36px;
-    padding-right: 25px;
+    font-size: 96px;
+    padding-right: 140px;
   }
 
   #contactPage .btn {
-    font-size: 36px;
+    font-size: 72px;
   }
 
   #contactPage .primary-button {
-    margin-left: 400px;
+    margin-left: 15vw;
   }
 
   /* find a counselor page */
@@ -778,31 +949,30 @@ button:focus {
   }
 
   #filterPage #rolePrompt {
-    width: 10vw;
-    font-size: 36px;
+    width: 20vw;
+    font-size: 72px;
   }
 
   #filterPage #filterButton {
-    font-size: 48px;
-    width: 400px;
+    font-size: 72px;
+    width: 600px;
   }
 
   #filterPage h1 {
-    font-size: 48px;
+    font-size: 120px;
   }
 
   #filterPage label {
-    font-size: 36px;
+    font-size: 72px;
     font-weight: bold;
   }
 
   #filterPage a {
-    font-size: 36px;
     font-weight: bold;
   }
 
   #priceIndicator {
-    font-size: 48px;
+    font-size: 72px;
     font-weight: bold;
   }
 
@@ -811,13 +981,13 @@ button:focus {
   }
 
   #customRange1::-webkit-slider-runnable-track {
-    height: 24px;
+    height: 48px;
     width: 65vw;
   }
 
   #customRange1::-webkit-slider-thumb {
-    height: 30px;
-    width: 30px;
+    height: 56px;
+    width: 56px;
   }
 
   #filterDropdowns {
@@ -825,65 +995,70 @@ button:focus {
   }
 
   #locationOptions label {
-    font-size: 36px;
+    font-size: 72px;
   }
   
   #locationOptions .form-select {
-    font-size: 36px;
+    font-size: 96px;
   }
   
   #locationOptions input {
-    height: 36px;
-    width: 36px;
+    height: 96px;
+    width: 96px;
   }
 
   #counselorPic {
-    width: 70vw;
-    height: 450px;
-  }
-
-  #counselorInfo {
-    width: 70vw;
-  }
-
-  #counselorInfo p {
-    font-size: 24px;
-  }
-
-  #counselorInfo h5 {
-    font-size: 36px;
-  }
-
-  #counselorInfo h6 {
-    font-size: 30px;
-  }
-
-  #counselorInfo .btn {
-    font-size: 36px;
-  }
-
-  #counselorBio p {
-    font-size: 24px;
-  }
-
-  #counselorBio h5 {
-    font-size: 36px;
-  }
-
-  #counselorBio h6 {
-    font-size: 30px;
-  }
-
-  #counselorBio .btn {
-    font-size: 36px;
-  }
-
-  #counselorCredentials {
-    font-size: 36px;
+    height: 15vh;
   }
 
   #counselorImage {
-    max-height: 450px;
+    height: 15vh;
+  }
+
+  #counselorInfo p {
+    font-size: 48px;
+    width: 40vw;
+  }
+
+  #counselorInfo small {
+    font-size: 36px;
+  }
+
+  #counselorInfo h5 {
+    font-size: 60px;
+  }
+
+  #counselorInfo h6 {
+    font-size: 48px;
+  }
+
+  #counselorInfo .btn {
+    font-size: 48px;
+  }
+
+  #counselorBio p {
+    font-size: 48px;
+    width: 60vw;
+  }
+
+  #counselorBio h5 {
+    font-size: 60px;
+  }
+
+  #counselorBio h6 {
+    font-size: 48px;
+  }
+
+  #counselorBio .btn {
+    font-size: 48px;
+  }
+
+  #counselorCredentials {
+    font-size: 48px;
+  }
+
+  #counselorImage {
+    max-height: 500px;
     width: auto;
   }
 
@@ -898,7 +1073,7 @@ button:focus {
     }
 
     #addCounselorPage h1 {
-      font-size: 72px;
+      font-size: 120px;
       width: 60vw;
     }
   
@@ -907,32 +1082,32 @@ button:focus {
     }
 
     #addCounselorPage .image-upload__preview {
-      width: 42rem;
-      height: 42rem;
+      width: 60rem;
+      height: 60rem;
     }
   
     #addCounselorPage p {
-      font-size: 48px;
+      font-size: 60px;
       text-align: center;
     }
   
     #addCounselorPage .btn {
-      font-size: 36px;
-      width: 300px;
+      font-size: 60px;
+      width: 400px;
     }
   
     #addCounselorPage .form-label {
-      font-size: 36px;
+      font-size: 72px;
     }
   
     #addCounselorPage .form-control {
       width: 65vw;
-      font-size: 36px;
+      font-size: 72px;
     }
   
     #addCounselorPage .form-check-input {
-      height: 36px;
-      width: 36px;
+      height: 96px;
+      width: 96px;
     }
   
     #addCounselorPage #submitContainer {
@@ -947,28 +1122,69 @@ button:focus {
 
     #registerPage h1 {
       width: 65vw;
-      font-size: 72px;
+      font-size: 120px;
       text-align: center;
     }
 
     #registerPage .form-label{
-      font-size: 36px;
+      font-size: 72px;
     }
 
     #registerPage .form-control{
-      font-size: 36px;
-      width: 32vw;
+      font-size: 72px;
+      width: 65vw;
     }
 
     #registerPage #registerButton {
       text-align: center;
+      font-size: 72px;
     }
 
     #registerPage .btn {
-      width: 300px;
-      font-size: 36px;
+      width: 600px;
+      font-size: 72px;
     }
 
+    #registerPage .image-upload__preview {
+      width: 800px;
+      height: 800px;
+    }
+
+    /* login page */
+
+    #loginPage {
+      width: 65vw;
+    }
+
+    #loginPage h1 {
+      font-size: 72px;
+      text-align: center;
+    }
+  
+    #loginPage .form-label{
+      font-size: 60px;
+    }
+  
+    #loginPage .form-control{
+      font-size: 60px;
+      width: 65vw;
+    }
+
+    #loginPage .form-input{
+      font-size: 60px;
+      width: 65vw;
+    }
+  
+    #loginPage .btn {
+      width: 65vw;
+      font-size: 60px;
+    }
+
+    #loginPage p {
+      width: 65vw;
+      font-size: 72px;
+    }
+  
   /* user list page */
   #userListPage {
     width: 65vw;
@@ -983,34 +1199,34 @@ button:focus {
   }
 
   #userListPage h1 {
-    font-size: 72px;
+    font-size: 120px;
   }
 
   #userListPage .form-input {
-    font-size: 36px;
+    font-size: 60px;
   }
 
   #userListPage .form-control {
-    font-size: 36px;
+    font-size: 60px;
   }
 
   #userListPage #button-addon2 {
-    font-size: 36px;
+    font-size: 60px;
   }
 
   #userListPage h5 {
-    font-size: 36px;
+    font-size: 60px;
     width: 25vw;
   }
 
   #userListPage p {
-    font-size: 28px;
+    font-size: 48px;
     width: 25vw;
   }
 
   #userListPage input[type="radio"] {
-    height: 36px;
-    width: 36px;
+    height: 48px;
+    width: 48px;
   }
 
   #userListPage #radioContainer {
@@ -1018,41 +1234,41 @@ button:focus {
   }
 
   #userListPage label {
-    font-size: 36px;
+    font-size: 48px;
   }
 
   #userListPage .btn {
-    font-size: 36px;
+    font-size: 60px;
   }
 
   /* user profile page */
 
-  #userListPage {
+  #userProfilePage {
     width: 65vw;
   }
 
   #userProfilePage h1 {
-    font-size: 72px;
+    font-size: 120px;
     text-align: center;
   }
   
     #userProfilePage input {
-      font-size: 48px;
+      font-size: 72px;
       width: 65vw;
     }
   
     #userProfilePage label {
-      font-size: 48px;
+      font-size: 72px;
     }
   
     #userProfilePage .btn {
-      font-size: 48px;
-      width: 400px;
+      font-size: 72px;
+      width: 700px;
     }
 
     #userProfilePage #buttonContainer {
       width: 65vw;
-      margin-left: 20vw;
+      margin-left: 12vw;
     }
 
     /* forgot password page */
@@ -1062,20 +1278,122 @@ button:focus {
     }
   
     #forgotPasswordPage h1 {
-      font-size: 72px;
+      font-size: 120px;
       font-weight: bold;
       width: 65vw;
     }
   
     #forgotPasswordPage input {
-      font-size: 48px;
+      font-size: 72px;
       width: 65vw;
     }
   
     #forgotPasswordPage .btn {
-      font-size: 48px;
+      font-size: 72px;
       width: 25vw;
-      margin-left:12vw;
+      margin-left:15vw;
+    }
+
+    /* HEADER */
+
+    .header {
+      height: 200px;
+    }
+    
+    .inner_header {
+      width: 90vw;
+    }
+
+    .navigation li a {
+      font-size: 60px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    .logo_container #img-logo {
+      width: 180px;
+      height: 180px;
+      padding-top: 20px;
+    }
+
+    .header .button_container .btn {
+      font-size: 60px;
+      font-weight: bold;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    .popover {
+      max-width: 100%;
+      width: 35vw;
+    }
+
+    .popover label, .popover input, .popover .btn {
+      font-size: 72px;
+    }
+
+    .popover p, .popover a {
+      font-size: 60px;
+    }
+
+    /* FOOTER */
+
+    .footer, .footer-inner {
+      height: 100px;
+    }
+
+    .footer .container {
+      max-width: 100vw;
+      width: 100vw;
+    }
+
+    .footer small {
+      font-size: 60px;
+      font-weight: bold;
+    } 
+    
+    .footer a  {
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    .footer img {
+      width: 72px;
+      height: 72px;
+    }
+
+    .footer #companyName {
+      width: 25vw;;
     }
   
+    .footer #registerPrompt {
+      width: 25vw;
+    }
+  
+    .footer #footerLinks {
+      width: 50vw;
+    }
+    
 }
+
+/* LARGE TABLET DEVICES */
+@media only screen and (min-device-width: 1024px) and (min-device-height: 600px) and (max-device-width: 1280px) and (max-device-height: 800px)
+ {
+  #homeContainer .carousel-inner {
+    width: 65vw;
+    height: 55vh;
+  }
+
+  #homeContainer .carousel-item {
+    width: 65vw;
+    height: 55vh;
+  }
+
+  #counselorPic {
+    height: 25vh;
+  }
+
+  #counselorImage {
+    height: 25vh;
+  }
+ }

@@ -15,24 +15,27 @@ export default function SingleSelector({filters, id, onChange, isQuery, isSearch
     }),
     control: provided => ({
       ...provided,
-      height: isMobile ? 60 : isTablet ? 25 : 25,
-      fontSize: isMobile ? "24px" :  isTablet ? "18px" : "18px",
+      height: isMobile ? 75 : isTablet ? 120 : 25,
+      fontSize: isMobile ? "48px" :  isTablet ? "72px" : "18px",
     }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       return {
         ...styles,
-        fontSize: isMobile ? "24px" : isTablet ? "18px" : "18px",
+        fontSize: isMobile ? "48px" : isTablet ? "60px" : "18px",
         fontWeight: isMobile ? "bold" : isTablet ? "none" : "none",
       }
     },
     singleValue: (styles, { data }) => {
       return {
         ...styles,
-        fontSize: isMobile ? "36px" : isTablet ? "14px" : "14px",
+        fontSize: isMobile ? "48px" : isTablet ? "64px" : "14px",
         fontWeight: isMobile ? "bold" : isTablet ? "none" : "none",
       };
     },
-  
+    menuList: base => ({
+      ...base,
+      maxHeight:  isMobile ? "600px" : isTablet ? "600px" : "400px",
+    })
   }
   
   //isQuery is true if it will be used as a filter option in the main find a counselor page
