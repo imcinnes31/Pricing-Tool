@@ -83,7 +83,7 @@ export default function UserCard({ user, query, perPage, roleVal, currentProfile
               </Link> */}
               {`profile_${user.id}` == currentProfile ?
                 <button className="btn primary-button" id={`profile_${user.id}`} onClick={(event) => toggleProfileOff(event)}>
-                  CLICK TO REDUCE
+                  MINIMIZE PROFILE
                 </button>
               :
                 <button className="btn secondary-button" id={`profile_${user.id}`} onClick={(event) => toggleProfileOn(event)}>
@@ -91,7 +91,7 @@ export default function UserCard({ user, query, perPage, roleVal, currentProfile
                 </button>
               }
               {user.janeId ? 
-              <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
+              <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId} target="_blank">
               <button className="btn primary-button">
                 BOOK A FREE INITIAL CONSULTATION
               </button>
@@ -123,7 +123,7 @@ export default function UserCard({ user, query, perPage, roleVal, currentProfile
         <div className="col-md-11">
           <div className="card-body">
           {user.janeId ? 
-              <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId}>
+              <a href={'https://phare.janeapp.com/#/staff_member/' + user.janeId} target="_blank">
               <button className="btn primary-button">
                 BOOK A FREE INITIAL CONSULTATION
               </button>
