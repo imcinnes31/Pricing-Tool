@@ -32,7 +32,6 @@ export default function Header({ company }) {
 
   const submitTest = async (e) => {
     e.preventDefault();
-    console.log(form);
     let responseData;
     try {
       responseData = await Axios.post(process.env.REACT_APP_BACKEND_API + "/users/userlogin", form);

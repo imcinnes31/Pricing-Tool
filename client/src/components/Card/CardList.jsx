@@ -47,7 +47,7 @@ export default function CardList({ data, page, setPage, perPage, setPerPage, que
 
     <Fragment>
       <div className="card-list pb-5 mb-5">
-        {data?.data.map((user) => ( 
+        {data?.data.map((user) => (
           <UserCard key={user.id} user={user} query={query} perPage={perPage} roleVal={roleVal} currentProfile={currentProfile} setCurrentProfile={setCurrentProfile} />
         ))}
 
