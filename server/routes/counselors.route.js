@@ -136,11 +136,11 @@ module.exports = (server) => {
     res.set("Access-Control-Allow-Origin", "*");
 
     let locations = [];
-    let provinces = await counselor.distinct("province", { in_person: true });
+    let provinces = await counselor.distinct("province", { in_person: true, inactive: { $ne: true } });
 
     for (const province of provinces) {
       let currentProvince = {};
-      let cities = await counselor.distinct("city", {in_person: true, province: province});
+      let cities = await counselor.distinct("city", {in_person: true, province: province, inactive: { $ne: true }});
       let provinceName = province;
       provinceName = provinceName.replace(/_/g," ").toLowerCase().split(" ");
       for (var i = 0; i < provinceName.length; i++) {

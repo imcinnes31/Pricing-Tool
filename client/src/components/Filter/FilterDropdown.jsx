@@ -5,7 +5,6 @@ import { Form, Row, Col, Container, Button } from "react-bootstrap";
 export default function FilterDropdownComponent({ filters, setIsSelected, isSelected  }) {
 
     function handleSelect(currentMenu) {
-        console.log(currentMenu)
         var selectedStuff = isSelected;
         var currentMenuName = currentMenu.id.replace(/ /g, "_").toLowerCase()
 

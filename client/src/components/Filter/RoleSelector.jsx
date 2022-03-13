@@ -28,7 +28,6 @@ export default function RoleSelector({roleVal, setRoleVal})
         if(value){
             setRoleVal(value)
         }
-        console.log(value);
     }
 
     return (
