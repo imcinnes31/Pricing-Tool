@@ -86,6 +86,7 @@ export const FILTERS = [
       "Perfectionism",
       "Personal Growth/Development",
       "Personality Disorders",
+      "Post-Traumatic Stress Disorder (PTSD)",
       "Pregnant and/or Postpartum Parents",
       "Queer Issues",
       "Racial Identity",
@@ -147,6 +148,7 @@ export const FILTERS = [
       "Intervention",
       "Life Coach/Coaching",
       "Mindfulness-Based (MBCT)",
+      "Mindfulness and Meditation",
       "Motivational Interviewing",
       "Multi-Dimensional",
       "Multicultural",
@@ -166,6 +168,7 @@ export const FILTERS = [
       "Strength-Based",
       "Trauma-Focused",
       "Trauma-Focused Compassionate Inquiry",
+      "Trauma-Informed",
 ],
   },
   { category: "Languages", list: [
