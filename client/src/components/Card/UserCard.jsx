@@ -110,7 +110,7 @@ export default function UserCard({ user, query, perPage, roleVal, currentProfile
 
         <div className="col-md-11 md-1 mt-3 d-block mx-auto">         
           <h5 className="py-0">{`An introduction to ${user.name}`}</h5>
-          <p>{user.descriptionLong}</p>
+          <p>{user.descriptionLong ? user.descriptionLong : user.introduction}</p>
         </div>
         <div className="col-md-11 mt-md-1 d-block mx-auto">         
           <h5 className="py-0">Treatment Areas</h5>

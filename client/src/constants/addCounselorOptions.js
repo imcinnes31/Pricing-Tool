@@ -1,7 +1,7 @@
 export const OPTIONS = [
   {
     category: "Gender",
-    list: ["Male", "Female", "Other"],
+    list: ["Male", "Female", "Non-Binary", "Gender Queer"],
   },
   {
     category: "Pronouns",
@@ -188,9 +188,8 @@ export const OPTIONS = [
   {
     category: "Roles",
     list: [
-      "Clients",
-      "Supervision",
-      "Life Coach"
+      "Counselor",
+      "Supervisor",
     ],
   },
   {

@@ -25,20 +25,20 @@ export default function RegisterUser() {
     // alert(JSON.stringify(form));
     e.preventDefault();
 
-    console.log(form);
+    // console.log(form);
     if (checked) {
       try {
         const formData = new FormData();
         for (var key in form) {
           formData.append(key, form[key]);
-          console.log(key);
-          console.log(form[key]);
+          // console.log(key);
+          // console.log(form[key]);
         }
         const responseData = await Axios.post("/api/users/usercreate", formData);
         auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
-        console.log(responseData.data.userId);
-        console.log(responseData.data.token);
-        console.log(responseData.data.email);
+        // console.log(responseData.data.userId);
+        // console.log(responseData.data.token);
+        // console.log(responseData.data.email);
         if (checked && responseData.data.email != null) {
           Axios.post(`/api/users/requestForCounselorAccess/${responseData.data.email}`)
         }
@@ -57,9 +57,9 @@ export default function RegisterUser() {
       try {
         const responseData = await Axios.post("/api/users/usercreate", form);
         auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
-        console.log(responseData.data.userId);
-        console.log(responseData.data.token);
-        console.log(responseData.data.email);
+        // console.log(responseData.data.userId);
+        // console.log(responseData.data.token);
+        // console.log(responseData.data.email);
 
         localStorage.setItem(
           "userEmail",
@@ -90,8 +90,8 @@ export default function RegisterUser() {
 
   const requestCounselorImage = event => {
     setFile(event.target.files[0]);
-    console.log(file);
-    console.log(event.target.files[0]);
+    // console.log(file);
+    // console.log(event.target.files[0]);
   }
 
   const handleImg = (file) => {

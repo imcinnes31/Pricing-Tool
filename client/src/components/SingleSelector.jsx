@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 
 
 // Component for the add counselor page single selectors.
-export default function SingleSelector({filters, id, onChange, isQuery, isSearchable}) {
+export default function SingleSelector({filters, id, onChange, isQuery, isSearchable, userData}) {
   const isMobile = useMediaQuery({ query: '(max-device-width: 576px)' })
   const isTablet = useMediaQuery({ query: '(max-device-width: 1024px)' })
 
@@ -55,6 +55,17 @@ export default function SingleSelector({filters, id, onChange, isQuery, isSearch
     
     setSelectedOptions(selected);
   };
+
+  React.useEffect(() => {
+    if(userData) {
+      for (const option in options) {
+        if (options[option].label.replace(/ /g, "_").toLowerCase() === userData.replace(/ /g, "_").toLowerCase()) {
+          setSelectedOptions(options[option]);
+          break;
+        }
+      }
+    }
+  }, []);
   
   return (
     <Select

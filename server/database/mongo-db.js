@@ -173,7 +173,7 @@ Counselor.aggregate([
   };
 
   function parseQuery(query) {
-    console.log(query);
+    // console.log(query);
     let parsedQuery = {};
     var ageQueryArray = [];
 
@@ -213,7 +213,7 @@ Counselor.aggregate([
       if (parsedQuery['in_person'] == 'true')
         parsedQuery['in_person'] = true;
     }
-    console.log(parsedQuery);
+    // console.log(parsedQuery);
     return parsedQuery;
   }
 

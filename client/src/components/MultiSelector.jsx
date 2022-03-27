@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 
 
 // Component for the add counselor page multi selectors.
-export default function MultiSelector({filters, id, onChange, isQuery }) {
+export default function MultiSelector({filters, id, onChange, isQuery, userData }) {
   const isMobile = useMediaQuery({ query: '(max-device-width: 576px)' })
   const isTablet = useMediaQuery({ query: '(max-device-width: 1024px)' })
 
@@ -50,7 +50,7 @@ export default function MultiSelector({filters, id, onChange, isQuery }) {
   //convert options in format of Select component
   const options = filters.list.map((item, index) => ({value: index, label: item}));
   
-  const [optionSelected, setSelectedOptions] = useState([]);
+  const [optionsSelected, setSelectedOptions] = useState([]);
 
   const handleChangeInner = (selected) => {
     //if this is a query option in the pricing tool it has to be in lowercase
@@ -58,7 +58,41 @@ export default function MultiSelector({filters, id, onChange, isQuery }) {
     onChange({ id, optionsSelected});
     
     setSelectedOptions(selected);
+
+    // console.log(selected);
   };
+
+  React.useEffect(() => {
+    if(userData && id=="credentials") {
+      var prevOptions = [];
+      var currentValNumber = 0;
+      for (const option in options) {
+        if (userData.split(",").includes(options[option].label)) {
+          var currentOptionEntry = {};
+          currentOptionEntry.label = options[option].label;
+          currentOptionEntry.value = currentValNumber;
+          currentValNumber += 1;
+          prevOptions.push(currentOptionEntry);
+        }
+      }
+      setSelectedOptions(prevOptions);
+    }
+    else if (userData) {
+      var prevOptions = [];
+      var currentValNumber = 0;
+      // console.log(userData.split(","));
+      for (const option in options) {
+        if (userData.split(",").includes(options[option].label.replace(/ /g, "_").toLowerCase()) ) {
+          var currentOptionEntry = {};
+          currentOptionEntry.label = options[option].label;
+          currentOptionEntry.value = currentValNumber;
+          currentValNumber += 1;
+          prevOptions.push(currentOptionEntry);
+        }
+      }
+      setSelectedOptions(prevOptions);
+    }
+  }, []);
   
   return (
     <Select
@@ -66,7 +100,7 @@ export default function MultiSelector({filters, id, onChange, isQuery }) {
       isLoading={!options}
       closeMenuOnSelect={true}
       onChange={handleChangeInner}
-      value={optionSelected}
+      value={optionsSelected}
       id={id}
       styles={styles}
       placeholder=""

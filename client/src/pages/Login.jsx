@@ -22,15 +22,15 @@ export default function Login() {
   const submitTest = async (e) => {
     // alert(JSON.stringify(form));
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
 
     try {
       const responseData = await Axios.post("/api/users/userlogin", form);
       auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
-      console.log(responseData.data.userId);
-      console.log(responseData.data.token);
-      console.log(responseData.data.email);
-      console.log(responseData.data.role);
+      // console.log(responseData.data.userId);
+      // console.log(responseData.data.token);
+      // console.log(responseData.data.email);
+      // console.log(responseData.data.role);
       setUser(responseData.data);
       localStorage.setItem(
         "userEmail",

@@ -29,7 +29,7 @@ export default function AddCounselor(props) {
     for (var key in form) {
       formData.append(key, form[key]);
     }
-    console.log(formData);
+    // console.log(formData);
     Axios.post("/api/insertCounselor", formData);
     window.location.reload(false);
     e.preventDefault();

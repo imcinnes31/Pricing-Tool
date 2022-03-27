@@ -42,11 +42,11 @@ export default function UserList() {
 
   const handleSearch = async () => {
     const emailkey = document.getElementById("header-search").value;
-    console.log(emailkey);
+    // console.log(emailkey);
     let searchResult;
     try {
       searchResult = await Axios.get(`/api/users/search-user/${emailkey}`);
-      console.log(searchResult);
+      // console.log(searchResult);
       setSearch(true);
       setSearchData(searchResult.data.existingUser);
     } catch (err) {
