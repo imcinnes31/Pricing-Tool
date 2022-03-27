@@ -10,7 +10,7 @@ export default function ImageUpload(props) {
   
     useEffect(() => {
       if (props.prevImage) {
-        setPreviewUrl(props.prevImage.startsWith("uploads/") ? `http://localhost:5000/${props.prevImage}` : `${props.prevImage}`);
+        setPreviewUrl(props.prevImage.startsWith("uploads/") ? `${process.env.REACT_APP_BACKEND_URL}/${props.prevImage}` : `${props.prevImage}`);
       }
       if (!file) {
         return;

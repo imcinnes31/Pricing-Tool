@@ -62,7 +62,7 @@ export default function UserProfile() {
 
   const getCurrentUserData = async () => {
     const responseData2 = await Axios.get(
-      `/api/v2/counselors/getCounselorByEmail/${localStorage.getItem("userEmail")}`
+      `${process.env.REACT_APP_BACKEND_API}/v2/counselors/getCounselorByEmail/${localStorage.getItem("userEmail")}`
     );
     setUserWithData2(responseData2.data.existingCounselor);
     if(responseData2.data.existingCounselor.roles) {
@@ -117,14 +117,14 @@ export default function UserProfile() {
     if (form['emailAddress'] && form['emailAddress'] !== userKey) {
       try {
         const existingCounselorSearch = await Axios.get(
-          `/api/users/search-email/${form['emailAddress']}`
+          `${process.env.REACT_APP_BACKEND_API}/users/search-email/${form['emailAddress']}`
         );
         if (existingCounselorSearch.data.existingUser.length > 0) {
           alert("User with that email already exists");
           return;
         }
         const checkIfCounselor = await Axios.get(
-          `/api/users/search-email/${userKey}`
+          `${process.env.REACT_APP_BACKEND_API}/users/search-email/${userKey}`
         );
 
         if (checkIfCounselor.data.existingUser[0].role == "Counselor") {
@@ -211,7 +211,7 @@ export default function UserProfile() {
     try {
       // console.log(localStorage.getItem("userEmail"))
       const responseData = await Axios.get(
-        `/api/v2/counselors/getCounselorByEmail/${localStorage.getItem("userEmail")}`
+        `${process.env.REACT_APP_BACKEND_API}/v2/counselors/getCounselorByEmail/${localStorage.getItem("userEmail")}`
       );
       setUserWithData(responseData.data.existingCounselor);
       // console.log("------------------");
@@ -226,12 +226,12 @@ export default function UserProfile() {
   };
 
   // const submitUpdatedForm = (e) => {
-  //   // Axios.delete(`/api/v2/counselors/counselorDelete/${localStorage.getItem("userEmail")}`);
+  //   // Axios.delete(`${process.env.REACT_APP_BACKEND_API}/v2/counselors/counselorDelete/${localStorage.getItem("userEmail")}`);
   //   const formData = new FormData();
   //   for (var key in form) {
   //     formData.append(key, form[key]);
   //   }
-  //   // Axios.post("/api/insertCounselor", formData);
+  //   // Axios.post(`${process.env.REACT_APP_BACKEND_API}/insertCounselor`, formData);
   //   window.location.reload(false);
   //   e.preventDefault();
   // };
@@ -284,7 +284,7 @@ export default function UserProfile() {
       formData.append(key, form[key]);
     }
     if(userWithData2) {
-      Axios.delete(`/api/v2/counselors/counselorDelete/${localStorage.getItem("userEmail")}`);
+      Axios.delete(`${process.env.REACT_APP_BACKEND_API}/v2/counselors/counselorDelete/${localStorage.getItem("userEmail")}`);
       for (const [key, value] of Object.entries(userWithData2)) {
         if (!(form[key])) {
           formData.append(key, value);
@@ -295,7 +295,7 @@ export default function UserProfile() {
     else {
       formData.append('email', localStorage.getItem("userEmail"));
     }
-    Axios.post("/api/insertCounselor", formData);
+    Axios.post(`${process.env.REACT_APP_BACKEND_API}/insertCounselor`, formData);
     window.location.reload(false);
     e.preventDefault();
   };
@@ -506,7 +506,7 @@ export default function UserProfile() {
               <Fragment>
                 <Form>
                   {/* {loading ? <Spinner /> : <img className="mx-auto d-block" src={`http://localhost:5000/${userWithData2.pfp}`} style={{ height: '100%', maxWidth: '350px' }} />} */}
-                  {loading ? <Spinner /> : <img className="mx-auto d-block" src={userWithData2.pfp.startsWith("uploads/") ? `http://localhost:5000/${userWithData2.pfp}` : userWithData2.pfp} style={{ height: '100%', maxWidth: '350px' }} />}
+                  {loading ? <Spinner /> : <img className="mx-auto d-block" src={userWithData2.pfp.startsWith("uploads/") ? `${process.env.REACT_APP_BACKEND_URL}/${userWithData2.pfp}` : userWithData2.pfp} style={{ height: '100%', maxWidth: '350px' }} />}
                   {/* `http://localhost:5000/uploads/images/Ally_Goult.png` */}
                   <Row>
                     <Col>
