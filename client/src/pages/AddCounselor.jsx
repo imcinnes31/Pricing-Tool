@@ -29,8 +29,9 @@ export default function AddCounselor(props) {
     for (var key in form) {
       formData.append(key, form[key]);
     }
-    console.log(formData);
+    // console.log(formData);
     Axios.post(process.env.REACT_APP_BACKEND_API + "/insertCounselor", formData);
+    window.location.reload(false);
     e.preventDefault();
   };
 

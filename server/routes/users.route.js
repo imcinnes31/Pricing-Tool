@@ -21,6 +21,7 @@ router.post("/userlogin", userControllers.userLogin);
 router.post("/userRoleChange/:emailKey/:role", userControllers.userRoleChange);
 router.delete("/userDelete/:emailKey", userControllers.userDeleteByEmail);
 router.get("/search-user/:emailKey", userControllers.searchByEmail);
+router.get("/search-email/:emailKey", userControllers.searchForExistingEmail);
 router.put("/update-user/:emailKey", userControllers.updateUserByEmail);
 
 router.post("/forgotPassword/:emailKey", userControllers.forgotPassword);

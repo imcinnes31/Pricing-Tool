@@ -27,10 +27,10 @@ export default function Login() {
     try {
       const responseData = await Axios.post(process.env.REACT_APP_BACKEND_API + "/users/userlogin", form);
       auth.login(responseData.data.userId, responseData.data.token, responseData.data.role);
-      console.log(responseData.data.userId);
-      console.log(responseData.data.token);
-      console.log(responseData.data.email);
-      console.log(responseData.data.role);
+      // console.log(responseData.data.userId);
+      // console.log(responseData.data.token);
+      // console.log(responseData.data.email);
+      // console.log(responseData.data.role);
       setUser(responseData.data);
       localStorage.setItem(
         "userEmail",

@@ -17,10 +17,10 @@ const Counselor = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  ethnicity: [{
-    type: String,
-    required: true,
-  }],
+  // ethnicity: [{
+  //   type: String,
+  //   required: true,
+  // }],
   specializations: [{
     type: String,
     required: true,
@@ -39,7 +39,7 @@ const Counselor = new mongoose.Schema({
   },
   credentials: [{
     type: String,
-    required: true,
+    required: false,
   }],
   introduction: {
     type: String,
@@ -55,7 +55,7 @@ const Counselor = new mongoose.Schema({
   },
   pronouns: {
     type: String,
-    required: true,
+    required: false,
   },
   date: {
     type: String,
@@ -73,7 +73,7 @@ const Counselor = new mongoose.Schema({
   },
   in_person: {
     type: Boolean,
-    required: false,
+    required: true,
   },
   province: {
     type: String,
@@ -109,7 +109,15 @@ const Counselor = new mongoose.Schema({
   },
   email:{
     type: String,
-    required: false
+    required: true
+  },
+  languages: [{
+    type: String,
+    required: true,
+  }],
+  descriptionLong:{
+    type: String,
+    required: false,
   }
 });
 //                                             v schema variable

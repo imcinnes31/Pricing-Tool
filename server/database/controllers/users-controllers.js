@@ -186,9 +186,9 @@ const userRoleChange = async (req, res, next) => {
     );
     return next(error);
   }
-  console.log(existingUser);
-    existingUser.role = role;
-    //console.log(existingUser);
+  // console.log(existingUser);
+  existingUser.role = role;
+  // console.log(existingUser);
   try {
     // existingUser.role = role;
     await existingUser.save();
@@ -249,7 +249,28 @@ const searchByEmail = async (req, res, next) => {
     }
   } catch (err) {
     const error = new HttpError(
-      "Cannot find user, lease try again later.",
+      "Cannot find user, please try again later.",
+      500
+    );
+    return next(error);
+  }
+  // console.log(existingUser);
+  res.status(200).json({
+    existingUser,
+  });
+};
+
+const searchForExistingEmail = async (req, res, next) => {
+  const email = req.params.emailKey;
+  let existingUser;
+
+  try {
+    // console.log("trying to find user with this email address:");
+    // console.log(email);
+    existingUser = await UserModel.find({ email: email });
+  } catch (err) {
+    const error = new HttpError(
+      "Cannot find user, please try again later.",
       500
     );
     return next(error);
@@ -270,7 +291,7 @@ const updateUserByEmail = async (req, res, next) => {
 
   const email = req.params.emailKey;
 
-  const { firstName, lastName, phone, password } = req.body;
+  const { firstName, lastName, phone, password, emailAddress } = req.body;
 
   let existingUser;
 
@@ -283,6 +304,7 @@ const updateUserByEmail = async (req, res, next) => {
             firstName: firstName,
             lastName: lastName,
             phone: phone,
+            email: emailAddress,
           },
         }
       );
@@ -506,6 +528,7 @@ exports.userLogin = userLogin;
 exports.userRoleChange = userRoleChange;
 exports.userDeleteByEmail = userDeleteByEmail;
 exports.searchByEmail = searchByEmail;
+exports.searchForExistingEmail = searchForExistingEmail;
 exports.updateUserByEmail = updateUserByEmail;
 exports.forgotPassword = forgotPassword;
 exports.resetPassword = resetPassword;
