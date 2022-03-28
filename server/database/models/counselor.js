@@ -73,7 +73,7 @@ const Counselor = new mongoose.Schema({
   },
   in_person: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   province: {
     type: String,
