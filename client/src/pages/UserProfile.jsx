@@ -295,6 +295,7 @@ export default function UserProfile() {
     else {
       formData.append('email', localStorage.getItem("userEmail"));
     }
+    // console.log(formData);
     Axios.post(`${process.env.REACT_APP_BACKEND_API}/insertCounselor`, formData);
     window.location.reload(false);
     e.preventDefault();
