@@ -701,6 +701,12 @@ button:focus {
     text-align: center;
   }
 
+  .requiredIndicator {
+    color: red;
+    font-size: 5px;
+    height: 5px;
+  }
+
   .modal-dialog {
     max-width: 1250px;
     margin-top: 200px;
