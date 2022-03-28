@@ -244,6 +244,9 @@ export default function UserProfile() {
   };
 
   const handleSelect = (selected) => {
+    if(document.getElementById(`${selected.id}Selection`)){
+      document.getElementById(`${selected.id}Selection`).value = selected.optionsSelected;
+    }
     setForm({
       ...form,
       [selected.id]: selected.optionsSelected,
@@ -279,15 +282,19 @@ export default function UserProfile() {
   };
 
   const submitForm = (e) => {
-    const formData = new FormData();
+    var formData = new FormData();
     for (var key in form) {
       formData.append(key, form[key]);
+      // console.log(key);
+      // console.log(form[key]);
     }
     if(userWithData2) {
       Axios.delete(`${process.env.REACT_APP_BACKEND_API}/v2/counselors/counselorDelete/${localStorage.getItem("userEmail")}`);
       for (const [key, value] of Object.entries(userWithData2)) {
-        if (!(form[key])) {
+        if (!(form[key]) && !(key === 'in_person')) {
           formData.append(key, value);
+          // console.log(key);
+          // console.log(value);
         }
       }
       formData.append('existing_pfp_path', userWithData2.pfp);
@@ -295,7 +302,7 @@ export default function UserProfile() {
     else {
       formData.append('email', localStorage.getItem("userEmail"));
     }
-    // console.log(formData);
+    formData.append('in_person', checked);
     Axios.post(`${process.env.REACT_APP_BACKEND_API}/insertCounselor`, formData);
     window.location.reload(false);
     e.preventDefault();
@@ -674,6 +681,7 @@ export default function UserProfile() {
                       onChange={handleField}
                       required
                     ></Form.Control>
+                    <p className="requiredIndicator">* required</p>
                   </Col>
                   <Col>
                     <Form.Label>Gender</Form.Label>
@@ -684,6 +692,13 @@ export default function UserProfile() {
                       isQuery={false}
                       required
                     />
+                    <p className="requiredIndicator">* required</p>
+                    <Form.Control
+                      type="text"
+                      id="genderSelection"
+                      required='true'
+                      className='hiddenValidationField'
+                    ></Form.Control>
                   </Col>
                   <Col>
                     <Form.Label>Pronouns</Form.Label>
@@ -704,6 +719,7 @@ export default function UserProfile() {
                       onChange={handleField}
                       required
                     ></Form.Control>
+                    <p className="requiredIndicator">* required</p>
                   </Col>
                   <Col>
                     <Form.Label>Credentials</Form.Label>
@@ -722,6 +738,7 @@ export default function UserProfile() {
                   onChange={handleField}
                   required
                 ></Form.Control>
+                <p className="requiredIndicator">* required</p>
                 <Form.Label>Long Introduction</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -747,6 +764,13 @@ export default function UserProfile() {
                       isQuery={true}
                       required
                     />
+                    <p className="requiredIndicator">* required</p>
+                    <Form.Control
+                      type="text"
+                      id="specializationsSelection"
+                      required='true'
+                      className='hiddenValidationField'
+                    ></Form.Control>
                   </Col>
                 </Row>
                 <Form.Label>Specialization Description</Form.Label>
@@ -756,6 +780,7 @@ export default function UserProfile() {
                   onChange={handleField}
                   required
                 ></Form.Control>
+                <p className="requiredIndicator">* required</p>
                 <Form.Label>Approach</Form.Label>
                 <MultiSelector
                   filters={OPTIONS[3]}
@@ -764,6 +789,13 @@ export default function UserProfile() {
                   isQuery={true}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="approachSelection"
+                  required='true'
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <Form.Label>Approach Description</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -771,6 +803,7 @@ export default function UserProfile() {
                   onChange={handleField}
                   required
                 ></Form.Control>
+                <p className="requiredIndicator">* required</p>
         
                 <Form.Label>Price</Form.Label>
                 <Form.Control
@@ -779,7 +812,7 @@ export default function UserProfile() {
                   onChange={handleField}
                   required
                 ></Form.Control>
-        
+                <p className="requiredIndicator">* required</p>
                 <Form.Label>Roles</Form.Label>
                 <MultiSelector
                   filters={OPTIONS[7]}
@@ -788,6 +821,13 @@ export default function UserProfile() {
                   isQuery={true}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="rolesSelection"
+                  required='true'
+                  className='hiddenValidationField'
+                ></Form.Control>
 
                 {supervisorChecked ? (
                   <Fragment>
@@ -803,7 +843,7 @@ export default function UserProfile() {
                 )}
         
                 <Form.Label>In Person</Form.Label>
-                <Form.Check name="terms" onChange={handleCheck} id="in_person" />
+                <Form.Check name="terms" onChange={handleCheck} />
         
                 {checked ? (
                   <Fragment>
@@ -827,6 +867,13 @@ export default function UserProfile() {
                   isQuery={true}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="provinceSelection"
+                  required='true'
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <Form.Label>City</Form.Label>
                 <SingleSelector
                   filters={optionTest}
@@ -836,6 +883,13 @@ export default function UserProfile() {
                   isSearchable={true}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="citySelection"
+                  required='true'
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <Form.Label>Languages</Form.Label>           
                 <MultiSelector
                   filters={languagesList}
@@ -845,6 +899,13 @@ export default function UserProfile() {
                   isSearchable={true}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="languagesSelection"
+                  required='true'
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <div id="submitContainer">
                 <Button
                   type="submit"
@@ -904,6 +965,7 @@ export default function UserProfile() {
                       required
                       defaultValue={`${userWithData2.name}`}
                     ></Form.Control>
+                    <p className="requiredIndicator">* required</p>
                   </Col>
                   <Col>
                     <Form.Label>Gender</Form.Label>
@@ -915,6 +977,15 @@ export default function UserProfile() {
                       isQuery={false}
                       userData={`${userWithData2.gender}`}
                     />
+                    <p className="requiredIndicator">* required</p>
+                    <Form.Control
+                      type="text"
+                      id="genderSelection"
+                      required='true'
+                      defaultValue={`${userWithData2.gender}`}
+                      className='hiddenValidationField'
+                    ></Form.Control>
+                    
                   </Col>
                   <Col>
                     <Form.Label>Pronouns</Form.Label>
@@ -937,6 +1008,7 @@ export default function UserProfile() {
                       required
                       defaultValue = {`${userWithData2.age}`}
                     ></Form.Control>
+                    <p className="requiredIndicator">* required</p>
                   </Col>
                   <Col>
                     <Form.Label>Credentials</Form.Label>
@@ -957,6 +1029,7 @@ export default function UserProfile() {
                   required
                   defaultValue={`${userWithData2.introduction}`}
                 ></Form.Control>
+                <p className="requiredIndicator">* required</p>
                 <Form.Label>Long Introduction</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -984,6 +1057,14 @@ export default function UserProfile() {
                       required
                       userData={`${userWithData2.specializations}`}
                     />
+                    <p className="requiredIndicator">* required</p>
+                    <Form.Control
+                      type="text"
+                      id="specializationsSelection"
+                      required='true'
+                      defaultValue={`${userWithData2.specializations}`}
+                      className='hiddenValidationField'
+                    ></Form.Control>
                   </Col>
                 </Row>
                 <Form.Label>Specialization Description</Form.Label>
@@ -994,6 +1075,7 @@ export default function UserProfile() {
                   required
                   defaultValue={`${userWithData2.specializationDesc}`}
                 ></Form.Control>
+                <p className="requiredIndicator">* required</p>
                 <Form.Label>Approach</Form.Label>
                 <MultiSelector
                   filters={OPTIONS[3]}
@@ -1003,6 +1085,14 @@ export default function UserProfile() {
                   required
                   userData={`${userWithData2.approach}`}
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="approachSelection"
+                  required='true'
+                  defaultValue={`${userWithData2.approach}`}
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <Form.Label>Approach Description</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -1011,6 +1101,7 @@ export default function UserProfile() {
                   required
                   defaultValue={`${userWithData2.approachDesc}`}
                 ></Form.Control>
+                <p className="requiredIndicator">* required</p>
         
                 <Form.Label>Price</Form.Label>
                 <Form.Control
@@ -1020,6 +1111,7 @@ export default function UserProfile() {
                   required
                   defaultValue={`${userWithData2.price}`}
                 ></Form.Control>
+                <p className="requiredIndicator">* required</p>
         
                 <Form.Label>Roles</Form.Label>
                 <MultiSelector
@@ -1030,6 +1122,14 @@ export default function UserProfile() {
                   required
                   userData={`${userWithData2.roles}`}
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="rolesSelection"
+                  required='true'
+                  defaultValue={`${userWithData2.roles}`}
+                  className='hiddenValidationField'
+                ></Form.Control>
         
               {supervisorChecked ? (
                   <Fragment>
@@ -1047,7 +1147,7 @@ export default function UserProfile() {
                 )}
                 
                 <Form.Label>In Person</Form.Label>
-                <Form.Check name="terms" onChange={handleCheck} id="in_person" defaultChecked={userWithData2.in_person}/>
+                <Form.Check name="terms" onChange={handleCheck} defaultChecked={userWithData2.in_person}/>
                 {/* DOES NOT BRING UP IN PERSON PRICE FIELD WHEN CHECKED, BUT RATHER UNCHECKED */}
         
                 {checked ? (
@@ -1074,6 +1174,14 @@ export default function UserProfile() {
                   userData={`${userWithData2.province}`}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="provinceSelection"
+                  required='true'
+                  defaultValue={`${userWithData2.province}`}
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <Form.Label>City</Form.Label>           
                 <SingleSelector
                   filters={optionTest.list.length > 0 ? optionTest : optionTest2}
@@ -1084,6 +1192,14 @@ export default function UserProfile() {
                   userData={`${userWithData2.city}`}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="citySelection"
+                  required='true'
+                  defaultValue={`${userWithData2.city}`}
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <Form.Label>Languages</Form.Label>           
                 <MultiSelector
                   filters={languagesList}
@@ -1094,6 +1210,14 @@ export default function UserProfile() {
                   userData={`${userWithData2.languages}`}
                   required
                 />
+                <p className="requiredIndicator">* required</p>
+                <Form.Control
+                  type="text"
+                  id="languagesSelection"
+                  required='true'
+                  defaultValue={`${userWithData2.languages}`}
+                  className='hiddenValidationField'
+                ></Form.Control>
                 <div id="submitContainer">
                 <Button
                   type="submit"

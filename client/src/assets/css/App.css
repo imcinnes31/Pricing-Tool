@@ -305,6 +305,17 @@ button:focus {
   margin-bottom: 202px;
 }
 
+.hiddenValidationField {
+  height: 1px;
+  visibility: hidden;
+}
+
+.requiredIndicator {
+  color: red;
+  font-size: 10px;
+  height: 2px;
+}
+
 /* MOBILE DEVICES */
 @media only screen and (max-device-width: 576px)
  {
