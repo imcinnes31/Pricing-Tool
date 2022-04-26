@@ -169,19 +169,18 @@ export default function RegisterUser() {
         <div id="registerButton">
         <br />
         <Row>
-          <Col>
-            <Form.Label>Tick the box if you are registering as a Counselor ---</Form.Label>
-            <ToggleButton
-              id="toggle-check"
-              type="checkbox"
-              variant="outline-primary"
-              checked={checked}
-              value="1"
-              onChange={(e) => setChecked(e.currentTarget.checked)}
-            >
-              Checked
-            </ToggleButton>
-          </Col>
+          <Form.Label>Tick the box if you are registering as a Counselor ---</Form.Label>
+          {/* <ToggleButton
+            id="toggle-check"
+            type="checkbox"
+            variant="outline-primary"
+            checked={checked}
+            value="1"
+            onChange={(e) => setChecked(e.currentTarget.checked)}
+          >
+            Checked
+          </ToggleButton> */}
+          <Form.Check checked={checked} onChange={(e) => setChecked(e.currentTarget.checked)}/>
         </Row>
         {checked ? (
           <Fragment>
