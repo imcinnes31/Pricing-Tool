@@ -603,6 +603,11 @@ button:focus {
     font-size: 48px;
   }
 
+  #registerPage #toggle-check {
+    width: 92px;
+    height: 92px;
+  }
+
     /* login page */
 
     #loginPage {

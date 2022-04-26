@@ -180,7 +180,7 @@ export default function RegisterUser() {
           >
             Checked
           </ToggleButton> */}
-          <Form.Check checked={checked} onChange={(e) => setChecked(e.currentTarget.checked)}/>
+          <Form.Check id="toggle-check" checked={checked} onChange={(e) => setChecked(e.currentTarget.checked)}/>
         </Row>
         {checked ? (
           <Fragment>
