@@ -134,6 +134,8 @@ export default function UserProfile() {
             for (const [key, value] of Object.entries(userWithData2)) {
               if (key === "email") {
                 formData.append(key, form['emailAddress']);
+              } else if (key === "gender") {
+                formData.append(key, value.toLowerCase());
               } else {
                 formData.append(key, value);
               }
@@ -284,17 +286,17 @@ export default function UserProfile() {
   const submitForm = (e) => {
     var formData = new FormData();
     for (var key in form) {
-      formData.append(key, form[key]);
-      // console.log(key);
-      // console.log(form[key]);
+      if (key === 'gender') {
+        formData.append(key, form[key].replace(/ /g, "_").toLowerCase());
+      } else {
+        formData.append(key, form[key]);
+      }
     }
     if(userWithData2) {
       Axios.delete(`/api/v2/counselors/counselorDelete/${localStorage.getItem("userEmail")}`);
       for (const [key, value] of Object.entries(userWithData2)) {
         if (!(form[key]) && !(key === 'in_person')) {
           formData.append(key, value);
-          // console.log(key);
-          // console.log(value);
         }
       }
       formData.append('existing_pfp_path', userWithData2.pfp);
@@ -668,7 +670,7 @@ export default function UserProfile() {
               // <AddCounselor />
               //REPLACE WITH EDITABLE DIALOG
               <div id="addCounselorPage">
-              <h1>Counselor Profile Management</h1>
+              <h1>Counselor Profile Management (new counselor)</h1>
               {/* Change Form.Control id to control id in the form group  */}
               <Form onSubmit={submitForm}>
                 <ImageUpload id={"pfp"} center onInput={handleImg}/>
